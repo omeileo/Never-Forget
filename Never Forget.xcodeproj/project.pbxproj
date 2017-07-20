@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04404ACD3CDE4E16A8CE4C1E /* Pods_Never_Forget.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDF8463898E700978DB53F06 /* Pods_Never_Forget.framework */; };
 		F3910C6C1F207FEB009C6810 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3910C6B1F207FEB009C6810 /* AppDelegate.swift */; };
 		F3910C6E1F207FEB009C6810 /* MissingChildrenFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3910C6D1F207FEB009C6810 /* MissingChildrenFeedViewController.swift */; };
 		F3910C701F207FEB009C6810 /* MissingChildrenMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3910C6F1F207FEB009C6810 /* MissingChildrenMapViewController.swift */; };
@@ -15,9 +16,13 @@
 		F3910C781F207FEB009C6810 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3910C761F207FEB009C6810 /* LaunchScreen.storyboard */; };
 		F3910C861F209274009C6810 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3910C851F209274009C6810 /* LoginViewController.swift */; };
 		F3910C881F2092D7009C6810 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3910C871F2092D6009C6810 /* RegisterViewController.swift */; };
+		F3910C911F20A0D9009C6810 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F3910C901F20A0D9009C6810 /* GoogleService-Info.plist */; };
+		F3910C951F20A4B1009C6810 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = F3910C941F20A4B1009C6810 /* Podfile */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		606756346873E45756BF5C7D /* Pods-Never Forget.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Never Forget.release.xcconfig"; path = "Pods/Target Support Files/Pods-Never Forget/Pods-Never Forget.release.xcconfig"; sourceTree = "<group>"; };
+		A7DF6E768F2A5DF28BDBCA80 /* Pods-Never Forget.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Never Forget.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Never Forget/Pods-Never Forget.debug.xcconfig"; sourceTree = "<group>"; };
 		F3910C681F207FEB009C6810 /* Never Forget.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Never Forget.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3910C6B1F207FEB009C6810 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F3910C6D1F207FEB009C6810 /* MissingChildrenFeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissingChildrenFeedViewController.swift; sourceTree = "<group>"; };
@@ -28,6 +33,9 @@
 		F3910C791F207FEB009C6810 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F3910C851F209274009C6810 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		F3910C871F2092D6009C6810 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		F3910C901F20A0D9009C6810 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F3910C941F20A4B1009C6810 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
+		FDF8463898E700978DB53F06 /* Pods_Never_Forget.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Never_Forget.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,17 +43,38 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04404ACD3CDE4E16A8CE4C1E /* Pods_Never_Forget.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BED63A25A1DB950ADDDAFFDC /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A7DF6E768F2A5DF28BDBCA80 /* Pods-Never Forget.debug.xcconfig */,
+				606756346873E45756BF5C7D /* Pods-Never Forget.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		DB3814C9D065973E3F587284 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FDF8463898E700978DB53F06 /* Pods_Never_Forget.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		F3910C5F1F207FEB009C6810 = {
 			isa = PBXGroup;
 			children = (
+				F3910C941F20A4B1009C6810 /* Podfile */,
 				F3910C6A1F207FEB009C6810 /* Never Forget */,
 				F3910C691F207FEB009C6810 /* Products */,
+				BED63A25A1DB950ADDDAFFDC /* Pods */,
+				DB3814C9D065973E3F587284 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -115,6 +144,7 @@
 		F3910C841F2084D0009C6810 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F3910C901F20A0D9009C6810 /* GoogleService-Info.plist */,
 				F3910C791F207FEB009C6810 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -152,9 +182,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F3910C7C1F207FEB009C6810 /* Build configuration list for PBXNativeTarget "Never Forget" */;
 			buildPhases = (
+				8C3769EBF7416F14A42AE512 /* [CP] Check Pods Manifest.lock */,
 				F3910C641F207FEB009C6810 /* Sources */,
 				F3910C651F207FEB009C6810 /* Frameworks */,
 				F3910C661F207FEB009C6810 /* Resources */,
+				D0912718AD27C29C4A5EEFE1 /* [CP] Embed Pods Frameworks */,
+				CBAF1D869E7D1C84C19A7D4C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -205,13 +238,63 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F3910C951F20A4B1009C6810 /* Podfile in Resources */,
 				F3910C781F207FEB009C6810 /* LaunchScreen.storyboard in Resources */,
+				F3910C911F20A0D9009C6810 /* GoogleService-Info.plist in Resources */,
 				F3910C751F207FEB009C6810 /* Assets.xcassets in Resources */,
 				F3910C731F207FEB009C6810 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		8C3769EBF7416F14A42AE512 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		CBAF1D869E7D1C84C19A7D4C /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Never Forget/Pods-Never Forget-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D0912718AD27C29C4A5EEFE1 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Never Forget/Pods-Never Forget-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		F3910C641F207FEB009C6810 /* Sources */ = {
@@ -345,6 +428,7 @@
 		};
 		F3910C7D1F207FEB009C6810 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A7DF6E768F2A5DF28BDBCA80 /* Pods-Never Forget.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = ZPFHBBTQY8;
@@ -358,6 +442,7 @@
 		};
 		F3910C7E1F207FEB009C6810 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 606756346873E45756BF5C7D /* Pods-Never Forget.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = ZPFHBBTQY8;
@@ -388,6 +473,7 @@
 				F3910C7E1F207FEB009C6810 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
