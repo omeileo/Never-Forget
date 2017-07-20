@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class LoginViewController: UIViewController
 {
@@ -14,12 +15,13 @@ class LoginViewController: UIViewController
     @IBOutlet weak var passwordTextField: UITextField!
     
     let registerViewSegueIdentifier = "showRegisterViewController"
+    let addMissingChildViewDegueIdentifier = "showAddMissingChildViewController"
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
         
-        navigationController?.setNavigationBarHidden(true, animated: true)
+        navigationController?.setNavigationBarHidden(false, animated: true)
     }
 
     override func didReceiveMemoryWarning()
@@ -30,6 +32,22 @@ class LoginViewController: UIViewController
     
     @IBAction func loginUser(_ sender: UIButton)
     {
+        if let email = emailTextField.text, let password = passwordTextField.text
+        {
+            Auth.auth().signIn(withEmail: email, password: password)
+            {
+                (user, error) in
+                    if error == nil
+                    {
+                        //_ = self.navigationController?.popViewController(animated: true)
+                        self.performSegue(withIdentifier: self.addMissingChildViewDegueIdentifier, sender: self)
+                    }
+                    else
+                    {
+                        self.showAlert(title: "Error", message: "Insufficient or invalid information.")
+                    }
+            }
+        }
     }
     
     @IBAction func registerUser(_ sender: UIButton)

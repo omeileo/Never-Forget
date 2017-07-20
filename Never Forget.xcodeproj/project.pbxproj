@@ -18,6 +18,7 @@
 		F3910C881F2092D7009C6810 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3910C871F2092D6009C6810 /* RegisterViewController.swift */; };
 		F3910C911F20A0D9009C6810 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F3910C901F20A0D9009C6810 /* GoogleService-Info.plist */; };
 		F3910C951F20A4B1009C6810 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = F3910C941F20A4B1009C6810 /* Podfile */; };
+		F3910C981F20AC15009C6810 /* UIViewController+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3910C971F20AC15009C6810 /* UIViewController+Utils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,7 @@
 		F3910C871F2092D6009C6810 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		F3910C901F20A0D9009C6810 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F3910C941F20A4B1009C6810 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
+		F3910C971F20AC15009C6810 /* UIViewController+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Utils.swift"; sourceTree = "<group>"; };
 		FDF8463898E700978DB53F06 /* Pods_Never_Forget.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Never_Forget.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -117,6 +119,7 @@
 		F3910C811F208443009C6810 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				F3910C961F20ABEE009C6810 /* Utils */,
 				F3910C8B1F209345009C6810 /* Missing Children Feed */,
 				F3910C8A1F20933C009C6810 /* Missing Children Map */,
 				F3910C891F2092FC009C6810 /* Login */,
@@ -173,6 +176,14 @@
 				F3910C6D1F207FEB009C6810 /* MissingChildrenFeedViewController.swift */,
 			);
 			name = "Missing Children Feed";
+			sourceTree = "<group>";
+		};
+		F3910C961F20ABEE009C6810 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				F3910C971F20AC15009C6810 /* UIViewController+Utils.swift */,
+			);
+			name = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -303,6 +314,7 @@
 			files = (
 				F3910C861F209274009C6810 /* LoginViewController.swift in Sources */,
 				F3910C881F2092D7009C6810 /* RegisterViewController.swift in Sources */,
+				F3910C981F20AC15009C6810 /* UIViewController+Utils.swift in Sources */,
 				F3910C701F207FEB009C6810 /* MissingChildrenMapViewController.swift in Sources */,
 				F3910C6C1F207FEB009C6810 /* AppDelegate.swift in Sources */,
 				F3910C6E1F207FEB009C6810 /* MissingChildrenFeedViewController.swift in Sources */,

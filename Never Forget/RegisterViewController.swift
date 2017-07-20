@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class RegisterViewController: UIViewController
 {
@@ -15,11 +16,15 @@ class RegisterViewController: UIViewController
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
 
+    let addMissingChildViewDegueIdentifier = "showAddMissingChildViewController"
+    
+    var ref: DatabaseReference!
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
 
-        navigationController?.setNavigationBarHidden(true, animated: true)
+        navigationController?.setNavigationBarHidden(false, animated: true)
     }
 
     override func didReceiveMemoryWarning()
@@ -30,6 +35,23 @@ class RegisterViewController: UIViewController
     
     @IBAction func registerUser(_ sender: UIButton)
     {
+        if let firstName = firstNameTextField.text, let lastName = lastNameTextField.text, let email = emailTextField.text,
+        let password = passwordTextField.text
+        {
+            Auth.auth().createUser(withEmail: email, password: password)
+            {
+                (user, error) in
+                if error == nil
+                {
+                    self.ref = Database.database().reference()
+                    self.performSegue(withIdentifier: self.addMissingChildViewDegueIdentifier, sender: self)
+                }
+                else
+                {
+                    self.showAlert(title: "Error", message: "Insufficient information provided for registration. Please fill out all fields.")
+                }
+            }
+        }
     }
 
     @IBAction func loginUser(_ sender: UIButton)
