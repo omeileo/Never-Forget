@@ -17,17 +17,38 @@ class LoginViewController: UIViewController
     let registerViewSegueIdentifier = "showRegisterViewController"
     let addMissingChildViewDegueIdentifier = "showAddMissingChildViewController"
     
+    override func viewWillAppear(_ animated: Bool)
+    {
+        super.viewWillAppear(animated)
+        
+        self.hideKeyboardWhenTappedOutside()
+        self.subscribeToKeyboardNotifications(textField: passwordTextField)
+        navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool)
+    {
+        super.viewWillDisappear(animated)
         
-        navigationController?.setNavigationBarHidden(false, animated: true)
+        //self.unsubcribeFromKeyboardNotifcations()
     }
 
     override func didReceiveMemoryWarning()
     {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func keyboardWillShow(_ notification: Notification)
+    {
+        resetView()
+        
+        view.frame.origin.y -= (getKeyboardHeight(notification)/3)
     }
     
     @IBAction func loginUser(_ sender: UIButton)
