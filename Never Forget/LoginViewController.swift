@@ -22,7 +22,7 @@ class LoginViewController: UIViewController
         super.viewWillAppear(animated)
         
         self.hideKeyboardWhenTappedOutside()
-        self.subscribeToKeyboardNotifications(textField: passwordTextField)
+        self.subscribeToKeyboardNotifications()
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
@@ -35,7 +35,7 @@ class LoginViewController: UIViewController
     {
         super.viewWillDisappear(animated)
         
-        //self.unsubcribeFromKeyboardNotifcations()
+        self.unsubcribeFromKeyboardNotifcations()
     }
 
     override func didReceiveMemoryWarning()

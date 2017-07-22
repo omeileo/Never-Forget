@@ -34,7 +34,7 @@ extension UIViewController
     }
     
     
-    func subscribeToKeyboardNotifications(textField field: UITextField)
+    func subscribeToKeyboardNotifications()
     {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: .UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: .UIKeyboardWillHide, object: nil)

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		04404ACD3CDE4E16A8CE4C1E /* Pods_Never_Forget.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDF8463898E700978DB53F06 /* Pods_Never_Forget.framework */; };
+		F3040EE91F23F41E000696F9 /* AddMissingChildViewController+DropdownMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3040EE81F23F41E000696F9 /* AddMissingChildViewController+DropdownMenu.swift */; };
 		F3910C6C1F207FEB009C6810 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3910C6B1F207FEB009C6810 /* AppDelegate.swift */; };
 		F3910C6E1F207FEB009C6810 /* MissingChildrenFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3910C6D1F207FEB009C6810 /* MissingChildrenFeedViewController.swift */; };
 		F3910C701F207FEB009C6810 /* MissingChildrenMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3910C6F1F207FEB009C6810 /* MissingChildrenMapViewController.swift */; };
@@ -25,6 +26,7 @@
 /* Begin PBXFileReference section */
 		606756346873E45756BF5C7D /* Pods-Never Forget.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Never Forget.release.xcconfig"; path = "Pods/Target Support Files/Pods-Never Forget/Pods-Never Forget.release.xcconfig"; sourceTree = "<group>"; };
 		A7DF6E768F2A5DF28BDBCA80 /* Pods-Never Forget.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Never Forget.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Never Forget/Pods-Never Forget.debug.xcconfig"; sourceTree = "<group>"; };
+		F3040EE81F23F41E000696F9 /* AddMissingChildViewController+DropdownMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AddMissingChildViewController+DropdownMenu.swift"; sourceTree = "<group>"; };
 		F3910C681F207FEB009C6810 /* Never Forget.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Never Forget.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3910C6B1F207FEB009C6810 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F3910C6D1F207FEB009C6810 /* MissingChildrenFeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissingChildrenFeedViewController.swift; sourceTree = "<group>"; };
@@ -193,6 +195,7 @@
 			isa = PBXGroup;
 			children = (
 				F3910C9A1F21CE88009C6810 /* AddMissingChildViewController.swift */,
+				F3040EE81F23F41E000696F9 /* AddMissingChildViewController+DropdownMenu.swift */,
 			);
 			name = "Add Missing Child";
 			sourceTree = "<group>";
@@ -329,6 +332,7 @@
 				F3910C701F207FEB009C6810 /* MissingChildrenMapViewController.swift in Sources */,
 				F3910C6C1F207FEB009C6810 /* AppDelegate.swift in Sources */,
 				F3910C9B1F21CE88009C6810 /* AddMissingChildViewController.swift in Sources */,
+				F3040EE91F23F41E000696F9 /* AddMissingChildViewController+DropdownMenu.swift in Sources */,
 				F3910C6E1F207FEB009C6810 /* MissingChildrenFeedViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

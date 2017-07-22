@@ -10,21 +10,63 @@ import UIKit
 
 class AddMissingChildViewController: UIViewController
 {
-
-    override func viewDidLoad()
-    {
-        super.viewDidLoad()
-
-        self.hideKeyboardWhenTappedOutside()
-    }
+    @IBOutlet weak var genderSwitch: UISwitch!
+    @IBOutlet weak var maleGenderLabel: UILabel!
+    @IBOutlet weak var femaleGenderLabel: UILabel!
     
+    @IBOutlet weak var firstNameTextField: UITextField!
+    @IBOutlet weak var lastNameTextField: UITextField!
+    @IBOutlet weak var nicknameTextField: UITextField!
+    @IBOutlet weak var ageTextField: UITextField!
+    @IBOutlet weak var citizenshipTextField: UITextField!
+    
+    @IBOutlet weak var hairTypeTextField: UITextField!
+    @IBOutlet weak var hairTypePickerView: UIPickerView!
+    
+    let hairTypes = ["Natural", "Processed", "Locks", "Braids", "Short Cut", "Bald", "Other"]
+    
+    override func viewWillAppear(_ animated: Bool)
+    {
+        super.viewWillAppear(animated)
+        
+        self.hideKeyboardWhenTappedOutside()
+        self.subscribeToKeyboardNotifications()
+    }
     
     override func didReceiveMemoryWarning()
     {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
+    override func keyboardWillShow(_ notification: Notification)
+    {
+        resetView()
+        
+        if firstNameTextField.isFirstResponder || lastNameTextField.isFirstResponder || nicknameTextField.isFirstResponder || ageTextField.isFirstResponder || citizenshipTextField.isFirstResponder
+        {
+            view.frame.origin.y -= (getKeyboardHeight(notification)/2)
+        }
+        else
+        {
+            view.frame.origin.y -= getKeyboardHeight(notification)
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool)
+    {
+        super.viewWillDisappear(animated)
+        
+        self.unsubcribeFromKeyboardNotifcations()
+    }
+    
+    @IBAction func switchGender(_ sender: UISwitch)
+    {
+    }
+    
+    @IBAction func reportMissingChild(_ sender: UIButton)
+    {
+        
+    }
 
     /*
     // MARK: - Navigation
