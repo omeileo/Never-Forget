@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import SwiftKeychainWrapper
 
 class LoginViewController: UIViewController
 {
@@ -24,6 +25,12 @@ class LoginViewController: UIViewController
         self.hideKeyboardWhenTappedOutside()
         self.subscribeToKeyboardNotifications()
         navigationController?.setNavigationBarHidden(false, animated: true)
+        
+        if let retrievedEmail = KeychainWrapper.standard.string(forKey: "neverForgetUserEmail"), let retrievedPassword = KeychainWrapper.standard.string(forKey: "neverForgetUserPassword")
+        {
+            emailTextField.text = retrievedEmail
+            passwordTextField.text = retrievedPassword
+        }
     }
     
     override func viewDidLoad()
@@ -61,6 +68,9 @@ class LoginViewController: UIViewController
                     if error == nil
                     {
                         //_ = self.navigationController?.popViewController(animated: true)
+                        let savedEmailToKeychain: Bool = KeychainWrapper.standard.set(email, forKey: "neverForgetUserEmail")
+                        let savedPasswordToKeychain: Bool = KeychainWrapper.standard.set(password, forKey: "neverForgetUserPassword")
+                        print("\(savedEmailToKeychain) & \(savedPasswordToKeychain)")
                         self.performSegue(withIdentifier: self.addMissingChildViewDegueIdentifier, sender: self)
                     }
                     else

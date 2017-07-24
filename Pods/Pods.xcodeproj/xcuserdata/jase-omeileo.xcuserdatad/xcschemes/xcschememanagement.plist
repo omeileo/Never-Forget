@@ -14,12 +14,12 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>IQKeyboardManagerSwift.xcscheme</key>
+		<key>Pods-Never Forget.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-Never Forget.xcscheme</key>
+		<key>SwiftKeychainWrapper.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -37,17 +37,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6786CE005909595D43C69AA60E596670</key>
+		<key>97BD2166F2D7502CEEB6E4AD444BE6C4</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BE894E8322E67E061B3D5FD8700A1DF8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>C052BEBFBD0AB5218CC64BA3450F6547</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>C235F77E101E742652CCF98FFDFA5182</key>
 		<dict>
 			<key>primary</key>
 			<true/>

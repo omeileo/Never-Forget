@@ -15,7 +15,6 @@ class AddMissingChildViewController: UIViewController
     @IBOutlet weak var addImageButton: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
     
-    
     @IBOutlet weak var genderSwitch: UISwitch!
     @IBOutlet weak var maleGenderLabel: UILabel!
     @IBOutlet weak var femaleGenderLabel: UILabel!
@@ -28,8 +27,11 @@ class AddMissingChildViewController: UIViewController
     
     @IBOutlet weak var hairTypeTextField: UITextField!
     @IBOutlet weak var hairTypePickerView: UIPickerView!
+    @IBOutlet weak var hairColorTextField: UITextField!
+    @IBOutlet weak var hairColorPickerView: UIPickerView!
     
     let hairTypes = ["Natural", "Processed", "Locks", "Braids", "Short Cut", "Bald", "Other"]
+    let hairColors = ["Black", "Dark Brown", "Light Brown", "Multicolored", "Blond", "Other"]
     
     override func viewWillAppear(_ animated: Bool)
     {
@@ -49,8 +51,10 @@ class AddMissingChildViewController: UIViewController
     {
         resetView()
         
-        
-        scrollView.frame.origin.y -= (getKeyboardHeight(notification)/2)
+        if !(firstNameTextField.isFirstResponder || lastNameTextField.isFirstResponder)
+        {
+            scrollView.frame.origin.y -= (getKeyboardHeight(notification)/2)
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool)

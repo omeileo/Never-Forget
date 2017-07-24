@@ -18,7 +18,14 @@ extension AddMissingChildViewController: UIPickerViewDelegate, UIPickerViewDataS
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int
     {
-        let countRows: Int = hairTypes.count
+        var countRows: Int
+        
+        switch pickerView
+        {
+            case hairTypePickerView: countRows = hairTypes.count
+            case hairColorPickerView: countRows = hairColors.count
+            default: countRows = 0
+        }
         
         return countRows
     }
@@ -31,19 +38,36 @@ extension AddMissingChildViewController: UIPickerViewDelegate, UIPickerViewDataS
             
             return titleRow
         }
+        else if pickerView == hairColorPickerView
+        {
+            let titleRow = hairColors[row]
+            return titleRow
+        }
         
         return ""
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
     {
-        self.hairTypeTextField.text = self.hairTypes[row]
-        self.hairTypePickerView.isHidden = true
+        switch pickerView
+        {
+            case hairTypePickerView:
+                self.hairTypeTextField.text = self.hairTypes[row]
+                self.hairTypePickerView.isHidden = true
+            
+            case hairColorPickerView:
+                self.hairColorTextField.text = self.hairColors[row]
+                self.hairColorPickerView.isHidden = true
+            
+            default: ()
+        }
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField)
     {
         self.hairTypePickerView.isHidden = false
-        //hairTypeTextField.endEditing(true)
+        self.hairColorPickerView.isHidden = false
+        hairTypeTextField.endEditing(true)
+        hairColorTextField.endEditing(true)
     }
 }
