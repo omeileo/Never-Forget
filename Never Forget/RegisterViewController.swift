@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import SwiftKeychainWrapper
 
 class RegisterViewController: UIViewController
 {
@@ -43,7 +44,13 @@ class RegisterViewController: UIViewController
                 (user, error) in
                 if error == nil
                 {
+                    //save email and password to keychain
+                    let _ = KeychainWrapper.standard.set(email, forKey: "neverForgetUserEmail")
+                    let _ = KeychainWrapper.standard.set(password, forKey: "neverForgetUserPassword")
+                    
+                    //save first name and last name to firebase
                     self.ref = Database.database().reference()
+                    
                     self.performSegue(withIdentifier: self.addMissingChildViewDegueIdentifier, sender: self)
                 }
                 else

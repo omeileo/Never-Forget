@@ -14,6 +14,8 @@ class LoginViewController: UIViewController
 {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    var isUserRegistered: Bool = false
+    var isUserLoggedIn: Bool = false
     
     let registerViewSegueIdentifier = "showRegisterViewController"
     let addMissingChildViewDegueIdentifier = "showAddMissingChildViewController"
@@ -26,10 +28,12 @@ class LoginViewController: UIViewController
         self.subscribeToKeyboardNotifications()
         navigationController?.setNavigationBarHidden(false, animated: true)
         
+        //check if email and password exists in keychain and use them as login
         if let retrievedEmail = KeychainWrapper.standard.string(forKey: "neverForgetUserEmail"), let retrievedPassword = KeychainWrapper.standard.string(forKey: "neverForgetUserPassword")
         {
             emailTextField.text = retrievedEmail
             passwordTextField.text = retrievedPassword
+            isUserRegistered = true
         }
     }
     
@@ -68,9 +72,10 @@ class LoginViewController: UIViewController
                     if error == nil
                     {
                         //_ = self.navigationController?.popViewController(animated: true)
-                        let savedEmailToKeychain: Bool = KeychainWrapper.standard.set(email, forKey: "neverForgetUserEmail")
-                        let savedPasswordToKeychain: Bool = KeychainWrapper.standard.set(password, forKey: "neverForgetUserPassword")
-                        print("\(savedEmailToKeychain) & \(savedPasswordToKeychain)")
+                        let _ = KeychainWrapper.standard.set(email, forKey: "neverForgetUserEmail")
+                        let _ = KeychainWrapper.standard.set(password, forKey: "neverForgetUserPassword")
+                        self.isUserLoggedIn = true
+                        
                         self.performSegue(withIdentifier: self.addMissingChildViewDegueIdentifier, sender: self)
                     }
                     else
@@ -83,7 +88,14 @@ class LoginViewController: UIViewController
     
     @IBAction func registerUser(_ sender: UIButton)
     {
-        performSegue(withIdentifier: registerViewSegueIdentifier, sender: self)
+        if isUserRegistered == true
+        {
+            self.showAlert(title: "Already Registered", message: "You are already registered. Just press the login button to begin using.")
+        }
+        else
+        {
+            performSegue(withIdentifier: registerViewSegueIdentifier, sender: self)
+        }
     }
     
     
