@@ -10,6 +10,12 @@ import UIKit
 
 class AddMissingChildViewController: UIViewController
 {
+    @IBOutlet weak var headerBackgroundImage: UIImageView!
+    @IBOutlet weak var avatarImage: UIImageView!
+    @IBOutlet weak var addImageButton: UIButton!
+    @IBOutlet weak var scrollView: UIScrollView!
+    
+    
     @IBOutlet weak var genderSwitch: UISwitch!
     @IBOutlet weak var maleGenderLabel: UILabel!
     @IBOutlet weak var femaleGenderLabel: UILabel!
@@ -31,6 +37,7 @@ class AddMissingChildViewController: UIViewController
         
         self.hideKeyboardWhenTappedOutside()
         self.subscribeToKeyboardNotifications()
+        femaleGenderLabel.isHighlighted = true
     }
     
     override func didReceiveMemoryWarning()
@@ -42,14 +49,8 @@ class AddMissingChildViewController: UIViewController
     {
         resetView()
         
-        if firstNameTextField.isFirstResponder || lastNameTextField.isFirstResponder || nicknameTextField.isFirstResponder || ageTextField.isFirstResponder || citizenshipTextField.isFirstResponder
-        {
-            view.frame.origin.y -= (getKeyboardHeight(notification)/2)
-        }
-        else
-        {
-            view.frame.origin.y -= getKeyboardHeight(notification)
-        }
+        
+        scrollView.frame.origin.y -= (getKeyboardHeight(notification)/2)
     }
     
     override func viewWillDisappear(_ animated: Bool)
@@ -61,6 +62,18 @@ class AddMissingChildViewController: UIViewController
     
     @IBAction func switchGender(_ sender: UISwitch)
     {
+        if genderSwitch.isOn
+        {
+            avatarImage.isHighlighted = false
+            femaleGenderLabel.isHighlighted = true
+            maleGenderLabel.isHighlighted = false
+        }
+        else
+        {
+            avatarImage.isHighlighted = true
+            femaleGenderLabel.isHighlighted = false
+            maleGenderLabel.isHighlighted = true
+        }
     }
     
     @IBAction func reportMissingChild(_ sender: UIButton)

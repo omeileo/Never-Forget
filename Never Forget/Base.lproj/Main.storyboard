@@ -62,17 +62,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="1283"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Add Missing Child" translatesAutoresizingMaskIntoConstraints="NO" id="RdJ-id-rwM">
-                                <rect key="frame" x="0.0" y="64" width="414" height="216"/>
-                                <color key="tintColor" red="1" green="0.79215686269999996" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="216" id="lNK-VH-9jM"/>
-                                </constraints>
-                            </imageView>
-                            <view alpha="0.94999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eVI-h1-o4P">
-                                <rect key="frame" x="0.0" y="64" width="414" height="216"/>
-                                <color key="backgroundColor" red="1" green="0.79215686269999996" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                            </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FLC-28-tgj">
                                 <rect key="frame" x="0.0" y="279" width="414" height="1004"/>
                                 <subviews>
@@ -101,7 +90,7 @@
                                                                         </constraints>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                                        <nil key="highlightedColor"/>
+                                                                        <color key="highlightedColor" red="1" green="0.79215686269999996" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                     </label>
                                                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="N9l-wN-0TA">
                                                                         <rect key="frame" x="23" y="0.0" width="53" height="31"/>
@@ -110,14 +99,14 @@
                                                                             <action selector="switchGender:" destination="s6R-Hb-YhZ" eventType="valueChanged" id="LxJ-bp-KRd"/>
                                                                         </connections>
                                                                     </switch>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="F" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Vw-wY-4aD">
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="F" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" highlighted="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Vw-wY-4aD">
                                                                         <rect key="frame" x="84" y="7" width="8" height="17"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="8" id="LHT-d8-xK3"/>
                                                                         </constraints>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                                        <nil key="highlightedColor"/>
+                                                                        <color key="highlightedColor" red="1" green="0.79215686269999996" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                     </label>
                                                                 </subviews>
                                                             </stackView>
@@ -433,7 +422,18 @@
                                     <constraint firstAttribute="bottom" secondItem="Fv9-ni-vqp" secondAttribute="bottom" constant="61.5" id="v1C-23-j0Z"/>
                                 </constraints>
                             </scrollView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Girl" translatesAutoresizingMaskIntoConstraints="NO" id="wGi-Pq-24H">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Add Missing Child" translatesAutoresizingMaskIntoConstraints="NO" id="RdJ-id-rwM">
+                                <rect key="frame" x="0.0" y="64" width="414" height="216"/>
+                                <color key="tintColor" red="1" green="0.79215686269999996" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="216" id="lNK-VH-9jM"/>
+                                </constraints>
+                            </imageView>
+                            <view alpha="0.94999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eVI-h1-o4P">
+                                <rect key="frame" x="0.0" y="64" width="414" height="216"/>
+                                <color key="backgroundColor" red="1" green="0.79215686269999996" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Girl" highlightedImage="Boy" translatesAutoresizingMaskIntoConstraints="NO" id="wGi-Pq-24H" userLabel="Avatar">
                                 <rect key="frame" x="82" y="72" width="250" height="250"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="250" id="DKo-Ca-ek8"/>
@@ -472,14 +472,18 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="414" height="1283"/>
                     <connections>
+                        <outlet property="addImageButton" destination="Jv5-Ij-NoT" id="HFF-ni-1iJ"/>
                         <outlet property="ageTextField" destination="jts-9l-Oso" id="Wua-Rb-zdw"/>
+                        <outlet property="avatarImage" destination="wGi-Pq-24H" id="6uU-Yt-HjT"/>
                         <outlet property="citizenshipTextField" destination="AJ3-4b-w6H" id="yJw-Fb-Jud"/>
                         <outlet property="femaleGenderLabel" destination="6Vw-wY-4aD" id="ATD-Xj-cFa"/>
                         <outlet property="firstNameTextField" destination="zjQ-e9-Uti" id="f0T-0b-K5u"/>
                         <outlet property="genderSwitch" destination="N9l-wN-0TA" id="mXc-5N-4TX"/>
+                        <outlet property="headerBackgroundImage" destination="RdJ-id-rwM" id="b1b-N5-PI0"/>
                         <outlet property="lastNameTextField" destination="pGk-p6-qQE" id="reG-Sw-1GV"/>
                         <outlet property="maleGenderLabel" destination="O8a-dH-Cy4" id="6kx-hP-wfg"/>
                         <outlet property="nicknameTextField" destination="6yu-WT-8K7" id="3i0-Ow-cCF"/>
+                        <outlet property="scrollView" destination="FLC-28-tgj" id="npU-kz-yvl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XTf-Rq-tUi" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -862,6 +866,7 @@
     <resources>
         <image name="Add Missing Child" width="750" height="500"/>
         <image name="AddButton" width="190" height="192"/>
+        <image name="Boy" width="598" height="598"/>
         <image name="Girl" width="897" height="897"/>
         <image name="Jamaican School Kids" width="375" height="707"/>
         <image name="Logo" width="116" height="100"/>
