@@ -55,6 +55,10 @@ class AddMissingChildViewController: UIViewController
         {
             scrollView.frame.origin.y -= (getKeyboardHeight(notification)/2)
         }
+        else
+        {
+            scrollView.frame.origin.y -= (getKeyboardHeight(notification)/4)
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool)

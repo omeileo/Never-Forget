@@ -88,14 +88,14 @@ class LoginViewController: UIViewController
     
     @IBAction func registerUser(_ sender: UIButton)
     {
-        if isUserRegistered == true
-        {
-            self.showAlert(title: "Already Registered", message: "You are already registered. Just press the login button to begin using.")
-        }
-        else
-        {
+//        if isUserRegistered == true
+//        {
+//            self.showAlert(title: "Already Registered", message: "You are already registered. Just press the login button to begin using.")
+//        }
+//        else
+        //{
             performSegue(withIdentifier: registerViewSegueIdentifier, sender: self)
-        }
+        //}
     }
     
     

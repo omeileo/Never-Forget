@@ -66,10 +66,10 @@
                                 <rect key="frame" x="0.0" y="280" width="414" height="1120"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w52-bN-AGb" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="992.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="947.5"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="vB5-85-OEb" userLabel="General Information">
-                                                <rect key="frame" x="62" y="45" width="290" height="245"/>
+                                                <rect key="frame" x="62" y="0.0" width="290" height="245"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="General Information" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iez-BM-cuR">
                                                         <rect key="frame" x="40" y="0.0" width="210" height="29"/>
@@ -188,7 +188,7 @@
                                                 </constraints>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="0xq-7f-gXd" userLabel="Physical Attributes">
-                                                <rect key="frame" x="62" y="335" width="290" height="194"/>
+                                                <rect key="frame" x="62" y="290" width="290" height="194"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Physical Attributes" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="swS-uV-mPJ">
                                                         <rect key="frame" x="45.5" y="0.0" width="199" height="29"/>
@@ -210,7 +210,7 @@
                                                                         </constraints>
                                                                         <nil key="textColor"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                        <textInputTraits key="textInputTraits"/>
+                                                                        <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                                                     </textField>
                                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Weight (lb)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wBV-2p-WRC">
                                                                         <rect key="frame" x="150" y="0.0" width="140" height="40"/>
@@ -220,7 +220,7 @@
                                                                         </constraints>
                                                                         <nil key="textColor"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                        <textInputTraits key="textInputTraits"/>
+                                                                        <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                                                     </textField>
                                                                 </subviews>
                                                             </stackView>
@@ -279,7 +279,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="mec-ty-r70" userLabel="Missing Information">
-                                                <rect key="frame" x="62" y="574" width="290.5" height="308.5"/>
+                                                <rect key="frame" x="62" y="529" width="290.5" height="308.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Missing Information" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kh1-HQ-NoQ">
                                                         <rect key="frame" x="40.5" y="0.0" width="209.5" height="29"/>
@@ -388,7 +388,7 @@
                                                 </subviews>
                                             </stackView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fv9-ni-vqp">
-                                                <rect key="frame" x="142" y="927.5" width="130" height="35"/>
+                                                <rect key="frame" x="142" y="882.5" width="130" height="35"/>
                                                 <color key="backgroundColor" red="1" green="0.79215686269999996" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="130" id="F3f-en-IY9"/>
@@ -403,7 +403,7 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstItem="0xq-7f-gXd" firstAttribute="top" secondItem="vB5-85-OEb" secondAttribute="bottom" constant="45" id="4zl-yS-Tn8"/>
-                                            <constraint firstItem="vB5-85-OEb" firstAttribute="top" secondItem="w52-bN-AGb" secondAttribute="top" constant="45" id="M2E-vI-cOe"/>
+                                            <constraint firstItem="vB5-85-OEb" firstAttribute="top" secondItem="w52-bN-AGb" secondAttribute="top" id="M2E-vI-cOe"/>
                                             <constraint firstItem="mec-ty-r70" firstAttribute="centerX" secondItem="w52-bN-AGb" secondAttribute="centerX" id="Ofy-l9-lGM"/>
                                             <constraint firstItem="0xq-7f-gXd" firstAttribute="centerX" secondItem="w52-bN-AGb" secondAttribute="centerX" id="Rpi-va-nrY"/>
                                             <constraint firstItem="Fv9-ni-vqp" firstAttribute="top" secondItem="nPj-hW-OGO" secondAttribute="bottom" constant="45" id="kHi-mF-7fS"/>

@@ -51,7 +51,12 @@ extension UIViewController
         view.frame.origin.y = 0
     }
     
-    func keyboardWillShow(_ notification: Notification) {}
+    func keyboardWillShow(_ notification: Notification)
+    {
+        resetView()
+        
+        view.frame.origin.y -= (getKeyboardHeight(notification)/2)
+    }
     
     func keyboardWillHide(_ notification: Notification)
     {

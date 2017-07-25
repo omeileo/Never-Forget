@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import EventKit
 
 enum Gender
 {
@@ -82,7 +83,7 @@ struct MissingChild
     var numberOfDaysMissing: Int?
     var missingStatus: MissingStatus?
     
-    init(gender: String, firstName: String, lastName: String, nickname: String, age: Int, citizenship: String, height: Double, weight: Double, hairType: HairType, hairColor: HairColor, eyeColor: EyeColor, complexion: Complexion, bodyType: BodyType, residingAddress: Address, lastSeenAt: Address, lastSeen: Date, missingStatus: MissingStatus)
+    init(gender: Gender, firstName: String, lastName: String, nickname: String, age: Int, citizenship: String, height: Double, weight: Double, hairType: HairType, hairColor: HairColor, eyeColor: EyeColor, complexion: Complexion, bodyType: BodyType, residingAddress: Address, lastSeenAt: Address, lastSeen: Date, missingStatus: MissingStatus)
     {
         self.gender = gender
         self.firstName = firstName
@@ -105,8 +106,8 @@ struct MissingChild
         self.missingStatus = missingStatus
         
         //calculate days between current date and lastSeen date and convert it to days
-        let calender = Calender.current
-        let components = calender.components([.day], from: self.lastSeen, to: Date())
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([.day], from: self.lastSeen!, to: Date())
         numberOfDaysMissing = components.day!
     }
 }

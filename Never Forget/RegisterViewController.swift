@@ -26,6 +26,10 @@ class RegisterViewController: UIViewController
         super.viewDidLoad()
 
         navigationController?.setNavigationBarHidden(false, animated: true)
+        self.subscribeToKeyboardNotifications()
+        self.hideKeyboardWhenTappedOutside()
+        
+        ref = Database.database().reference()
     }
 
     override func didReceiveMemoryWarning()
@@ -36,7 +40,9 @@ class RegisterViewController: UIViewController
     
     @IBAction func registerUser(_ sender: UIButton)
     {
-        if let firstName = firstNameTextField.text, let lastName = lastNameTextField.text, let email = emailTextField.text,
+        let missingChildReporter = MissingChildReporter(firstName: firstNameTextField.text!, lastName: lastNameTextField.text!, emailAddress: emailTextField.text!)
+        
+        if let firstName = missingChildReporter.firstName, let lastName = missingChildReporter.lastName, let email = missingChildReporter.emailAddress,
         let password = passwordTextField.text
         {
             Auth.auth().createUser(withEmail: email, password: password)
@@ -49,7 +55,12 @@ class RegisterViewController: UIViewController
                     let _ = KeychainWrapper.standard.set(password, forKey: "neverForgetUserPassword")
                     
                     //save first name and last name to firebase
-                    self.ref = Database.database().reference()
+                    if let currentUser = self.ref?.child("Missing Child Reporters").childByAutoId()
+                    {
+                        currentUser.child("First Name").setValue(firstName)
+                        currentUser.child("Last Name").setValue(lastName)
+                        currentUser.child("Email Address").setValue(email)
+                    }
                     
                     self.performSegue(withIdentifier: self.addMissingChildViewDegueIdentifier, sender: self)
                 }
