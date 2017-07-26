@@ -11,6 +11,7 @@
 		F3040EE91F23F41E000696F9 /* AddMissingChildViewController+DropdownMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3040EE81F23F41E000696F9 /* AddMissingChildViewController+DropdownMenu.swift */; };
 		F307DB091F25CA5C0063D01D /* MissingChild.swift in Sources */ = {isa = PBXBuildFile; fileRef = F307DB081F25CA5C0063D01D /* MissingChild.swift */; };
 		F307DB0B1F25CA750063D01D /* MissingChildReporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F307DB0A1F25CA750063D01D /* MissingChildReporter.swift */; };
+		F307DB0F1F28621D0063D01D /* MissingChildReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = F307DB0E1F28621D0063D01D /* MissingChildReport.swift */; };
 		F3910C6C1F207FEB009C6810 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3910C6B1F207FEB009C6810 /* AppDelegate.swift */; };
 		F3910C6E1F207FEB009C6810 /* MissingChildrenFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3910C6D1F207FEB009C6810 /* MissingChildrenFeedViewController.swift */; };
 		F3910C701F207FEB009C6810 /* MissingChildrenMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3910C6F1F207FEB009C6810 /* MissingChildrenMapViewController.swift */; };
@@ -31,6 +32,7 @@
 		F3040EE81F23F41E000696F9 /* AddMissingChildViewController+DropdownMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AddMissingChildViewController+DropdownMenu.swift"; sourceTree = "<group>"; };
 		F307DB081F25CA5C0063D01D /* MissingChild.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MissingChild.swift; sourceTree = "<group>"; };
 		F307DB0A1F25CA750063D01D /* MissingChildReporter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MissingChildReporter.swift; sourceTree = "<group>"; };
+		F307DB0E1F28621D0063D01D /* MissingChildReport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MissingChildReport.swift; sourceTree = "<group>"; };
 		F3910C681F207FEB009C6810 /* Never Forget.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Never Forget.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3910C6B1F207FEB009C6810 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F3910C6D1F207FEB009C6810 /* MissingChildrenFeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissingChildrenFeedViewController.swift; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 			children = (
 				F307DB081F25CA5C0063D01D /* MissingChild.swift */,
 				F307DB0A1F25CA750063D01D /* MissingChildReporter.swift */,
+				F307DB0E1F28621D0063D01D /* MissingChildReport.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -336,6 +339,7 @@
 				F3910C861F209274009C6810 /* LoginViewController.swift in Sources */,
 				F3910C881F2092D7009C6810 /* RegisterViewController.swift in Sources */,
 				F307DB091F25CA5C0063D01D /* MissingChild.swift in Sources */,
+				F307DB0F1F28621D0063D01D /* MissingChildReport.swift in Sources */,
 				F3910C981F20AC15009C6810 /* UIViewController+Utils.swift in Sources */,
 				F3910C701F207FEB009C6810 /* MissingChildrenMapViewController.swift in Sources */,
 				F3910C6C1F207FEB009C6810 /* AppDelegate.swift in Sources */,
