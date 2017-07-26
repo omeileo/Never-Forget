@@ -8,11 +8,6 @@
 
 import Foundation
 
-enum Relationship
-{
-    case mother, father, aunt, uncle, guardian, sibling, grandmother, grandfather, other, none
-}
-
 struct MissingChildReporter
 {
     var firstName: String?

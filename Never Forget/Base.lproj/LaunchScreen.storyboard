@@ -1,7 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -16,12 +20,59 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Jamaican School Kids" translatesAutoresizingMaskIntoConstraints="NO" id="5YU-EJ-mok">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                            <view alpha="0.90000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="90a-IX-6XZ">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" red="1" green="0.79215686269999996" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="yz9-Op-qqb" userLabel="Logo">
+                                <rect key="frame" x="129" y="268" width="116" height="131.5"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="kut-2p-I7Z">
+                                        <rect key="frame" x="0.0" y="0.0" width="116" height="100"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Never Forget" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nwd-nD-wx7">
+                                        <rect key="frame" x="3" y="110" width="110" height="21.5"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Powered by Yello" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HYt-hw-nQp">
+                                <rect key="frame" x="132" y="630" width="110" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="90a-IX-6XZ" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="0GL-Gw-zN6"/>
+                            <constraint firstItem="5YU-EJ-mok" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="21Z-IA-Jmv"/>
+                            <constraint firstItem="5YU-EJ-mok" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="9PR-6M-4BX"/>
+                            <constraint firstItem="90a-IX-6XZ" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="9ga-EO-OGC"/>
+                            <constraint firstAttribute="trailing" secondItem="90a-IX-6XZ" secondAttribute="trailing" id="IbV-V5-4o7"/>
+                            <constraint firstItem="HYt-hw-nQp" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="RB7-tL-6lf"/>
+                            <constraint firstItem="yz9-Op-qqb" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="RO4-rK-eRH"/>
+                            <constraint firstItem="yz9-Op-qqb" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="RlU-si-8I9"/>
+                            <constraint firstAttribute="trailing" secondItem="5YU-EJ-mok" secondAttribute="trailing" id="cyz-Oc-QPw"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="90a-IX-6XZ" secondAttribute="bottom" id="noq-sa-1Xk"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="5YU-EJ-mok" secondAttribute="bottom" id="tMd-ZF-JxF"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="HYt-hw-nQp" secondAttribute="bottom" constant="20" id="yfZ-zi-ZUo"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="375"/>
+            <point key="canvasLocation" x="52" y="374.66266866566718"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Jamaican School Kids" width="375" height="707"/>
+        <image name="Logo" width="116" height="100"/>
+    </resources>
 </document>

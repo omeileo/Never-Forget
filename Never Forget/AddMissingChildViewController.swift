@@ -40,6 +40,7 @@ class AddMissingChildViewController: UIViewController
         self.hideKeyboardWhenTappedOutside()
         self.subscribeToKeyboardNotifications()
         femaleGenderLabel.isHighlighted = true
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
     override func didReceiveMemoryWarning()
