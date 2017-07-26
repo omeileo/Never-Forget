@@ -14,7 +14,7 @@ class MissingChildrenMapViewController: UIViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        navigationController?.setNavigationBarHidden(true, animated: true)
+        // Do any additional setup after loading the view, typically from a nib.
     }
 
     override func didReceiveMemoryWarning()

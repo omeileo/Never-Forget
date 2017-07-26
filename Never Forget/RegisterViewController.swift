@@ -55,7 +55,7 @@ class RegisterViewController: UIViewController
                     let _ = KeychainWrapper.standard.set(password, forKey: "neverForgetUserPassword")
                     
                     //save first name and last name to firebase
-                    if let currentUser = self.ref?.child("Missing Child Reporters").child((user?.uid)!)
+                    if let currentUser = self.ref?.child("Missing Child Reporters").childByAutoId()
                     {
                         currentUser.child("First Name").setValue(firstName)
                         currentUser.child("Last Name").setValue(lastName)
