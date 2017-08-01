@@ -18,7 +18,7 @@ class LoginViewController: UIViewController
     var isUserLoggedIn: Bool = false
     
     let registerViewSegueIdentifier = "showRegisterViewController"
-    let addMissingChildViewDegueIdentifier = "showAddMissingChildViewController"
+    let addMissingChildViewSegueIdentifier = "showAddMissingChildViewController"
     
     override func viewWillAppear(_ animated: Bool)
     {
@@ -33,6 +33,7 @@ class LoginViewController: UIViewController
         {
             emailTextField.text = retrievedEmail
             passwordTextField.text = retrievedPassword
+            performSegue(withIdentifier: addMissingChildViewSegueIdentifier, sender: self)
             isUserRegistered = true
         }
     }
@@ -72,11 +73,16 @@ class LoginViewController: UIViewController
                     if error == nil
                     {
                         //_ = self.navigationController?.popViewController(animated: true)
-                        let _ = KeychainWrapper.standard.set(email, forKey: "neverForgetUserEmail")
-                        let _ = KeychainWrapper.standard.set(password, forKey: "neverForgetUserPassword")
+                        
+                        if !self.isUserRegistered
+                        {
+                            let _ = KeychainWrapper.standard.set(email, forKey: "neverForgetUserEmail")
+                            let _ = KeychainWrapper.standard.set(password, forKey: "neverForgetUserPassword")
+                        }
+                        
                         self.isUserLoggedIn = true
                         
-                        self.performSegue(withIdentifier: self.addMissingChildViewDegueIdentifier, sender: self)
+                        self.performSegue(withIdentifier: self.addMissingChildViewSegueIdentifier, sender: self)
                     }
                     else
                     {

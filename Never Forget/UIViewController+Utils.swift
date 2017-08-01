@@ -20,7 +20,7 @@ extension UIViewController
         self.present(alertController, animated: true, completion: nil)
     }
     
-    //hide keyboard when area outside of curren
+    //hide keyboard when area outside of textfield is touched
     func hideKeyboardWhenTappedOutside()
     {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
@@ -32,7 +32,6 @@ extension UIViewController
     {
         view.endEditing(true)
     }
-    
     
     func subscribeToKeyboardNotifications()
     {

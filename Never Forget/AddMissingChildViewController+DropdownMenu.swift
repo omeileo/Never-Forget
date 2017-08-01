@@ -18,13 +18,19 @@ extension AddMissingChildViewController: UIPickerViewDelegate, UIPickerViewDataS
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int
     {
-        var countRows: Int
+        var countRows : Int = 0
         
         switch pickerView
         {
-            case hairTypePickerView: countRows = hairTypes.count
-            case hairColorPickerView: countRows = hairColors.count
-            default: countRows = 0
+            case hairTypePickerView: countRows = self.hairTypes.count
+            case hairColorPickerView: countRows = self.hairColors.count
+            case eyeColorPickerView: countRows = self.eyeColors.count
+            case complexionPickerView: countRows = self.complexions.count
+            case bodyTypePickerView: countRows = self.bodyTypes.count
+            case residingAddressParishPickerView, lastSeenAddressParishPickerView: countRows = self.parishes.count
+            case relationshipPickerView: countRows = self.relationshipTypes.count
+            
+            default: ()
         }
         
         return countRows
@@ -32,42 +38,57 @@ extension AddMissingChildViewController: UIPickerViewDelegate, UIPickerViewDataS
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String?
     {
-        if pickerView == hairTypePickerView
+        switch pickerView
         {
-            let titleRow = hairTypes[row]
+            case hairTypePickerView: return hairTypes[row]
+            case hairColorPickerView: return hairColors[row]
+            case eyeColorPickerView: return eyeColors[row]
+            case complexionPickerView: return complexions[row]
+            case bodyTypePickerView: return bodyTypes[row]
+            case residingAddressParishPickerView, lastSeenAddressParishPickerView: return parishes[row]
+            case relationshipPickerView: return relationshipTypes[row]
             
-            return titleRow
+            default: return ""
         }
-        else if pickerView == hairColorPickerView
-        {
-            let titleRow = hairColors[row]
-            return titleRow
-        }
-        
-        return ""
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
     {
         switch pickerView
         {
-            case hairTypePickerView:
-                self.hairTypeTextField.text = self.hairTypes[row]
-                self.hairTypePickerView.isHidden = true
-            
-            case hairColorPickerView:
-                self.hairColorTextField.text = self.hairColors[row]
-                self.hairColorPickerView.isHidden = true
+            case hairTypePickerView: self.hairTypeTextField.text = self.hairTypes[row]
+            case hairColorPickerView: self.hairColorTextField.text = self.hairColors[row]
+            case eyeColorPickerView: self.eyeColorTextField.text = self.eyeColors[row]
+            case complexionPickerView: self.complexionTextField.text = self.complexions[row]
+            case bodyTypePickerView: self.bodyTypeTextField.text = self.bodyTypes[row]
+            case residingAddressParishPickerView: self.residingAddressParishTextField.text = self.parishes[row]
+            case lastSeenAddressParishPickerView: self.lastSeenAddressParishTextView.text = self.parishes[row]
+            case relationshipPickerView: self.relationshipTextView.text = self.relationshipTypes[row]
             
             default: ()
         }
+        
+        pickerView.isHidden = true
     }
+    
     
     func textFieldDidBeginEditing(_ textField: UITextField)
     {
-        self.hairTypePickerView.isHidden = false
-        self.hairColorPickerView.isHidden = false
-        hairTypeTextField.endEditing(true)
-        hairColorTextField.endEditing(true)
+        switch textField
+        {
+            case hairTypeTextField: hairTypePickerView.isHidden = false
+            case hairColorTextField: hairColorPickerView.isHidden = false
+            case eyeColorTextField: eyeColorPickerView.isHidden = false
+            case complexionTextField: complexionPickerView.isHidden = false
+            case bodyTypeTextField: bodyTypePickerView.isHidden = false
+            case residingAddressParishTextField: residingAddressParishPickerView.isHidden = false
+            case lastSeenAddressParishTextView: lastSeenAddressParishPickerView.isHidden = false
+            case relationshipTextView: relationshipPickerView.isHidden = false
+            case lastSeenDateTextField: lastSeenDateDatePicker.isHidden = false
+            
+            default: ()
+        }
+
+        textField.endEditing(true)
     }
 }
