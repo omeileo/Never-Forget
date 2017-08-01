@@ -8,23 +8,28 @@
 
 import Foundation
 import CoreData
+import UIKit
 
 struct MissingChildPhoto
 {
-    var photoUrl: String?
-    var photo: Data?
+    var photoData: Data?
+    var photo: UIImage?
     var ageInPhoto: Int16?
     var description: String?
     var missingChild: MissingChild?
     var dateUploaded: Date?
     
-    init(photoUrl: String, photo: Data, ageInPhoto: Int, description: String)
+    init(photoData: Data, photo: UIImage, ageInPhoto: Int?, description: String?)
     {
-        self.photoUrl = photoUrl
+        self.photoData = photoData
         self.photo = photo
-        self.ageInPhoto = Int16(ageInPhoto)
         self.description = description
         self.dateUploaded = Date()
+        
+        if let ageInPhoto = ageInPhoto
+        {
+            self.ageInPhoto = Int16(ageInPhoto)
+        }
     }
 }
 

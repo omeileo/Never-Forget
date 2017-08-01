@@ -55,8 +55,8 @@ enum MissingStatus: String
 
 struct Address
 {
-    var district: String?
-    var parish: Parish?
+    var district: String
+    var parish: Parish
 }
 
 enum Relationship: String

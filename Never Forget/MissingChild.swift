@@ -11,13 +11,13 @@ import EventKit
 
 struct MissingChild
 {
-    var photos = [MissingChildPhoto]()
+    var missingChildPhotos = [MissingChildPhoto]()
     
-    var gender: Gender?
-    var firstName: String?
-    var lastName: String?
+    var gender: Gender
+    var firstName: String
+    var lastName: String
     var nickname: String?
-    var age: Int16?
+    var age: Int16
     var citizenship: String?
     
     var height: Double?
@@ -29,12 +29,13 @@ struct MissingChild
     var bodyType: BodyType?
     
     var residingAddress: Address?
-    var lastSeenAt: Address?
-    var lastSeen: Date?
+    var lastSeenAt: Address
+    var lastSeen: Date
+    var lastSeenDateString: String
     var numberOfDaysMissing: Int?
-    var missingStatus: MissingStatus?
+    var missingStatus: MissingStatus
     
-    init(gender: Gender, firstName: String, lastName: String, nickname: String, age: Int, citizenship: String, height: Double, weight: Double, hairType: HairType, hairColor: HairColor, eyeColor: EyeColor, complexion: Complexion, bodyType: BodyType, residingAddress: Address, lastSeenAt: Address, lastSeen: Date, missingStatus: MissingStatus)
+    init(gender: Gender, firstName: String, lastName: String, nickname: String?, age: Int, citizenship: String?, height: Double?, weight: Double?, hairType: HairType?, hairColor: HairColor?, eyeColor: EyeColor?, complexion: Complexion?, bodyType: BodyType?, residingAddress: Address?, lastSeenAt: Address, lastSeen: String, missingStatus: MissingStatus)
     {
         self.gender = gender
         self.firstName = firstName
@@ -53,12 +54,16 @@ struct MissingChild
         
         self.residingAddress = residingAddress
         self.lastSeenAt = lastSeenAt
-        self.lastSeen = lastSeen
         self.missingStatus = missingStatus
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        self.lastSeenDateString = lastSeen
+        self.lastSeen = dateFormatter.date(from: lastSeen)!
         
         //calculate days between current date and lastSeen date and convert it to days
         let calendar = Calendar.current
-        let components = calendar.dateComponents([.day], from: self.lastSeen!, to: Date())
+        let components = calendar.dateComponents([.day], from: self.lastSeen, to: Date())
         numberOfDaysMissing = components.day!
     }
 }

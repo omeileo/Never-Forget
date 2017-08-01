@@ -1,4 +1,4 @@
-//
+ //
 //  AddMissingChildViewController.swift
 //  Never Forget
 //
@@ -8,23 +8,16 @@
 
 import UIKit
 import EventKit
-
-class AddMissingChildViewController: UIViewController
+import FirebaseStorage
+import Firebase
+ 
+class AddMissingChildViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate
 {
-    let hairTypePickerView = UIPickerView()
-    let hairColorPickerView = UIPickerView()
-    let eyeColorPickerView = UIPickerView()
-    let complexionPickerView = UIPickerView()
-    let bodyTypePickerView = UIPickerView()
-    let residingAddressParishPickerView = UIPickerView()
-    let lastSeenAddressParishPickerView = UIPickerView()
-    let lastSeenDateDatePicker = UIDatePicker()
-    let relationshipPickerView = UIPickerView()
-    
     @IBOutlet weak var headerBackgroundImage: UIImageView!
     @IBOutlet weak var avatarImage: UIImageView!
     @IBOutlet weak var addImageButton: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var overlayView: UIView!
     
     //General Information
     @IBOutlet weak var genderSwitch: UISwitch!
@@ -38,6 +31,8 @@ class AddMissingChildViewController: UIViewController
     @IBOutlet weak var citizenshipTextField: UITextField!
     
     //Physical Attributes
+    @IBOutlet weak var heightTextField: UITextField!
+    @IBOutlet weak var weightTextField: UITextField!
     @IBOutlet weak var hairTypeTextField: UITextField!
     @IBOutlet weak var hairColorTextField: UITextField!
     @IBOutlet weak var eyeColorTextField: UITextField!
@@ -53,6 +48,21 @@ class AddMissingChildViewController: UIViewController
     
     //Other Information
     @IBOutlet weak var relationshipTextView: UITextField!
+    
+    let imageAdded: Bool = false
+    var missingChildPhotos = [MissingChildPhoto]()
+    let homeViewSegueIdentifier = "showHomeViewController"
+    var ref: DatabaseReference!
+    
+    let hairTypePickerView = UIPickerView()
+    let hairColorPickerView = UIPickerView()
+    let eyeColorPickerView = UIPickerView()
+    let complexionPickerView = UIPickerView()
+    let bodyTypePickerView = UIPickerView()
+    let residingAddressParishPickerView = UIPickerView()
+    let lastSeenAddressParishPickerView = UIPickerView()
+    let lastSeenDateDatePicker = UIDatePicker()
+    let relationshipPickerView = UIPickerView()
     
     let hairTypes = [HairType.natural.rawValue, HairType.processed.rawValue, HairType.locks.rawValue, HairType.braid.rawValue, HairType.shortCut.rawValue, HairType.bald.rawValue]
     let hairColors = [HairColor.black.rawValue, HairColor.darkBrown.rawValue, HairColor.lightBrown.rawValue, HairColor.blond.rawValue, HairColor.colored.rawValue, HairColor.multiColored.rawValue, HairColor.other.rawValue]
@@ -70,8 +80,19 @@ class AddMissingChildViewController: UIViewController
         self.subscribeToKeyboardNotifications()
         
         femaleGenderLabel.isHighlighted = true
-
+        setDefaultLastSeenDate()
+        connectInputFieldsToPickerViews()
         
+        ref = Database.database().reference()
+    }
+    
+    override func didReceiveMemoryWarning()
+    {
+        super.didReceiveMemoryWarning()
+    }
+    
+    func setDefaultLastSeenDate()
+    {
         let formatter = DateFormatter()
         formatter.calendar = lastSeenDateDatePicker.calendar
         formatter.dateStyle = .medium
@@ -79,7 +100,10 @@ class AddMissingChildViewController: UIViewController
         
         let dateString = formatter.string(from: lastSeenDateDatePicker.date)
         lastSeenDateTextField.text = dateString
-        
+    }
+    
+    func connectInputFieldsToPickerViews()
+    {
         hairTypePickerView.delegate = self
         hairTypeTextField.inputView = hairTypePickerView
         
@@ -108,15 +132,7 @@ class AddMissingChildViewController: UIViewController
         lastSeenDateTextField.inputView = lastSeenDateDatePicker
     }
     
-    override func didReceiveMemoryWarning()
-    {
-        super.didReceiveMemoryWarning()
-    }
-    
-    override func resetView()
-    {
-        
-    }
+    override func resetView() {}
     
     override func keyboardWillShow(_ notification: Notification)
     {
@@ -139,17 +155,67 @@ class AddMissingChildViewController: UIViewController
         self.unsubcribeFromKeyboardNotifcations()
     }
     
+    @IBAction func addMissingChildImage(_ sender: UIButton)
+    {
+        let alertController = UIAlertController(title: "Select Image", message: nil, preferredStyle: .actionSheet)
+        
+        alertController.addAction(UIAlertAction(title: "Camera", style: .default, handler: { (UIAlertAction) in
+            self.showPicker(imageSourceType: .camera)
+        }))
+        alertController.addAction(UIAlertAction(title: "Gallery", style: .default, handler: { (UIAlertAction) in
+            self.showPicker(imageSourceType: .photoLibrary)
+        }))
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    func showPicker(imageSourceType: UIImagePickerControllerSourceType)
+    {
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = imageSourceType
+        self.present(imagePicker, animated: true, completion: nil)
+    }
+    
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any])
+    {
+        dismiss(animated: true, completion: nil)
+        
+        //store image in MissingChildPhoto array; first one gets displayed in avatarImage
+        let photo = info[UIImagePickerControllerOriginalImage] as! UIImage
+        let photoData = UIImageJPEGRepresentation(photo, 0.8)
+        
+        missingChildPhotos.append(MissingChildPhoto(photoData: photoData!, photo: photo, ageInPhoto: nil, description: nil))
+        
+        if missingChildPhotos.count == 1
+        {
+            self.avatarImage.image = missingChildPhotos.first?.photo
+        }
+        
+        //self.avatarImage.image = info[UIImagePickerControllerOriginalImage] as? UIImage
+    }
+    
     @IBAction func switchGender(_ sender: UISwitch)
     {
         if genderSwitch.isOn
         {
-            avatarImage.isHighlighted = false
+            if imageAdded == false
+            {
+                avatarImage.isHighlighted = false
+            }
+            
             femaleGenderLabel.isHighlighted = true
             maleGenderLabel.isHighlighted = false
         }
         else
         {
-            avatarImage.isHighlighted = true
+            if imageAdded == false
+            {
+                avatarImage.isHighlighted = true
+            }
+            
             femaleGenderLabel.isHighlighted = false
             maleGenderLabel.isHighlighted = true
         }
@@ -168,10 +234,95 @@ class AddMissingChildViewController: UIViewController
     
     @IBAction func reportMissingChild(_ sender: UIButton)
     {
+        let gender: Gender
         
+        if femaleGenderLabel.isHighlighted
+        {
+            gender = .female
+        }
+        else
+        {
+            gender = .male
+        }
+        
+        if let firstName = firstNameTextField.text, let lastName = lastNameTextField.text, let age = ageTextField.text, let lastSeenOn = lastSeenDateTextField.text, let lastSeenAtDistrict = lastSeenAddressDistrictTextView.text, let lastSeenAtParish = Parish(rawValue: lastSeenAddressParishTextView.text!)
+        {
+            var missingChild = MissingChild(gender: gender, firstName: firstName, lastName: lastName, nickname: nicknameTextField.text, age: Int(age)!, citizenship: citizenshipTextField.text, height: Double(heightTextField.text!), weight: Double(weightTextField.text!), hairType: HairType(rawValue: hairTypeTextField.text!), hairColor: HairColor(rawValue: hairColorTextField.text!), eyeColor: EyeColor(rawValue: eyeColorTextField.text!), complexion: Complexion(rawValue: complexionTextField.text!), bodyType: BodyType(rawValue: bodyTypeTextField.text!), residingAddress: Address(district: residingAddressDistrictTextField.text!, parish: Parish(rawValue: residingAddressParishTextField.text!)!), lastSeenAt: Address(district: lastSeenAtDistrict, parish: lastSeenAtParish), lastSeen: lastSeenOn, missingStatus: MissingStatus.missing)
+            
+            missingChild.missingChildPhotos = missingChildPhotos
+            uploadMissingChildInformationToFirebase(missingChild: missingChild)
+            
+            // TODO: segue to missing child profile
+            
+            
+            //placeholder
+            self.performSegue(withIdentifier: homeViewSegueIdentifier, sender: self)
+            
+        }
+        else
+        {
+            self.showAlert(title: "Missing Information", message: "Ensure that the name and age of the child as well as there last wearabouts were added (date & place).")
+        }
     }
     
+    func uploadMissingChildInformationToFirebase(missingChild: MissingChild)
+    {
+        if let missingChildRef = self.ref?.child("Missing Children").childByAutoId()
+        {
+            missingChildRef.child("First Name").setValue(missingChild.firstName)
+            missingChildRef.child("Last Name").setValue(missingChild.lastName)
+            missingChildRef.child("Nickname").setValue(missingChild.nickname)
+            missingChildRef.child("Age").setValue(missingChild.age)
+            missingChildRef.child("Citizenship").setValue(missingChild.citizenship)
+            
+            missingChildRef.child("Height").setValue(missingChild.height)
+            missingChildRef.child("Weight").setValue(missingChild.weight)
+            missingChildRef.child("Hair Type").setValue(missingChild.hairType?.rawValue)
+            missingChildRef.child("Hair Color").setValue(missingChild.hairColor?.rawValue)
+            missingChildRef.child("Eye Color").setValue(missingChild.eyeColor?.rawValue)
+            missingChildRef.child("Complexion").setValue(missingChild.complexion?.rawValue)
+            missingChildRef.child("Body Type").setValue(missingChild.bodyType?.rawValue)
+            
+            missingChildRef.child("Residing Address").child("District").setValue(missingChild.residingAddress?.district)
+            missingChildRef.child("Residing Address").child("Parish").setValue(missingChild.residingAddress?.parish.rawValue)
+            missingChildRef.child("Last Seen Address").child("District").setValue(missingChild.lastSeenAt.district)
+            missingChildRef.child("Last Seen Address").child("Parish").setValue(missingChild.lastSeenAt.parish.rawValue)
+            missingChildRef.child("Last Seen Date").setValue(missingChild.lastSeenDateString)
+            missingChildRef.child("Missing Status").setValue(missingChild.missingStatus.rawValue)
+            
+            let childID = missingChildRef.key
+            uploadPhotosToFirebaseStorage(missingChildPhotos: missingChild.missingChildPhotos, ID: childID)
+        }
+    }
     
+    func uploadPhotosToFirebaseStorage(missingChildPhotos: [MissingChildPhoto], ID: String)
+    {
+        let storage = Storage.storage()
+        let storageRef = storage.reference()
+        
+        let missingChildPhotosFolder = storageRef.child("Missing Children Photos").child(ID)
+        
+        var count = 0
+        for photo in missingChildPhotos
+        {
+            let photoName = "\(ID)-\(count).jpg"
+            let photoRef = missingChildPhotosFolder.child(photoName)
+            
+            count += 1
+            print("Count: \("count")")
+            
+            let uploadTask = photoRef.putData(photo.photoData!, metadata: nil)
+            {
+                (metadata, error) in
+                    guard let metadata = metadata else
+                    {
+                        return
+                    }
+                
+                    let downloadURL = metadata.downloadURLs
+            }
+        }
+    }
 
     /*
     // MARK: - Navigation

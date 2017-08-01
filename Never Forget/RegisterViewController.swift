@@ -17,7 +17,7 @@ class RegisterViewController: UIViewController
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
 
-    let addMissingChildViewDegueIdentifier = "showAddMissingChildViewController"
+    let addMissingChildViewSegueIdentifier = "showAddMissingChildViewController"
     
     var ref: DatabaseReference!
     
@@ -62,7 +62,7 @@ class RegisterViewController: UIViewController
                         currentUser.child("Email Address").setValue(email)
                     }
                     
-                    self.performSegue(withIdentifier: self.addMissingChildViewDegueIdentifier, sender: self)
+                    self.performSegue(withIdentifier: self.addMissingChildViewSegueIdentifier, sender: self)
                 }
                 else
                 {

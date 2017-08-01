@@ -607,6 +607,9 @@
                                     <constraint firstAttribute="width" constant="90" id="mWk-Tw-UsE"/>
                                 </constraints>
                                 <state key="normal" image="AddButton"/>
+                                <connections>
+                                    <action selector="addMissingChildImage:" destination="s6R-Hb-YhZ" eventType="touchUpInside" id="ZHl-k1-cez"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -632,7 +635,7 @@
                         <barButtonItem key="leftBarButtonItem" systemItem="stop" id="1I7-pP-HTV">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
-                                <segue destination="49e-Tb-3d3" kind="show" id="gU5-uV-4FV"/>
+                                <segue destination="49e-Tb-3d3" kind="show" identifier="showHomeViewController" id="gU5-uV-4FV"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -652,16 +655,19 @@
                         <outlet property="hairColorTextField" destination="6lX-WK-d5S" id="gwp-r3-rFs"/>
                         <outlet property="hairTypeTextField" destination="nED-kS-bsa" id="K1I-Fz-bO6"/>
                         <outlet property="headerBackgroundImage" destination="RdJ-id-rwM" id="b1b-N5-PI0"/>
+                        <outlet property="heightTextField" destination="ZMX-X7-ShJ" id="pjB-qI-dve"/>
                         <outlet property="lastNameTextField" destination="pGk-p6-qQE" id="reG-Sw-1GV"/>
                         <outlet property="lastSeenAddressDistrictTextView" destination="79Y-F5-sSJ" id="5KL-0W-dmv"/>
                         <outlet property="lastSeenAddressParishTextView" destination="lfp-14-u88" id="Jpj-2f-AlT"/>
                         <outlet property="lastSeenDateTextField" destination="nPj-hW-OGO" id="TNC-G9-sXf"/>
                         <outlet property="maleGenderLabel" destination="O8a-dH-Cy4" id="6kx-hP-wfg"/>
                         <outlet property="nicknameTextField" destination="6yu-WT-8K7" id="3i0-Ow-cCF"/>
+                        <outlet property="overlayView" destination="eVI-h1-o4P" id="bHp-EZ-NB0"/>
                         <outlet property="relationshipTextView" destination="gM2-Yo-nKY" id="hkp-tV-hk7"/>
                         <outlet property="residingAddressDistrictTextField" destination="R3u-pR-sGv" id="b87-Hd-jFt"/>
                         <outlet property="residingAddressParishTextField" destination="5NU-aQ-epc" id="ff6-8h-IJW"/>
                         <outlet property="scrollView" destination="FLC-28-tgj" id="npU-kz-yvl"/>
+                        <outlet property="weightTextField" destination="wBV-2p-WRC" id="mpx-Mg-2oc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XTf-Rq-tUi" userLabel="First Responder" sceneMemberID="firstResponder"/>

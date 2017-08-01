@@ -7,4 +7,5 @@ target 'Never Forget' do
     pod 'Firebase/Database'
     pod 'Firebase/Auth'
     pod 'SwiftKeychainWrapper'
+    pod 'Firebase/Storage'
 end
