@@ -8,17 +8,6 @@
 
 import Foundation
 
-<<<<<<< HEAD
-enum Relationship
-{
-    case mother, father, aunt, uncle, guardian, sibling, grandmother, grandfather, other, none
-=======
-enum Relationship: String
-{
-    case mother = "Mother", father = "Father", aunt = "Aunt", uncle = "Uncle", guardian = "Guardian", sibling = "Sibling", grandmother = "Grandmother", grandfather = "Grandfather", other = "Other", none = "No Relationship"
->>>>>>> navigation-bar-experimenting
-}
-
 struct MissingChildReport
 {
     var missingChild: MissingChild

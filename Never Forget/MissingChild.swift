@@ -9,57 +9,6 @@
 import Foundation
 import EventKit
 
-enum Gender
-{
-    case male, female, other
-}
-
-enum HairType: String
-{
-    case natural = "Natural", braid = "Braid", locks = "Locks", processed = "Processed", shortCut = "Short Cut", bald = "Bald", other = "Other"
-}
-
-enum HairColor: String
-{
-    case black = "Black", darkBrown = "Dark Brown", lightBrown = "Light Brown", multiColored = "Multi-Colored", blond = "Blond", colored = "Colored", other = "Other"
-}
-
-enum EyeColor: String
-{
-    case black = "Black", darkBrown = "Dark Brown", lightBrown = "Light Brown", blue = "Blue", green = "Green", grey = "Grey"
-}
-
-enum Complexion: String
-{
-    case darkBrown = "Dark Brown", lightBrown = "Light Brown", fair = "Fair"
-}
-
-enum BodyType: String
-{
-    case skinny = "Skinny", slim = "Slim", chubby = "Chubby", fat = "Fat", muscular = "Muscular"
-}
-
-enum Parish: String
-{
-    case kingston = "Kington", andrew = "St. Andrew", catherine = "St. Catherine", clarendon = "Clarendon", manchester = "Manchester", elizabeth = "St. Elizabeth", westmoreland = "Westmoreland", hanover = "Hanover", james = "St. James", trelawny = "Trelawny", ann = "St. Ann", mary = "St. Mary", portland = "Portland", thomas = "St. Thomas"
-}
-
-enum County: String
-{
-    case cornwall = "Cornwall", middlesex = "Middlesex", surrey = "Surrey"
-}
-
-enum MissingStatus: String
-{
-    case found = "Found", returnedHome = "Returned Home", missing = "Missing", deceased = "Deceased"
-}
-
-struct Address
-{
-    var district: String?
-    var parish: Parish?
-}
-
 struct MissingChild
 {
     var gender: Gender?

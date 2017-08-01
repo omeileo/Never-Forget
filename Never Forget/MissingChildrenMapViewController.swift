@@ -16,12 +16,8 @@ class MissingChildrenMapViewController: UIViewController
     
     override func viewWillAppear(_ animated: Bool)
     {
-<<<<<<< HEAD
-        super.viewDidLoad()
-=======
         super.viewWillAppear(animated)
         
->>>>>>> navigation-bar-experimenting
         navigationController?.setNavigationBarHidden(true, animated: true)
     }
 

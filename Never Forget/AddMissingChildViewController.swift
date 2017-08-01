@@ -11,6 +11,16 @@ import EventKit
 
 class AddMissingChildViewController: UIViewController
 {
+    let hairTypePickerView = UIPickerView()
+    let hairColorPickerView = UIPickerView()
+    let eyeColorPickerView = UIPickerView()
+    let complexionPickerView = UIPickerView()
+    let bodyTypePickerView = UIPickerView()
+    let residingAddressParishPickerView = UIPickerView()
+    let lastSeenAddressParishPickerView = UIPickerView()
+    let lastSeenDateDatePicker = UIDatePicker()
+    let relationshipPickerView = UIPickerView()
+    
     @IBOutlet weak var headerBackgroundImage: UIImageView!
     @IBOutlet weak var avatarImage: UIImageView!
     @IBOutlet weak var addImageButton: UIButton!
@@ -29,29 +39,20 @@ class AddMissingChildViewController: UIViewController
     
     //Physical Attributes
     @IBOutlet weak var hairTypeTextField: UITextField!
-    @IBOutlet weak var hairTypePickerView: UIPickerView!
     @IBOutlet weak var hairColorTextField: UITextField!
-    @IBOutlet weak var hairColorPickerView: UIPickerView!
     @IBOutlet weak var eyeColorTextField: UITextField!
-    @IBOutlet weak var eyeColorPickerView: UIPickerView!
     @IBOutlet weak var complexionTextField: UITextField!
-    @IBOutlet weak var complexionPickerView: UIPickerView!
     @IBOutlet weak var bodyTypeTextField: UITextField!
-    @IBOutlet weak var bodyTypePickerView: UIPickerView!
     
     //Missing Information
     @IBOutlet weak var residingAddressDistrictTextField: UITextField!
     @IBOutlet weak var residingAddressParishTextField: UITextField!
-    @IBOutlet weak var residingAddressParishPickerView: UIPickerView!
     @IBOutlet weak var lastSeenAddressDistrictTextView: UITextField!
     @IBOutlet weak var lastSeenAddressParishTextView: UITextField!
-    @IBOutlet weak var lastSeenAddressParishPickerView: UIPickerView!
     @IBOutlet weak var lastSeenDateTextField: UITextField!
-    @IBOutlet weak var lastSeenDateDatePicker: UIDatePicker!
     
     //Other Information
     @IBOutlet weak var relationshipTextView: UITextField!
-    @IBOutlet weak var relationshipPickerView: UIPickerView!
     
     let hairTypes = [HairType.natural.rawValue, HairType.processed.rawValue, HairType.locks.rawValue, HairType.braid.rawValue, HairType.shortCut.rawValue, HairType.bald.rawValue]
     let hairColors = [HairColor.black.rawValue, HairColor.darkBrown.rawValue, HairColor.lightBrown.rawValue, HairColor.blond.rawValue, HairColor.colored.rawValue, HairColor.multiColored.rawValue, HairColor.other.rawValue]
@@ -69,9 +70,7 @@ class AddMissingChildViewController: UIViewController
         self.subscribeToKeyboardNotifications()
         
         femaleGenderLabel.isHighlighted = true
-<<<<<<< HEAD
-        self.navigationController?.setNavigationBarHidden(true, animated: true)
-=======
+
         
         let formatter = DateFormatter()
         formatter.calendar = lastSeenDateDatePicker.calendar
@@ -80,12 +79,43 @@ class AddMissingChildViewController: UIViewController
         
         let dateString = formatter.string(from: lastSeenDateDatePicker.date)
         lastSeenDateTextField.text = dateString
->>>>>>> navigation-bar-experimenting
+        
+        hairTypePickerView.delegate = self
+        hairTypeTextField.inputView = hairTypePickerView
+        
+        hairColorPickerView.delegate = self
+        hairColorTextField.inputView = hairColorPickerView
+        
+        eyeColorPickerView.delegate = self
+        eyeColorTextField.inputView = eyeColorPickerView
+        
+        complexionPickerView.delegate = self
+        complexionTextField.inputView = complexionPickerView
+        
+        bodyTypePickerView.delegate = self
+        bodyTypeTextField.inputView = bodyTypePickerView
+        
+        residingAddressParishPickerView.delegate = self
+        residingAddressParishTextField.inputView = residingAddressParishPickerView
+        
+        lastSeenAddressParishPickerView.delegate = self
+        lastSeenAddressParishTextView.inputView = lastSeenAddressParishPickerView
+        
+        relationshipPickerView.delegate = self
+        relationshipTextView.inputView = relationshipPickerView
+        
+        lastSeenDateDatePicker.datePickerMode = UIDatePickerMode.date
+        lastSeenDateTextField.inputView = lastSeenDateDatePicker
     }
     
     override func didReceiveMemoryWarning()
     {
         super.didReceiveMemoryWarning()
+    }
+    
+    override func resetView()
+    {
+        
     }
     
     override func keyboardWillShow(_ notification: Notification)
@@ -125,7 +155,7 @@ class AddMissingChildViewController: UIViewController
         }
     }
     
-    @IBAction func selectMissingDate(_ sender: UIDatePicker)
+    @IBAction func selectMissingDate(_ sender: UITextField)
     {
         let formatter = DateFormatter()
         formatter.calendar = lastSeenDateDatePicker.calendar
@@ -134,15 +164,14 @@ class AddMissingChildViewController: UIViewController
         
         let dateString = formatter.string(from: lastSeenDateDatePicker.date)
         lastSeenDateTextField.text = dateString
-        
-        lastSeenDateDatePicker.isHidden = true
     }
-    
     
     @IBAction func reportMissingChild(_ sender: UIButton)
     {
         
     }
+    
+    
 
     /*
     // MARK: - Navigation

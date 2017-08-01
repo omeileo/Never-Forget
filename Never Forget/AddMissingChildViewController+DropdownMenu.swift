@@ -11,6 +11,11 @@ import UIKit
 
 extension AddMissingChildViewController: UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate
 {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
+    {
+        view.endEditing(true)
+    }
+    
     func numberOfComponents(in pickerView: UIPickerView) -> Int
     {
         return 1
@@ -68,27 +73,6 @@ extension AddMissingChildViewController: UIPickerViewDelegate, UIPickerViewDataS
             default: ()
         }
         
-        pickerView.isHidden = true
-    }
-    
-    
-    func textFieldDidBeginEditing(_ textField: UITextField)
-    {
-        switch textField
-        {
-            case hairTypeTextField: hairTypePickerView.isHidden = false
-            case hairColorTextField: hairColorPickerView.isHidden = false
-            case eyeColorTextField: eyeColorPickerView.isHidden = false
-            case complexionTextField: complexionPickerView.isHidden = false
-            case bodyTypeTextField: bodyTypePickerView.isHidden = false
-            case residingAddressParishTextField: residingAddressParishPickerView.isHidden = false
-            case lastSeenAddressParishTextView: lastSeenAddressParishPickerView.isHidden = false
-            case relationshipTextView: relationshipPickerView.isHidden = false
-            case lastSeenDateTextField: lastSeenDateDatePicker.isHidden = false
-            
-            default: ()
-        }
-
-        textField.endEditing(true)
+        view.endEditing(true)
     }
 }
