@@ -18,7 +18,7 @@ struct MissingChildPhoto
     var missingChild: MissingChild?
     var dateUploaded: Date?
     
-    init(photoUrl: String, image: NSDate, ageInPhoto: Int, description: String)
+    init(photoUrl: String, photo: Data, ageInPhoto: Int, description: String)
     {
         self.photoUrl = photoUrl
         self.photo = photo
