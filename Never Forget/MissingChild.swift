@@ -11,6 +11,8 @@ import EventKit
 
 struct MissingChild
 {
+    var photos = [MissingChildPhoto]()
+    
     var gender: Gender?
     var firstName: String?
     var lastName: String?

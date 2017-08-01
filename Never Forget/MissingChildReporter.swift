@@ -13,15 +13,11 @@ struct MissingChildReporter
     var firstName: String?
     var lastName: String?
     var emailAddress: String?
-    //var relationshipWithMissingChild: Relationship?
-    
-    //store user's geolocation as well
     
     init(firstName: String, lastName: String, emailAddress: String)
     {
         self.firstName = firstName
         self.lastName = lastName
         self.emailAddress = emailAddress
-        //self.relationshipWithMissingChild = relationshipWithMissingChild
     }
 }
