@@ -275,7 +275,18 @@ class AddMissingChildViewController: UIViewController, UIImagePickerControllerDe
         {
             var missingChild = MissingChild(gender: gender, firstName: firstName, lastName: lastName, nickname: nicknameTextField.text, age: Int(age)!, citizenship: citizenshipTextField.text, height: Double(heightTextField.text!), weight: Double(weightTextField.text!), hairType: HairType(rawValue: hairTypeTextField.text!), hairColor: HairColor(rawValue: hairColorTextField.text!), eyeColor: EyeColor(rawValue: eyeColorTextField.text!), complexion: Complexion(rawValue: complexionTextField.text!), bodyType: BodyType(rawValue: bodyTypeTextField.text!), residingAddress: Address(district: residingAddressDistrictTextField.text!, parish: Parish(rawValue: residingAddressParishTextField.text!)!), lastSeenAt: Address(district: lastSeenAtDistrict, parish: lastSeenAtParish), lastSeen: lastSeenOn, missingStatus: MissingStatus.missing)
             
-            missingChild.missingChildPhotos = missingChildPhotos
+            if missingChild.missingChildPhotos.count == 0
+            {
+                if let photo = UIImage(named: gender.rawValue), let photoData = UIImageJPEGRepresentation(photo, 0.8)
+                {
+                    missingChild.missingChildPhotos.append(MissingChildPhoto(photoData: photoData, photo: photo, ageInPhoto: nil, description: nil))
+                }
+            }
+            else
+            {
+                missingChild.missingChildPhotos = missingChildPhotos
+            }
+            
             uploadMissingChildInformationToFirebase(missingChild: missingChild)
             
             // TODO: segue to missing child profile
@@ -287,7 +298,7 @@ class AddMissingChildViewController: UIViewController, UIImagePickerControllerDe
         }
         else
         {
-            self.showAlert(title: "Missing Information", message: "Ensure that the name and age of the child as well as there last wearabouts were added (date & place).")
+            self.showAlert(title: "Missing Information", message: "Ensure that the name and age of the child, as well as their last known whereabouts were added (date & place).")
         }
     }
     
@@ -337,15 +348,18 @@ class AddMissingChildViewController: UIViewController, UIImagePickerControllerDe
             count += 1
             print("Count: \("count")")
             
-            let uploadTask = photoRef.putData(photo.photoData!, metadata: nil)
+            if let photoData = photo.photoData
             {
-                (metadata, error) in
+                let uploadTask = photoRef.putData(photoData, metadata: nil)
+                {
+                    (metadata, error) in
                     guard let metadata = metadata else
                     {
                         return
                     }
-                
+                    
                     let downloadURL = metadata.downloadURLs
+                }
             }
         }
     }
