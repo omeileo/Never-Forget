@@ -15,7 +15,10 @@ class AddMissingChildViewController: UIViewController, UIImagePickerControllerDe
 {
     @IBOutlet weak var headerBackgroundImage: UIImageView!
     @IBOutlet weak var avatarImage: UIImageView!
+    @IBOutlet weak var avatarView: UIView!
     @IBOutlet weak var addImageButton: UIButton!
+    @IBOutlet weak var counterView: UIView!
+    @IBOutlet weak var counterLabel: UILabel!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var overlayView: UIView!
     
@@ -49,7 +52,6 @@ class AddMissingChildViewController: UIViewController, UIImagePickerControllerDe
     //Other Information
     @IBOutlet weak var relationshipTextView: UITextField!
     
-    let imageAdded: Bool = false
     var missingChildPhotos = [MissingChildPhoto]()
     let homeViewSegueIdentifier = "showHomeViewController"
     var ref: DatabaseReference!
@@ -79,6 +81,7 @@ class AddMissingChildViewController: UIViewController, UIImagePickerControllerDe
         self.hideKeyboardWhenTappedOutside()
         self.subscribeToKeyboardNotifications()
         
+        setUpBanner()
         femaleGenderLabel.isHighlighted = true
         setDefaultLastSeenDate()
         connectInputFieldsToPickerViews()
@@ -89,6 +92,23 @@ class AddMissingChildViewController: UIViewController, UIImagePickerControllerDe
     override func didReceiveMemoryWarning()
     {
         super.didReceiveMemoryWarning()
+    }
+    
+    func setUpBanner()
+    {
+        avatarView.clipsToBounds = false
+        avatarView.layer.shadowColor = UIColor.black.cgColor
+        avatarView.layer.shadowOpacity = 0.5
+        avatarView.layer.shadowOffset = CGSize.zero
+        avatarView.layer.shadowRadius = 10
+        avatarView.layer.shadowPath = UIBezierPath(roundedRect: avatarView.bounds, cornerRadius: (avatarView.frame.size.height/2.0)).cgPath
+        avatarView.layer.cornerRadius = avatarView.frame.size.height / 2.0
+        
+        avatarImage.clipsToBounds = true
+        avatarImage.layer.cornerRadius = avatarView.frame.size.height / 2.0
+        
+        counterView.clipsToBounds = true
+        counterView.layer.cornerRadius = counterView.frame.size.height / 2.0
     }
     
     func setDefaultLastSeenDate()
@@ -159,11 +179,11 @@ class AddMissingChildViewController: UIViewController, UIImagePickerControllerDe
     {
         let alertController = UIAlertController(title: "Select Image", message: nil, preferredStyle: .actionSheet)
         
-        alertController.addAction(UIAlertAction(title: "Camera", style: .default, handler: { (UIAlertAction) in
-            self.showPicker(imageSourceType: .camera)
-        }))
         alertController.addAction(UIAlertAction(title: "Gallery", style: .default, handler: { (UIAlertAction) in
             self.showPicker(imageSourceType: .photoLibrary)
+        }))
+        alertController.addAction(UIAlertAction(title: "Camera", style: .default, handler: { (UIAlertAction) in
+            self.showPicker(imageSourceType: .camera)
         }))
         alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         
@@ -178,7 +198,6 @@ class AddMissingChildViewController: UIViewController, UIImagePickerControllerDe
         self.present(imagePicker, animated: true, completion: nil)
     }
     
-    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any])
     {
         dismiss(animated: true, completion: nil)
@@ -192,16 +211,23 @@ class AddMissingChildViewController: UIViewController, UIImagePickerControllerDe
         if missingChildPhotos.count == 1
         {
             self.avatarImage.image = missingChildPhotos.first?.photo
+            self.avatarImage.layer.cornerRadius = self.avatarImage.frame.size.height / 2.0
+            self.avatarImage.layer.masksToBounds = true
         }
         
-        //self.avatarImage.image = info[UIImagePickerControllerOriginalImage] as? UIImage
+        if missingChildPhotos.count > 1
+        {
+            counterView.isHidden = false
+            counterLabel.isHidden = false
+            counterLabel.text = "\(missingChildPhotos.count)"
+        }
     }
     
     @IBAction func switchGender(_ sender: UISwitch)
     {
         if genderSwitch.isOn
         {
-            if imageAdded == false
+            if missingChildPhotos.count == 0
             {
                 avatarImage.isHighlighted = false
             }
@@ -211,7 +237,7 @@ class AddMissingChildViewController: UIViewController, UIImagePickerControllerDe
         }
         else
         {
-            if imageAdded == false
+            if missingChildPhotos.count == 0
             {
                 avatarImage.isHighlighted = true
             }

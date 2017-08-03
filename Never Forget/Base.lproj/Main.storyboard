@@ -593,13 +593,23 @@
                                     <constraint firstAttribute="height" constant="216" id="POF-v1-Rwn"/>
                                 </constraints>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Girl" highlightedImage="Boy" translatesAutoresizingMaskIntoConstraints="NO" id="wGi-Pq-24H" userLabel="Avatar">
-                                <rect key="frame" x="82" y="79" width="250" height="250"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HSr-Ix-k1n" userLabel="Avatar View">
+                                <rect key="frame" x="92" y="84" width="230" height="230"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Girl" highlightedImage="Boy" translatesAutoresizingMaskIntoConstraints="NO" id="BwS-KK-cNY" userLabel="Avatar Image">
+                                        <rect key="frame" x="3" y="3" width="224" height="224"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="250" id="DKo-Ca-ek8"/>
-                                    <constraint firstAttribute="height" constant="250" id="iLG-xW-KAs"/>
+                                    <constraint firstItem="BwS-KK-cNY" firstAttribute="top" secondItem="HSr-Ix-k1n" secondAttribute="top" constant="3" id="1xM-Xb-Nkn"/>
+                                    <constraint firstItem="BwS-KK-cNY" firstAttribute="centerX" secondItem="HSr-Ix-k1n" secondAttribute="centerX" id="GpB-Jq-2mq"/>
+                                    <constraint firstItem="BwS-KK-cNY" firstAttribute="centerY" secondItem="HSr-Ix-k1n" secondAttribute="centerY" id="HSq-rI-Vii"/>
+                                    <constraint firstAttribute="width" constant="230" id="SO7-yM-mS6"/>
+                                    <constraint firstAttribute="height" constant="230" id="ntD-1b-wfJ"/>
+                                    <constraint firstItem="BwS-KK-cNY" firstAttribute="leading" secondItem="HSr-Ix-k1n" secondAttribute="leading" constant="3" id="pq2-cr-okh"/>
                                 </constraints>
-                            </imageView>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jv5-Ij-NoT" userLabel="Add Image Button">
                                 <rect key="frame" x="239" y="239" width="90" height="90"/>
                                 <constraints>
@@ -611,24 +621,46 @@
                                     <action selector="addMissingChildImage:" destination="s6R-Hb-YhZ" eventType="touchUpInside" id="ZHl-k1-cez"/>
                                 </connections>
                             </button>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v9D-t5-IPo" userLabel="Counter View">
+                                <rect key="frame" x="264" y="244" width="20" height="20"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ooN-qp-0XC">
+                                        <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="11"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="0.79215686269999996" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="ooN-qp-0XC" firstAttribute="leading" secondItem="v9D-t5-IPo" secondAttribute="leading" id="2fe-x4-kK3"/>
+                                    <constraint firstAttribute="trailing" secondItem="ooN-qp-0XC" secondAttribute="trailing" id="OGG-UD-9An"/>
+                                    <constraint firstAttribute="height" constant="20" id="bmf-yS-UO7"/>
+                                    <constraint firstAttribute="width" constant="20" id="dxu-xf-lsd"/>
+                                    <constraint firstAttribute="bottom" secondItem="ooN-qp-0XC" secondAttribute="bottom" id="gf3-lC-Q85"/>
+                                    <constraint firstItem="ooN-qp-0XC" firstAttribute="top" secondItem="v9D-t5-IPo" secondAttribute="top" id="xNH-dy-LQc"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="eVI-h1-o4P" firstAttribute="top" secondItem="shu-Ge-Bta" secondAttribute="bottom" id="01m-QR-DJs"/>
-                            <constraint firstItem="wGi-Pq-24H" firstAttribute="centerX" secondItem="aYp-1A-N81" secondAttribute="centerX" id="7Qm-mW-ihG"/>
                             <constraint firstItem="FLC-28-tgj" firstAttribute="bottom" secondItem="ebi-Ji-gjp" secondAttribute="top" id="BBR-EU-0xN"/>
                             <constraint firstItem="Jv5-Ij-NoT" firstAttribute="top" secondItem="shu-Ge-Bta" secondAttribute="bottom" constant="175" id="BLN-Q1-pme"/>
                             <constraint firstAttribute="trailing" secondItem="eVI-h1-o4P" secondAttribute="trailing" id="CfQ-05-ph4"/>
                             <constraint firstItem="FLC-28-tgj" firstAttribute="leading" secondItem="aYp-1A-N81" secondAttribute="leading" id="Hka-R8-M2G"/>
                             <constraint firstItem="eVI-h1-o4P" firstAttribute="top" secondItem="shu-Ge-Bta" secondAttribute="bottom" id="M7k-HV-WbZ"/>
+                            <constraint firstItem="HSr-Ix-k1n" firstAttribute="top" secondItem="shu-Ge-Bta" secondAttribute="bottom" constant="20" id="Oea-Jb-jaR"/>
+                            <constraint firstItem="HSr-Ix-k1n" firstAttribute="centerX" secondItem="aYp-1A-N81" secondAttribute="centerX" id="SBv-jf-Mta"/>
                             <constraint firstAttribute="trailing" secondItem="RdJ-id-rwM" secondAttribute="trailing" id="YZg-eZ-xQu"/>
                             <constraint firstAttribute="trailing" secondItem="FLC-28-tgj" secondAttribute="trailing" id="f2V-5J-e3e"/>
                             <constraint firstItem="RdJ-id-rwM" firstAttribute="top" secondItem="shu-Ge-Bta" secondAttribute="bottom" id="jm5-6Y-VN1"/>
+                            <constraint firstItem="v9D-t5-IPo" firstAttribute="top" secondItem="shu-Ge-Bta" secondAttribute="bottom" constant="180" id="m12-8H-a4l"/>
                             <constraint firstItem="RdJ-id-rwM" firstAttribute="leading" secondItem="aYp-1A-N81" secondAttribute="leading" id="mkd-6K-YQ1"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="v9D-t5-IPo" secondAttribute="trailing" constant="110" id="nHe-VY-8Kl"/>
                             <constraint firstItem="FLC-28-tgj" firstAttribute="top" secondItem="RdJ-id-rwM" secondAttribute="bottom" id="nuC-LZ-daU"/>
                             <constraint firstItem="eVI-h1-o4P" firstAttribute="leading" secondItem="aYp-1A-N81" secondAttribute="leading" id="oC3-il-nvS"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Jv5-Ij-NoT" secondAttribute="trailing" constant="65" id="wAN-BX-bC5"/>
-                            <constraint firstItem="wGi-Pq-24H" firstAttribute="top" secondItem="shu-Ge-Bta" secondAttribute="bottom" constant="15" id="whO-c3-H4W"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Report Missing Child" id="BVp-uh-B61">
@@ -644,10 +676,13 @@
                     <connections>
                         <outlet property="addImageButton" destination="Jv5-Ij-NoT" id="HFF-ni-1iJ"/>
                         <outlet property="ageTextField" destination="jts-9l-Oso" id="Wua-Rb-zdw"/>
-                        <outlet property="avatarImage" destination="wGi-Pq-24H" id="6uU-Yt-HjT"/>
+                        <outlet property="avatarImage" destination="BwS-KK-cNY" id="tKq-nu-fLU"/>
+                        <outlet property="avatarView" destination="HSr-Ix-k1n" id="lCm-U5-QYq"/>
                         <outlet property="bodyTypeTextField" destination="nfr-zZ-eWW" id="fY1-bT-66c"/>
                         <outlet property="citizenshipTextField" destination="AJ3-4b-w6H" id="yJw-Fb-Jud"/>
                         <outlet property="complexionTextField" destination="0Kw-Xg-Euk" id="niI-cj-ZjZ"/>
+                        <outlet property="counterLabel" destination="ooN-qp-0XC" id="Qby-QP-7p7"/>
+                        <outlet property="counterView" destination="v9D-t5-IPo" id="vfP-aK-78a"/>
                         <outlet property="eyeColorTextField" destination="yES-Bz-Yjm" id="jy0-5V-Yld"/>
                         <outlet property="femaleGenderLabel" destination="6Vw-wY-4aD" id="ATD-Xj-cFa"/>
                         <outlet property="firstNameTextField" destination="zjQ-e9-Uti" id="f0T-0b-K5u"/>
@@ -672,7 +707,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XTf-Rq-tUi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3796.8000000000002" y="-145.72713643178412"/>
+            <point key="canvasLocation" x="3796" y="-146"/>
         </scene>
         <!--Missing Children Map-->
         <scene sceneID="wg7-f3-ORb">
@@ -1138,9 +1173,9 @@
     <resources>
         <image name="Add Missing Child" width="750" height="500"/>
         <image name="AddButton" width="190" height="192"/>
-        <image name="Boy" width="598" height="598"/>
+        <image name="Boy" width="900" height="900"/>
         <image name="Feed" width="30" height="30"/>
-        <image name="Girl" width="897" height="897"/>
+        <image name="Girl" width="900" height="900"/>
         <image name="Jamaican School Kids" width="375" height="707"/>
         <image name="Logo" width="116" height="100"/>
         <image name="Map" width="30" height="30"/>
