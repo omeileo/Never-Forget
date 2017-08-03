@@ -14,6 +14,8 @@
 		F307DB0F1F28621D0063D01D /* MissingChildReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = F307DB0E1F28621D0063D01D /* MissingChildReport.swift */; };
 		F321CD9B1F3039B300FF46D9 /* CustomDataTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = F321CD9A1F3039B300FF46D9 /* CustomDataTypes.swift */; };
 		F321CD9D1F304E1F00FF46D9 /* MissingChildPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = F321CD9C1F304E1F00FF46D9 /* MissingChildPhoto.swift */; };
+		F36E7ECD1F3349CF00CFE3C7 /* MissingChildrenFeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36E7ECC1F3349CF00CFE3C7 /* MissingChildrenFeedTableViewCell.swift */; };
+		F36E7ECF1F33511500CFE3C7 /* MissingChildrenFeedViewController+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36E7ECE1F33511500CFE3C7 /* MissingChildrenFeedViewController+TableView.swift */; };
 		F3910C6C1F207FEB009C6810 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3910C6B1F207FEB009C6810 /* AppDelegate.swift */; };
 		F3910C6E1F207FEB009C6810 /* MissingChildrenFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3910C6D1F207FEB009C6810 /* MissingChildrenFeedViewController.swift */; };
 		F3910C701F207FEB009C6810 /* MissingChildrenMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3910C6F1F207FEB009C6810 /* MissingChildrenMapViewController.swift */; };
@@ -37,6 +39,8 @@
 		F307DB0E1F28621D0063D01D /* MissingChildReport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MissingChildReport.swift; sourceTree = "<group>"; };
 		F321CD9A1F3039B300FF46D9 /* CustomDataTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomDataTypes.swift; sourceTree = "<group>"; };
 		F321CD9C1F304E1F00FF46D9 /* MissingChildPhoto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MissingChildPhoto.swift; sourceTree = "<group>"; };
+		F36E7ECC1F3349CF00CFE3C7 /* MissingChildrenFeedTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MissingChildrenFeedTableViewCell.swift; path = View/MissingChildrenFeedTableViewCell.swift; sourceTree = "<group>"; };
+		F36E7ECE1F33511500CFE3C7 /* MissingChildrenFeedViewController+TableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "MissingChildrenFeedViewController+TableView.swift"; path = "View/MissingChildrenFeedViewController+TableView.swift"; sourceTree = "<group>"; };
 		F3910C681F207FEB009C6810 /* Never Forget.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Never Forget.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3910C6B1F207FEB009C6810 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F3910C6D1F207FEB009C6810 /* MissingChildrenFeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissingChildrenFeedViewController.swift; sourceTree = "<group>"; };
@@ -194,6 +198,8 @@
 			isa = PBXGroup;
 			children = (
 				F3910C6D1F207FEB009C6810 /* MissingChildrenFeedViewController.swift */,
+				F36E7ECE1F33511500CFE3C7 /* MissingChildrenFeedViewController+TableView.swift */,
+				F36E7ECC1F3349CF00CFE3C7 /* MissingChildrenFeedTableViewCell.swift */,
 			);
 			name = "Missing Children Feed";
 			sourceTree = "<group>";
@@ -341,9 +347,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F36E7ECF1F33511500CFE3C7 /* MissingChildrenFeedViewController+TableView.swift in Sources */,
 				F307DB0B1F25CA750063D01D /* MissingChildReporter.swift in Sources */,
 				F3910C861F209274009C6810 /* LoginViewController.swift in Sources */,
 				F321CD9D1F304E1F00FF46D9 /* MissingChildPhoto.swift in Sources */,
+				F36E7ECD1F3349CF00CFE3C7 /* MissingChildrenFeedTableViewCell.swift in Sources */,
 				F321CD9B1F3039B300FF46D9 /* CustomDataTypes.swift in Sources */,
 				F3910C881F2092D7009C6810 /* RegisterViewController.swift in Sources */,
 				F307DB091F25CA5C0063D01D /* MissingChild.swift in Sources */,

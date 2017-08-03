@@ -7,10 +7,14 @@
 //
 
 import UIKit
+import MapKit
 import SwiftKeychainWrapper
 
 class MissingChildrenMapViewController: UIViewController
 {
+    @IBOutlet weak var missingChildrenMapView: MKMapView!
+    
+    var locationManager = CLLocationManager()
     let loginViewSegueIdentifier = "showLoginViewController"
     let addMissingChildViewSegueIdentifier = "showAddMissingChildViewController"
     
@@ -18,13 +22,47 @@ class MissingChildrenMapViewController: UIViewController
     {
         super.viewWillAppear(animated)
         
-        navigationController?.setNavigationBarHidden(true, animated: true)
+        setup();
     }
 
     override func didReceiveMemoryWarning()
     {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func setup()
+    {
+        navigationController?.setNavigationBarHidden(true, animated: true)
+        
+        setupMapView();
+        setupLocation();
+    }
+    
+    func setupMapView()
+    {
+        missingChildrenMapView.delegate = self as? MKMapViewDelegate
+        missingChildrenMapView.showsUserLocation = true
+    }
+    
+    func setupLocation()
+    {
+        //check for location services
+        if (CLLocationManager.locationServicesEnabled())
+        {
+            locationManager = CLLocationManager()
+            locationManager.delegate = self as? CLLocationManagerDelegate
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager.requestAlwaysAuthorization()
+            locationManager.requestWhenInUseAuthorization()
+        }
+        
+        locationManager.requestWhenInUseAuthorization()
+        if CLLocationManager.locationServicesEnabled()
+        {
+            locationManager.startUpdatingLocation()
+        }
+        
     }
 
     @IBAction func reportMissingChild(_ sender: UIBarButtonItem)
