@@ -10,16 +10,16 @@ import Foundation
 
 struct MissingChildReport
 {
-    var missingChildID: String?
-    var missingChildReporterID: String?
-    var relationship: String?
-    var reportDate: Date?
+    var missingChildID: String
+    var missingChildReporterID: String
+    var relationship: Relationship
+    var reportDate: Date
     
     init(missingChildID: String, missingChildReporterID: String, relationship: String)
     {
         self.missingChildID = missingChildID
         self.missingChildReporterID = missingChildReporterID
-        self.relationship = relationship
+        self.relationship = Relationship(rawValue: relationship)!
         
         reportDate = Date()
     }

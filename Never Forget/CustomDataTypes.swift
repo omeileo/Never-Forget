@@ -25,22 +25,22 @@ enum HairColor: String
 
 enum EyeColor: String
 {
-    case black = "Black", darkBrown = "Dark Brown", lightBrown = "Light Brown", blue = "Blue", green = "Green", grey = "Grey"
+    case black = "Black", darkBrown = "Dark Brown", lightBrown = "Light Brown", blue = "Blue", green = "Green", grey = "Grey", other = "Other"
 }
 
 enum Complexion: String
 {
-    case darkBrown = "Dark Brown", lightBrown = "Light Brown", fair = "Fair"
+    case darkBrown = "Dark Brown", lightBrown = "Light Brown", fair = "Fair", other = "Other"
 }
 
 enum BodyType: String
 {
-    case skinny = "Skinny", slim = "Slim", chubby = "Chubby", fat = "Fat", muscular = "Muscular"
+    case skinny = "Skinny", slim = "Slim", chubby = "Chubby", fat = "Fat", muscular = "Muscular", other = "Other"
 }
 
 enum Parish: String
 {
-    case kingston = "Kingston", andrew = "St. Andrew", catherine = "St. Catherine", clarendon = "Clarendon", manchester = "Manchester", elizabeth = "St. Elizabeth", westmoreland = "Westmoreland", hanover = "Hanover", james = "St. James", trelawny = "Trelawny", ann = "St. Ann", mary = "St. Mary", portland = "Portland", thomas = "St. Thomas"
+    case kingston = "Kingston", andrew = "St. Andrew", catherine = "St. Catherine", clarendon = "Clarendon", manchester = "Manchester", elizabeth = "St. Elizabeth", westmoreland = "Westmoreland", hanover = "Hanover", james = "St. James", trelawny = "Trelawny", ann = "St. Ann", mary = "St. Mary", portland = "Portland", thomas = "St. Thomas", notStated
 }
 
 enum County: String

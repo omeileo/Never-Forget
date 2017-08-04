@@ -273,7 +273,20 @@ class AddMissingChildViewController: UIViewController, UIImagePickerControllerDe
         
         if let firstName = firstNameTextField.text, let lastName = lastNameTextField.text, let age = ageTextField.text, let lastSeenOn = lastSeenDateTextField.text, let lastSeenAtDistrict = lastSeenAddressDistrictTextView.text, let lastSeenAtParish = Parish(rawValue: lastSeenAddressParishTextView.text!)
         {
-            var missingChild = MissingChild(gender: gender, firstName: firstName, lastName: lastName, nickname: nicknameTextField.text, age: Int(age)!, citizenship: citizenshipTextField.text ?? "", height: Double(heightTextField.text!), weight: Double(weightTextField.text!), hairType: HairType(rawValue: hairTypeTextField.text!), hairColor: HairColor(rawValue: hairColorTextField.text!), eyeColor: EyeColor(rawValue: eyeColorTextField.text!), complexion: Complexion(rawValue: complexionTextField.text!), bodyType: BodyType(rawValue: bodyTypeTextField.text!), residingAddress: Address(district: residingAddressDistrictTextField.text!, parish: Parish(rawValue: residingAddressParishTextField.text!)!), lastSeenAt: Address(district: lastSeenAtDistrict, parish: lastSeenAtParish), lastSeen: lastSeenOn, missingStatus: MissingStatus.missing)
+            var missingChild = MissingChild(gender: gender, firstName: firstName, lastName: lastName, age: Int(age)!, lastSeenAt: Address(district: lastSeenAtDistrict, parish: lastSeenAtParish), lastSeenDate: lastSeenOn, missingStatus: MissingStatus.missing)
+            
+            missingChild.nickname = nicknameTextField.text ?? ""
+            missingChild.citizenship = citizenshipTextField.text ?? ""
+            missingChild.height = Double(heightTextField.text!) ?? 0.0
+            missingChild.weight = Double(weightTextField.text!) ?? 0.0
+            missingChild.hairType = HairType(rawValue: hairTypeTextField.text!) ?? HairType.other
+            missingChild.hairColor = HairColor(rawValue: hairColorTextField.text!) ?? HairColor.other
+            missingChild.eyeColor = EyeColor(rawValue: eyeColorTextField.text!) ?? EyeColor.black
+            missingChild.complexion = Complexion(rawValue: complexionTextField.text!) ?? Complexion.other
+            missingChild.bodyType = BodyType(rawValue: bodyTypeTextField.text!) ?? BodyType.other
+            missingChild.residingAddress?.district = residingAddressDistrictTextField.text ?? ""
+            missingChild.residingAddress?.parish = Parish(rawValue: residingAddressParishTextField.text!) ?? Parish.notStated
+            
             
             if missingChild.missingChildPhotos.count == 0
             {
@@ -306,28 +319,50 @@ class AddMissingChildViewController: UIViewController, UIImagePickerControllerDe
     {
         if let missingChildRef = self.ref?.child("Missing Children").childByAutoId()
         {
-            missingChildRef.child("First Name").setValue(missingChild.firstName)
-            missingChildRef.child("Last Name").setValue(missingChild.lastName)
+            let childID = missingChildRef.key
+            
+            missingChildRef.child("First-Name").setValue(missingChild.firstName)
+            missingChildRef.child("Last-Name").setValue(missingChild.lastName)
             missingChildRef.child("Nickname").setValue(missingChild.nickname)
             missingChildRef.child("Age").setValue(missingChild.age)
             missingChildRef.child("Citizenship").setValue(missingChild.citizenship)
             
             missingChildRef.child("Height").setValue(missingChild.height)
             missingChildRef.child("Weight").setValue(missingChild.weight)
-            missingChildRef.child("Hair Type").setValue(missingChild.hairType?.rawValue)
-            missingChildRef.child("Hair Color").setValue(missingChild.hairColor?.rawValue)
-            missingChildRef.child("Eye Color").setValue(missingChild.eyeColor?.rawValue)
+            missingChildRef.child("Hair-Type").setValue(missingChild.hairType?.rawValue)
+            missingChildRef.child("Hair-Color").setValue(missingChild.hairColor?.rawValue)
+            missingChildRef.child("Eye-Color").setValue(missingChild.eyeColor?.rawValue)
             missingChildRef.child("Complexion").setValue(missingChild.complexion?.rawValue)
-            missingChildRef.child("Body Type").setValue(missingChild.bodyType?.rawValue)
+            missingChildRef.child("Body-Type").setValue(missingChild.bodyType?.rawValue)
             
-            missingChildRef.child("Residing Address").child("District").setValue(missingChild.residingAddress?.district)
-            missingChildRef.child("Residing Address").child("Parish").setValue(missingChild.residingAddress?.parish.rawValue)
-            missingChildRef.child("Last Seen Address").child("District").setValue(missingChild.lastSeenAt.district)
-            missingChildRef.child("Last Seen Address").child("Parish").setValue(missingChild.lastSeenAt.parish.rawValue)
-            missingChildRef.child("Last Seen Date").setValue(missingChild.lastSeenDateString)
-            missingChildRef.child("Missing Status").setValue(missingChild.missingStatus.rawValue)
+            missingChildRef.child("Residing-Address-District").setValue(missingChild.residingAddress?.district)
+            missingChildRef.child("Residing-Address-Parish").setValue(missingChild.residingAddress?.parish.rawValue)
+            missingChildRef.child("Last-Seen-Address-District").setValue(missingChild.lastSeenAt.district)
+            missingChildRef.child("Last-Seen-Address-Parish").setValue(missingChild.lastSeenAt.parish.rawValue)
+            missingChildRef.child("Last-Seen-Date").setValue(missingChild.lastSeenDateString)
+            missingChildRef.child("Missing-Status").setValue(missingChild.missingStatus.rawValue)
             
-            let childID = missingChildRef.key
+            Auth.auth().addStateDidChangeListener{ auth, user in
+                if let user = user
+                {
+                    let relationship = Relationship(rawValue: self.relationshipTextView.text!) ?? Relationship.none
+                    let missingChildReport = MissingChildReport(missingChildID: childID, missingChildReporterID: user.uid, relationship: relationship.rawValue)
+                    
+                    let missingChildrenReportsRef = self.ref.child("Missing Children Reports").child(childID)
+                    missingChildrenReportsRef.child("Child-ID").setValue(missingChildReport.missingChildID)
+                    missingChildrenReportsRef.child("Reporter-ID").setValue(missingChildReport.missingChildReporterID)
+                    missingChildrenReportsRef.child("Relationship").setValue(missingChildReport.relationship.rawValue)
+                    
+                    let formatter = DateFormatter()
+                    formatter.calendar = self.lastSeenDateDatePicker.calendar
+                    formatter.dateStyle = .medium
+                    formatter.timeStyle = .none
+                    let dateString = formatter.string(from: Date())
+                    
+                    missingChildrenReportsRef.child("Date-Reported").setValue(dateString)
+                }
+            }
+            
             uploadPhotosToFirebaseStorage(missingChildPhotos: missingChild.missingChildPhotos, ID: childID)
         }
     }
