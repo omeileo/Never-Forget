@@ -28,8 +28,10 @@ struct MissingChild
     var complexion: Complexion?
     var bodyType: BodyType?
     
-    var residingAddress: Address?
-    var lastSeenAt: Address
+    var residingAddressDistrict: String?
+    var residingAddressParish: Parish?
+    var lastSeenAddressDistrict: String
+    var lastSeenAddressParish: Parish
     var lastSeenDate: Date
     var lastSeenDateString: String
     var numberOfDaysMissing: Int?
@@ -42,7 +44,8 @@ struct MissingChild
         self.lastName = lastName
         self.age = Int16(age)
         
-        self.lastSeenAt = lastSeenAt
+        self.lastSeenAddressDistrict = lastSeenAt.district
+        self.lastSeenAddressParish = lastSeenAt.parish
         self.missingStatus = missingStatus
         
         let dateFormatter = DateFormatter()

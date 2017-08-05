@@ -284,8 +284,8 @@ class AddMissingChildViewController: UIViewController, UIImagePickerControllerDe
             missingChild.eyeColor = EyeColor(rawValue: eyeColorTextField.text!) ?? EyeColor.black
             missingChild.complexion = Complexion(rawValue: complexionTextField.text!) ?? Complexion.other
             missingChild.bodyType = BodyType(rawValue: bodyTypeTextField.text!) ?? BodyType.other
-            missingChild.residingAddress?.district = residingAddressDistrictTextField.text ?? ""
-            missingChild.residingAddress?.parish = Parish(rawValue: residingAddressParishTextField.text!) ?? Parish.notStated
+            missingChild.residingAddressDistrict = residingAddressDistrictTextField.text ?? ""
+            missingChild.residingAddressParish = Parish(rawValue: residingAddressParishTextField.text!) ?? Parish.notStated
             
             
             if missingChild.missingChildPhotos.count == 0
@@ -321,26 +321,26 @@ class AddMissingChildViewController: UIViewController, UIImagePickerControllerDe
         {
             let childID = missingChildRef.key
             
-            missingChildRef.child("First-Name").setValue(missingChild.firstName)
-            missingChildRef.child("Last-Name").setValue(missingChild.lastName)
-            missingChildRef.child("Nickname").setValue(missingChild.nickname)
-            missingChildRef.child("Age").setValue(missingChild.age)
-            missingChildRef.child("Citizenship").setValue(missingChild.citizenship)
+            missingChildRef.child("firstName").setValue(missingChild.firstName)
+            missingChildRef.child("lastName").setValue(missingChild.lastName)
+            missingChildRef.child("nickname").setValue(missingChild.nickname)
+            missingChildRef.child("age").setValue(missingChild.age)
+            missingChildRef.child("citizenship").setValue(missingChild.citizenship)
             
-            missingChildRef.child("Height").setValue(missingChild.height)
-            missingChildRef.child("Weight").setValue(missingChild.weight)
-            missingChildRef.child("Hair-Type").setValue(missingChild.hairType?.rawValue)
-            missingChildRef.child("Hair-Color").setValue(missingChild.hairColor?.rawValue)
-            missingChildRef.child("Eye-Color").setValue(missingChild.eyeColor?.rawValue)
-            missingChildRef.child("Complexion").setValue(missingChild.complexion?.rawValue)
-            missingChildRef.child("Body-Type").setValue(missingChild.bodyType?.rawValue)
+            missingChildRef.child("height").setValue(missingChild.height)
+            missingChildRef.child("weight").setValue(missingChild.weight)
+            missingChildRef.child("hairType").setValue(missingChild.hairType?.rawValue)
+            missingChildRef.child("hairColor").setValue(missingChild.hairColor?.rawValue)
+            missingChildRef.child("eyeColor").setValue(missingChild.eyeColor?.rawValue)
+            missingChildRef.child("complexion").setValue(missingChild.complexion?.rawValue)
+            missingChildRef.child("bodyType").setValue(missingChild.bodyType?.rawValue)
             
-            missingChildRef.child("Residing-Address-District").setValue(missingChild.residingAddress?.district)
-            missingChildRef.child("Residing-Address-Parish").setValue(missingChild.residingAddress?.parish.rawValue)
-            missingChildRef.child("Last-Seen-Address-District").setValue(missingChild.lastSeenAt.district)
-            missingChildRef.child("Last-Seen-Address-Parish").setValue(missingChild.lastSeenAt.parish.rawValue)
-            missingChildRef.child("Last-Seen-Date").setValue(missingChild.lastSeenDateString)
-            missingChildRef.child("Missing-Status").setValue(missingChild.missingStatus.rawValue)
+            missingChildRef.child("residingAddressDistrict").setValue(missingChild.residingAddressDistrict)
+            missingChildRef.child("residingAddressParish").setValue(missingChild.residingAddressParish?.rawValue)
+            missingChildRef.child("lastSeenAddressDistrict").setValue(missingChild.lastSeenAddressDistrict)
+            missingChildRef.child("lastSeenAddressParish").setValue(missingChild.lastSeenAddressParish.rawValue)
+            missingChildRef.child("lastSeenDate").setValue(missingChild.lastSeenDateString)
+            missingChildRef.child("missingStatus").setValue(missingChild.missingStatus.rawValue)
             
             Auth.auth().addStateDidChangeListener{ auth, user in
                 if let user = user
@@ -349,9 +349,9 @@ class AddMissingChildViewController: UIViewController, UIImagePickerControllerDe
                     let missingChildReport = MissingChildReport(missingChildID: childID, missingChildReporterID: user.uid, relationship: relationship.rawValue)
                     
                     let missingChildrenReportsRef = self.ref.child("Missing Children Reports").child(childID)
-                    missingChildrenReportsRef.child("Child-ID").setValue(missingChildReport.missingChildID)
-                    missingChildrenReportsRef.child("Reporter-ID").setValue(missingChildReport.missingChildReporterID)
-                    missingChildrenReportsRef.child("Relationship").setValue(missingChildReport.relationship.rawValue)
+                    missingChildrenReportsRef.child("childID").setValue(missingChildReport.missingChildID)
+                    missingChildrenReportsRef.child("reporterID").setValue(missingChildReport.missingChildReporterID)
+                    missingChildrenReportsRef.child("relationship").setValue(missingChildReport.relationship.rawValue)
                     
                     let formatter = DateFormatter()
                     formatter.calendar = self.lastSeenDateDatePicker.calendar
@@ -359,7 +359,7 @@ class AddMissingChildViewController: UIViewController, UIImagePickerControllerDe
                     formatter.timeStyle = .none
                     let dateString = formatter.string(from: Date())
                     
-                    missingChildrenReportsRef.child("Date-Reported").setValue(dateString)
+                    missingChildrenReportsRef.child("dateReported").setValue(dateString)
                 }
             }
             
