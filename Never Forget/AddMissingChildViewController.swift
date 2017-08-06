@@ -74,107 +74,6 @@ class AddMissingChildViewController: UIViewController, UIImagePickerControllerDe
     let parishes = [Parish.andrew.rawValue, Parish.ann.rawValue, Parish.catherine.rawValue, Parish.clarendon.rawValue, Parish.elizabeth.rawValue, Parish.hanover.rawValue, Parish.james.rawValue, Parish.kingston.rawValue, Parish.manchester.rawValue, Parish.mary.rawValue, Parish.portland.rawValue, Parish.thomas.rawValue, Parish.trelawny.rawValue, Parish.westmoreland.rawValue]
     let relationshipTypes = [Relationship.mother.rawValue, Relationship.father.rawValue, Relationship.guardian.rawValue, Relationship.sibling.rawValue, Relationship.aunt.rawValue, Relationship.uncle.rawValue, Relationship.grandmother.rawValue, Relationship.grandfather.rawValue, Relationship.other.rawValue, Relationship.none.rawValue]
     
-    override func viewWillAppear(_ animated: Bool)
-    {
-        super.viewWillAppear(animated)
-        
-        self.hideKeyboardWhenTappedOutside()
-        self.subscribeToKeyboardNotifications()
-        
-        setUpBanner()
-        femaleGenderLabel.isHighlighted = true
-        setDefaultLastSeenDate()
-        connectInputFieldsToPickerViews()
-        
-        ref = Database.database().reference()
-    }
-    
-    override func didReceiveMemoryWarning()
-    {
-        super.didReceiveMemoryWarning()
-    }
-    
-    func setUpBanner()
-    {
-        avatarView.clipsToBounds = false
-        avatarView.layer.shadowColor = UIColor.black.cgColor
-        avatarView.layer.shadowOpacity = 0.5
-        avatarView.layer.shadowOffset = CGSize.zero
-        avatarView.layer.shadowRadius = 10
-        avatarView.layer.shadowPath = UIBezierPath(roundedRect: avatarView.bounds, cornerRadius: (avatarView.frame.size.height/2.0)).cgPath
-        avatarView.layer.cornerRadius = avatarView.frame.size.height / 2.0
-        
-        avatarImage.clipsToBounds = true
-        avatarImage.layer.cornerRadius = avatarView.frame.size.height / 2.0
-        
-        counterView.clipsToBounds = true
-        counterView.layer.cornerRadius = counterView.frame.size.height / 2.0
-    }
-    
-    func setDefaultLastSeenDate()
-    {
-        let formatter = DateFormatter()
-        formatter.calendar = lastSeenDateDatePicker.calendar
-        formatter.dateStyle = .medium
-        formatter.timeStyle = .none
-        
-        let dateString = formatter.string(from: lastSeenDateDatePicker.date)
-        lastSeenDateTextField.text = dateString
-    }
-    
-    func connectInputFieldsToPickerViews()
-    {
-        hairTypePickerView.delegate = self
-        hairTypeTextField.inputView = hairTypePickerView
-        
-        hairColorPickerView.delegate = self
-        hairColorTextField.inputView = hairColorPickerView
-        
-        eyeColorPickerView.delegate = self
-        eyeColorTextField.inputView = eyeColorPickerView
-        
-        complexionPickerView.delegate = self
-        complexionTextField.inputView = complexionPickerView
-        
-        bodyTypePickerView.delegate = self
-        bodyTypeTextField.inputView = bodyTypePickerView
-        
-        residingAddressParishPickerView.delegate = self
-        residingAddressParishTextField.inputView = residingAddressParishPickerView
-        
-        lastSeenAddressParishPickerView.delegate = self
-        lastSeenAddressParishTextView.inputView = lastSeenAddressParishPickerView
-        
-        relationshipPickerView.delegate = self
-        relationshipTextView.inputView = relationshipPickerView
-        
-        lastSeenDateDatePicker.datePickerMode = UIDatePickerMode.date
-        lastSeenDateTextField.inputView = lastSeenDateDatePicker
-    }
-    
-    override func resetView() {}
-    
-    override func keyboardWillShow(_ notification: Notification)
-    {
-        resetView()
-        
-        if !(firstNameTextField.isFirstResponder || lastNameTextField.isFirstResponder)
-        {
-            scrollView.frame.origin.y -= (getKeyboardHeight(notification)/2)
-        }
-        else
-        {
-            scrollView.frame.origin.y -= (getKeyboardHeight(notification)/4)
-        }
-    }
-    
-    override func viewWillDisappear(_ animated: Bool)
-    {
-        super.viewWillDisappear(animated)
-        
-        self.unsubcribeFromKeyboardNotifcations()
-    }
-    
     @IBAction func addMissingChildImage(_ sender: UIButton)
     {
         let alertController = UIAlertController(title: "Select Image", message: nil, preferredStyle: .actionSheet)
@@ -210,6 +109,7 @@ class AddMissingChildViewController: UIViewController, UIImagePickerControllerDe
         
         if missingChildPhotos.count == 1
         {
+            self.avatarImage.isHighlighted = false
             self.avatarImage.image = missingChildPhotos.first?.photo
             self.avatarImage.layer.cornerRadius = self.avatarImage.frame.size.height / 2.0
             self.avatarImage.layer.masksToBounds = true
@@ -321,6 +221,7 @@ class AddMissingChildViewController: UIViewController, UIImagePickerControllerDe
         {
             let childID = missingChildRef.key
             
+            missingChildRef.child("gender").setValue(missingChild.gender.rawValue)
             missingChildRef.child("firstName").setValue(missingChild.firstName)
             missingChildRef.child("lastName").setValue(missingChild.lastName)
             missingChildRef.child("nickname").setValue(missingChild.nickname)
@@ -393,7 +294,7 @@ class AddMissingChildViewController: UIViewController, UIImagePickerControllerDe
                         return
                     }
                     
-                    let downloadURL = metadata.downloadURLs
+                    let downloadURLs = metadata.downloadURLs
                 }
             }
         }

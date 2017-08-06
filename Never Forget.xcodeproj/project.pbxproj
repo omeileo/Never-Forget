@@ -28,6 +28,8 @@
 		F3910C951F20A4B1009C6810 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = F3910C941F20A4B1009C6810 /* Podfile */; };
 		F3910C981F20AC15009C6810 /* UIViewController+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3910C971F20AC15009C6810 /* UIViewController+Utils.swift */; };
 		F3910C9B1F21CE88009C6810 /* AddMissingChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3910C9A1F21CE88009C6810 /* AddMissingChildViewController.swift */; };
+		F3BF06521F3688A200DEEA63 /* AddMissingChildViewController+SetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3BF06511F3688A200DEEA63 /* AddMissingChildViewController+SetupView.swift */; };
+		F3BF06571F36AE0100DEEA63 /* MissingChildProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3BF06561F36AE0100DEEA63 /* MissingChildProfileViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +57,8 @@
 		F3910C941F20A4B1009C6810 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		F3910C971F20AC15009C6810 /* UIViewController+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Utils.swift"; sourceTree = "<group>"; };
 		F3910C9A1F21CE88009C6810 /* AddMissingChildViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddMissingChildViewController.swift; sourceTree = "<group>"; };
+		F3BF06511F3688A200DEEA63 /* AddMissingChildViewController+SetupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AddMissingChildViewController+SetupView.swift"; sourceTree = "<group>"; };
+		F3BF06561F36AE0100DEEA63 /* MissingChildProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MissingChildProfileViewController.swift; sourceTree = "<group>"; };
 		FDF8463898E700978DB53F06 /* Pods_Never_Forget.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Never_Forget.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -142,10 +146,11 @@
 		F3910C811F208443009C6810 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				F3910C991F21CE55009C6810 /* Add Missing Child */,
-				F3910C891F2092FC009C6810 /* Login */,
-				F3910C8A1F20933C009C6810 /* Missing Children Map */,
 				F3910C8B1F209345009C6810 /* Missing Children Feed */,
+				F3910C8A1F20933C009C6810 /* Missing Children Map */,
+				F3910C891F2092FC009C6810 /* Login */,
+				F3910C991F21CE55009C6810 /* Add Missing Child */,
+				F3BF06531F36AC2D00DEEA63 /* Missing Child Profile */,
 				F3910C961F20ABEE009C6810 /* Utils */,
 			);
 			name = Controller;
@@ -216,9 +221,18 @@
 			isa = PBXGroup;
 			children = (
 				F3910C9A1F21CE88009C6810 /* AddMissingChildViewController.swift */,
+				F3BF06511F3688A200DEEA63 /* AddMissingChildViewController+SetupView.swift */,
 				F3040EE81F23F41E000696F9 /* AddMissingChildViewController+DropdownMenu.swift */,
 			);
 			name = "Add Missing Child";
+			sourceTree = "<group>";
+		};
+		F3BF06531F36AC2D00DEEA63 /* Missing Child Profile */ = {
+			isa = PBXGroup;
+			children = (
+				F3BF06561F36AE0100DEEA63 /* MissingChildProfileViewController.swift */,
+			);
+			name = "Missing Child Profile";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -347,11 +361,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F3BF06571F36AE0100DEEA63 /* MissingChildProfileViewController.swift in Sources */,
 				F36E7ECF1F33511500CFE3C7 /* MissingChildrenFeedViewController+TableView.swift in Sources */,
 				F307DB0B1F25CA750063D01D /* MissingChildReporter.swift in Sources */,
 				F3910C861F209274009C6810 /* LoginViewController.swift in Sources */,
 				F321CD9D1F304E1F00FF46D9 /* MissingChildPhoto.swift in Sources */,
 				F36E7ECD1F3349CF00CFE3C7 /* MissingChildrenFeedTableViewCell.swift in Sources */,
+				F3BF06521F3688A200DEEA63 /* AddMissingChildViewController+SetupView.swift in Sources */,
 				F321CD9B1F3039B300FF46D9 /* CustomDataTypes.swift in Sources */,
 				F3910C881F2092D7009C6810 /* RegisterViewController.swift in Sources */,
 				F307DB091F25CA5C0063D01D /* MissingChild.swift in Sources */,

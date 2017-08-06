@@ -35,19 +35,20 @@ extension MissingChildrenFeedViewController: UITableViewDelegate, UITableViewDat
                     missingChild.complexion = Complexion(rawValue: (missingChildDictionary["complexion"] as? String)!) ?? Complexion.other
                     missingChild.eyeColor = EyeColor(rawValue: (missingChildDictionary["eyeColor"] as? String)!) ?? EyeColor.other
                     missingChild.firstName = missingChildDictionary["firstName"] as? String ?? ""
+                    missingChild.gender = Gender(rawValue: (missingChildDictionary["gender"] as? String)!) ?? Gender.female
                     missingChild.hairColor = HairColor(rawValue: (missingChildDictionary["hairColor"] as? String)!) ?? HairColor.other
                     missingChild.hairType = HairType(rawValue: (missingChildDictionary["hairType"] as? String)!) ?? HairType.other
                     missingChild.height = missingChildDictionary["height"] as? Double ?? 0.0
                     missingChild.lastName = missingChildDictionary["lastName"] as? String ?? ""
                     missingChild.lastSeenAddressDistrict = missingChildDictionary["lastSeenAddressDistrict"] as? String ?? ""
                     missingChild.lastSeenAddressParish = Parish(rawValue: (missingChildDictionary["lastSeenAddressParish"] as? String)!) ?? Parish.notStated
+                    missingChild.lastSeenDateString = missingChildDictionary["lastSeenDate"] as? String ?? ""
                     missingChild.nickname = missingChildDictionary["nickname"] as? String ?? ""
                     missingChild.residingAddressDistrict = missingChildDictionary["residingAddressDistrict"] as? String ?? ""
                     missingChild.residingAddressParish = Parish(rawValue: (missingChildDictionary["residingAddressParish"] as? String)!) ?? Parish.notStated
                     missingChild.weight = missingChildDictionary["Weight"] as? Double ?? 0.0
                     
                     self.missingChildren.append(missingChild)
-                    print(missingChild)
                     
                     DispatchQueue.main.async
                     {
