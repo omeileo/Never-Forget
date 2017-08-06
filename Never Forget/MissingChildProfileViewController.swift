@@ -11,6 +11,7 @@ import UIKit
 class MissingChildProfileViewController: UIViewController
 {
     @IBOutlet weak var navigationBar: UINavigationBar!
+    @IBOutlet weak var navigationBarTitle: UINavigationItem!
     
     //Banner
     @IBOutlet weak var bannerImage: UIImageView!
@@ -42,6 +43,9 @@ class MissingChildProfileViewController: UIViewController
     {
         super.viewDidLoad()
 
+        navigationController?.setNavigationBarHidden(true, animated: true)
+        navigationBarTitle.title = "\(missingChild.firstName)  \(missingChild.lastName)"
+        
         firstNameLabel.text = missingChild.firstName
         genderLabel.text = missingChild.gender.rawValue
         ageLabel.text = "\(missingChild.age)"
@@ -50,7 +54,7 @@ class MissingChildProfileViewController: UIViewController
         hairTypeLabel.text = missingChild.hairType?.rawValue
         hairColorLabel.text = missingChild.hairColor?.rawValue
         complexionLabel.text = missingChild.complexion?.rawValue
-        heightLabel.text = "\(String(describing: missingChild.height)) cm"
+        heightLabel.text = "\(missingChild.height!) cm"
         
         missingDateLabel.text = missingChild.lastSeenDateString
         missingAddressDistrictLabel.text = missingChild.lastSeenAddressDistrict

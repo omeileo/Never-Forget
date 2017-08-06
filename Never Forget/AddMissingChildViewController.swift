@@ -163,7 +163,7 @@ class AddMissingChildViewController: UIViewController, UIImagePickerControllerDe
     {
         let gender: Gender
         
-        if femaleGenderLabel.isHighlighted
+        if genderSwitch.isOn
         {
             gender = .female
         }
@@ -258,21 +258,21 @@ class AddMissingChildViewController: UIViewController, UIImagePickerControllerDe
                 missingChildrenReportsRef.child("dateReported").setValue(dateString)
             }
             
-            uploadPhotosToFirebaseStorage(missingChildPhotos: missingChild.missingChildPhotos, ID: childID)
+            uploadPhotosToFirebaseStorage(missingChildPhotos: missingChild.missingChildPhotos, childID: childID)
         }
     }
     
-    func uploadPhotosToFirebaseStorage(missingChildPhotos: [MissingChildPhoto], ID: String)
+    func uploadPhotosToFirebaseStorage(missingChildPhotos: [MissingChildPhoto], childID: String)
     {
         let storage = Storage.storage()
         let storageRef = storage.reference()
         
-        let missingChildPhotosFolder = storageRef.child("Missing Children Photos").child(ID)
+        let missingChildPhotosFolder = storageRef.child("Missing Children Photos").child(childID)
         
         var count = 0
         for photo in missingChildPhotos
         {
-            let photoName = "\(ID)-\(count).jpg"
+            let photoName = "\(childID)-\(count).jpg"
             let photoRef = missingChildPhotosFolder.child(photoName)
             
             count += 1

@@ -1319,6 +1319,7 @@
                         <outlet property="missingAddressParishLabel" destination="eSp-Sh-fZ4" id="loa-ic-jxY"/>
                         <outlet property="missingDateLabel" destination="kMn-Mz-YEW" id="299-Wc-jmq"/>
                         <outlet property="navigationBar" destination="QdN-uT-OUD" id="SND-gr-Rnw"/>
+                        <outlet property="navigationBarTitle" destination="nKU-8D-tdm" id="ODH-wy-eBm"/>
                         <outlet property="nicknameLabel" destination="Imy-lw-dSG" id="iQz-LP-Ehr"/>
                         <segue destination="49e-Tb-3d3" kind="show" identifier="showHomeViewController" id="Lcb-42-l1l"/>
                     </connections>
@@ -1793,7 +1794,7 @@
         <image name="location-pin" width="960" height="560"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="gU5-uV-4FV"/>
+        <segue reference="Lcb-42-l1l"/>
         <segue reference="bGS-LC-9UJ"/>
         <segue reference="Tof-qF-RCw"/>
     </inferredMetricsTieBreakers>

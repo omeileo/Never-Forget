@@ -29,24 +29,33 @@ extension MissingChildrenFeedViewController: UITableViewDelegate, UITableViewDat
                 {
                     var missingChild = MissingChild(gender: Gender.female, firstName: "", lastName: "", age: 0, lastSeenAt: Address(district: "", parish: Parish.notStated), lastSeenDate: "Jun 21, 2017", missingStatus: MissingStatus.missing)
                     
+                    let bodyType = missingChildDictionary["bodyType"] as? String ?? "Other"
+                    let complexion = missingChildDictionary["complexion"] as? String ?? "Other"
+                    let eyeColor = missingChildDictionary["eyeColor"] as? String ?? "Other"
+                    let gender = missingChildDictionary["gender"] as? String ?? "Female"
+                    let hairColor = missingChildDictionary["hairColor"] as? String ?? "Other"
+                    let hairType = missingChildDictionary["hairType"] as? String ?? "Other"
+                    let lastSeenAddressParish = missingChildDictionary["lastSeenAddressParish"] as? String ?? "notStated"
+                    let residingAddressParish = missingChildDictionary["residingAddressParish"] as? String ?? "notStated"
+                    
                     missingChild.age = missingChildDictionary["age"] as? Int16 ?? 0
-                    missingChild.bodyType = BodyType(rawValue: (missingChildDictionary["bodyType"] as? String)!) ?? BodyType.other
-                    missingChild.citizenship = missingChildDictionary["citizenship"] as? String ?? ""
-                    missingChild.complexion = Complexion(rawValue: (missingChildDictionary["complexion"] as? String)!) ?? Complexion.other
-                    missingChild.eyeColor = EyeColor(rawValue: (missingChildDictionary["eyeColor"] as? String)!) ?? EyeColor.other
+                    missingChild.bodyType = BodyType(rawValue: bodyType)
+                    missingChild.citizenship = missingChildDictionary["citizenship"] as? String
+                    missingChild.complexion = Complexion(rawValue: complexion)
+                    missingChild.eyeColor = EyeColor(rawValue: eyeColor)
                     missingChild.firstName = missingChildDictionary["firstName"] as? String ?? ""
-                    missingChild.gender = Gender(rawValue: (missingChildDictionary["gender"] as? String)!) ?? Gender.female
-                    missingChild.hairColor = HairColor(rawValue: (missingChildDictionary["hairColor"] as? String)!) ?? HairColor.other
-                    missingChild.hairType = HairType(rawValue: (missingChildDictionary["hairType"] as? String)!) ?? HairType.other
+                    missingChild.gender = Gender(rawValue: gender)!
+                    missingChild.hairColor = HairColor(rawValue: hairColor)
+                    missingChild.hairType = HairType(rawValue: hairType)
                     missingChild.height = missingChildDictionary["height"] as? Double ?? 0.0
                     missingChild.lastName = missingChildDictionary["lastName"] as? String ?? ""
                     missingChild.lastSeenAddressDistrict = missingChildDictionary["lastSeenAddressDistrict"] as? String ?? ""
-                    missingChild.lastSeenAddressParish = Parish(rawValue: (missingChildDictionary["lastSeenAddressParish"] as? String)!) ?? Parish.notStated
+                    missingChild.lastSeenAddressParish = Parish(rawValue: lastSeenAddressParish)!
                     missingChild.lastSeenDateString = missingChildDictionary["lastSeenDate"] as? String ?? ""
                     missingChild.nickname = missingChildDictionary["nickname"] as? String ?? ""
                     missingChild.residingAddressDistrict = missingChildDictionary["residingAddressDistrict"] as? String ?? ""
-                    missingChild.residingAddressParish = Parish(rawValue: (missingChildDictionary["residingAddressParish"] as? String)!) ?? Parish.notStated
-                    missingChild.weight = missingChildDictionary["Weight"] as? Double ?? 0.0
+                    missingChild.residingAddressParish = Parish(rawValue: residingAddressParish)!
+                    missingChild.weight = missingChildDictionary["weight"] as? Double ?? 0.0
                     
                     self.missingChildren.append(missingChild)
                     
