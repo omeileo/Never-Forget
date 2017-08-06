@@ -80,7 +80,6 @@ extension MissingChildrenFeedViewController: UITableViewDelegate, UITableViewDat
         let cell: MissingChildrenFeedTableViewCell = self.missingChildrenFeedTableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as! MissingChildrenFeedTableViewCell
         let child = missingChildren[indexPath.row]
         
-        // TODO: set up cell's attributes with data from Firebase
         cell.avatarImageView.image = UIImage(named: child.gender.rawValue)
         cell.childNameLabel.text = child.firstName + " " + missingChildren[indexPath.row].lastName
         cell.missingDateLabel.text = child.lastSeenDateString
@@ -91,11 +90,36 @@ extension MissingChildrenFeedViewController: UITableViewDelegate, UITableViewDat
         cell.complexionLabel.text = child.complexion?.rawValue
         cell.heightLabel.text = "\(child.height!) cm"
         
+        makeAvatarImageCircular(cell: cell)
+        
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
-        //segue to Missing Child Page
+        performSegue(withIdentifier: viewMissingChildProfileSegueIdentifier, sender: missingChildren[indexPath.row])
+    }
+    
+    func makeAvatarImageCircular(cell: MissingChildrenFeedTableViewCell)
+    {
+        if let image = cell.avatarImageView, let imageContainer = cell.avatarUIView
+        {
+            image.layer.cornerRadius = image.frame.size.width / 2.0
+            image.clipsToBounds = true
+            
+            imageContainer.layer.cornerRadius = imageContainer.frame.size.width / 2.0
+            imageContainer.clipsToBounds = false
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        if segue.identifier == viewMissingChildProfileSegueIdentifier
+        {
+            if let missingChildProfileViewController = segue.destination as? MissingChildProfileViewController, let missingChild = sender as? MissingChild
+            {
+                missingChildProfileViewController.missingChild = missingChild
+            }
+        }
     }
 }

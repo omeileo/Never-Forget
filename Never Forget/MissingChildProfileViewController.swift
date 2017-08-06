@@ -46,6 +46,8 @@ class MissingChildProfileViewController: UIViewController
         navigationController?.setNavigationBarHidden(true, animated: true)
         navigationBarTitle.title = "\(missingChild.firstName)  \(missingChild.lastName)"
         
+        setupBanner()
+        
         firstNameLabel.text = missingChild.firstName
         genderLabel.text = missingChild.gender.rawValue
         ageLabel.text = "\(missingChild.age)"
@@ -70,6 +72,23 @@ class MissingChildProfileViewController: UIViewController
     @IBAction func backButton(_ sender: UIBarButtonItem)
     {
         performSegue(withIdentifier: homeViewSegueIdentifier, sender: self)
+    }
+    
+    func setupBanner()
+    {
+        avatarView.clipsToBounds = false
+        avatarView.layer.cornerRadius = avatarView.frame.size.height / 2.0
+        avatarView.layer.shadowPath = UIBezierPath(roundedRect: avatarView.bounds, cornerRadius: (avatarView.frame.size.width / 2.0)).cgPath
+        avatarView.layer.shadowColor = UIColor.black.cgColor
+        avatarView.layer.shadowOpacity = 0.5
+        avatarView.layer.shadowOffset = CGSize.zero
+        avatarView.layer.shadowRadius = 10
+        
+        avatarImage.layer.cornerRadius = avatarImage.frame.size.width / 2.0
+        avatarImage.clipsToBounds = true
+        //avatarImage.image =
+        //bannerImage.image =
+        
     }
 
     /*
