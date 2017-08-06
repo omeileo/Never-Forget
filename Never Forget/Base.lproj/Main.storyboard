@@ -80,7 +80,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BhH-JJ-Fz0" userLabel="Avatar View">
                                                     <rect key="frame" x="15" y="2.6666666666666643" width="70" height="70"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Girl" translatesAutoresizingMaskIntoConstraints="NO" id="VC2-8L-xVD" userLabel="Image">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Female" translatesAutoresizingMaskIntoConstraints="NO" id="VC2-8L-xVD" userLabel="Image">
                                                             <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
                                                         </imageView>
                                                     </subviews>
@@ -813,7 +813,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HSr-Ix-k1n" userLabel="Avatar View">
                                 <rect key="frame" x="92" y="84" width="230" height="230"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Girl" highlightedImage="Boy" translatesAutoresizingMaskIntoConstraints="NO" id="BwS-KK-cNY" userLabel="Avatar Image">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Female" highlightedImage="Male" translatesAutoresizingMaskIntoConstraints="NO" id="BwS-KK-cNY" userLabel="Avatar Image">
                                         <rect key="frame" x="3" y="3" width="224" height="224"/>
                                     </imageView>
                                 </subviews>
@@ -952,6 +952,9 @@
                                     <navigationItem title="Title" id="nKU-8D-tdm">
                                         <barButtonItem key="leftBarButtonItem" systemItem="done" id="eFX-W4-nKn">
                                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <connections>
+                                                <action selector="backButton:" destination="prs-s8-Qbf" id="BF6-yK-xzo"/>
+                                            </connections>
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
@@ -1263,7 +1266,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wJl-cr-UA6" userLabel="Avatar View">
                                 <rect key="frame" x="142" y="180" width="130" height="130"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Girl" highlightedImage="Boy" translatesAutoresizingMaskIntoConstraints="NO" id="xMh-ls-nal" userLabel="Avatar Image">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Female" highlightedImage="Male" translatesAutoresizingMaskIntoConstraints="NO" id="xMh-ls-nal" userLabel="Avatar Image">
                                         <rect key="frame" x="3" y="3" width="124" height="124"/>
                                     </imageView>
                                 </subviews>
@@ -1304,6 +1307,7 @@
                         <outlet property="ageLabel" destination="dSY-XS-VU6" id="vD3-Oj-Oze"/>
                         <outlet property="avatarImage" destination="xMh-ls-nal" id="TXW-MT-Pvr"/>
                         <outlet property="avatarView" destination="wJl-cr-UA6" id="KZi-0q-09m"/>
+                        <outlet property="bannerImage" destination="les-Zv-dD6" id="Zjt-5V-4DI"/>
                         <outlet property="bodyTypeLabel" destination="0j7-EU-u4w" id="eFc-0Q-VgC"/>
                         <outlet property="complexionLabel" destination="4ef-II-lWZ" id="CHG-2R-0AZ"/>
                         <outlet property="firstNameLabel" destination="JNg-AK-bxy" id="cJU-SR-dWd"/>
@@ -1314,12 +1318,14 @@
                         <outlet property="missingAddressDistrictLabel" destination="xXU-eL-XPK" id="dWr-yK-maD"/>
                         <outlet property="missingAddressParishLabel" destination="eSp-Sh-fZ4" id="loa-ic-jxY"/>
                         <outlet property="missingDateLabel" destination="kMn-Mz-YEW" id="299-Wc-jmq"/>
+                        <outlet property="navigationBar" destination="QdN-uT-OUD" id="SND-gr-Rnw"/>
                         <outlet property="nicknameLabel" destination="Imy-lw-dSG" id="iQz-LP-Ehr"/>
+                        <segue destination="49e-Tb-3d3" kind="show" identifier="showHomeViewController" id="Lcb-42-l1l"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ptI-JH-SHu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4800" y="-146"/>
+            <point key="canvasLocation" x="3796" y="1038"/>
         </scene>
         <!--Missing Children Map-->
         <scene sceneID="wg7-f3-ORb">
@@ -1777,18 +1783,18 @@
         <image name="Add Missing Child" width="750" height="500"/>
         <image name="Add Missing Child Icon" width="34" height="21"/>
         <image name="AddButton" width="190" height="192"/>
-        <image name="Boy" width="900" height="900"/>
         <image name="Feed" width="30" height="30"/>
-        <image name="Girl" width="900" height="900"/>
+        <image name="Female" width="900" height="900"/>
         <image name="Jamaican School Kids" width="375" height="707"/>
         <image name="Logo" width="116" height="100"/>
+        <image name="Male" width="900" height="900"/>
         <image name="Map" width="30" height="30"/>
         <image name="Missing Children Feed Banner" width="375" height="130"/>
         <image name="location-pin" width="960" height="560"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="gU5-uV-4FV"/>
-        <segue reference="NCU-Fi-6f4"/>
-        <segue reference="Eaa-Sf-o5s"/>
+        <segue reference="bGS-LC-9UJ"/>
+        <segue reference="Tof-qF-RCw"/>
     </inferredMetricsTieBreakers>
 </document>

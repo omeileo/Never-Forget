@@ -52,14 +52,12 @@ extension MissingChildrenFeedViewController: UITableViewDelegate, UITableViewDat
                     
                     DispatchQueue.main.async
                     {
-                            self.missingChildrenFeedTableView.reloadData()
+                        self.missingChildrenFeedTableView.reloadData()
                     }
                     
                 }
             }, withCancel: nil)
         }
-        
-        //missingChildrenFeedTableView.reloadData()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
@@ -74,7 +72,7 @@ extension MissingChildrenFeedViewController: UITableViewDelegate, UITableViewDat
         let child = missingChildren[indexPath.row]
         
         // TODO: set up cell's attributes with data from Firebase
-        cell.avatarImageView.image = UIImage(named: "Girl")
+        cell.avatarImageView.image = UIImage(named: child.gender.rawValue)
         cell.childNameLabel.text = child.firstName + " " + missingChildren[indexPath.row].lastName
         cell.missingDateLabel.text = child.lastSeenDateString
         cell.missingAddressLabel.text = child.lastSeenAddressDistrict + ", " + child.lastSeenAddressParish.rawValue

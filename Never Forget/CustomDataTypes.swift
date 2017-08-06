@@ -10,7 +10,7 @@ import Foundation
 
 enum Gender: String
 {
-    case male = "Boy", female = "Girl"
+    case male = "Male", female = "Female"
 }
 
 enum HairType: String

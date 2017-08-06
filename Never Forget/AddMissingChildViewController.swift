@@ -54,6 +54,7 @@ class AddMissingChildViewController: UIViewController, UIImagePickerControllerDe
     
     var missingChildPhotos = [MissingChildPhoto]()
     let homeViewSegueIdentifier = "showHomeViewController"
+    let missingChildProfileViewSegueIdentifier = "showMissingChildProfileViewController"
     var ref: DatabaseReference!
     
     let hairTypePickerView = UIPickerView()
@@ -202,12 +203,7 @@ class AddMissingChildViewController: UIViewController, UIImagePickerControllerDe
             
             uploadMissingChildInformationToFirebase(missingChild: missingChild)
             
-            // TODO: segue to missing child profile
-            
-            
-            //placeholder
-            self.performSegue(withIdentifier: homeViewSegueIdentifier, sender: self)
-            
+            self.performSegue(withIdentifier: missingChildProfileViewSegueIdentifier, sender: missingChild)
         }
         else
         {
@@ -243,25 +239,23 @@ class AddMissingChildViewController: UIViewController, UIImagePickerControllerDe
             missingChildRef.child("lastSeenDate").setValue(missingChild.lastSeenDateString)
             missingChildRef.child("missingStatus").setValue(missingChild.missingStatus.rawValue)
             
-            Auth.auth().addStateDidChangeListener{ auth, user in
-                if let user = user
-                {
-                    let relationship = Relationship(rawValue: self.relationshipTextView.text!) ?? Relationship.none
-                    let missingChildReport = MissingChildReport(missingChildID: childID, missingChildReporterID: user.uid, relationship: relationship.rawValue)
-                    
-                    let missingChildrenReportsRef = self.ref.child("Missing Children Reports").child(childID)
-                    missingChildrenReportsRef.child("childID").setValue(missingChildReport.missingChildID)
-                    missingChildrenReportsRef.child("reporterID").setValue(missingChildReport.missingChildReporterID)
-                    missingChildrenReportsRef.child("relationship").setValue(missingChildReport.relationship.rawValue)
-                    
-                    let formatter = DateFormatter()
-                    formatter.calendar = self.lastSeenDateDatePicker.calendar
-                    formatter.dateStyle = .medium
-                    formatter.timeStyle = .none
-                    let dateString = formatter.string(from: Date())
-                    
-                    missingChildrenReportsRef.child("dateReported").setValue(dateString)
-                }
+            if let user = Auth.auth().currentUser
+            {
+                let relationship = Relationship(rawValue: self.relationshipTextView.text!) ?? Relationship.none
+                let missingChildReport = MissingChildReport(missingChildID: childID, missingChildReporterID: user.uid, relationship: relationship.rawValue)
+                
+                let missingChildrenReportsRef = self.ref.child("Missing Children Reports").child(childID)
+                missingChildrenReportsRef.child("childID").setValue(missingChildReport.missingChildID)
+                missingChildrenReportsRef.child("reporterID").setValue(missingChildReport.missingChildReporterID)
+                missingChildrenReportsRef.child("relationship").setValue(missingChildReport.relationship.rawValue)
+                
+                let formatter = DateFormatter()
+                formatter.calendar = self.lastSeenDateDatePicker.calendar
+                formatter.dateStyle = .medium
+                formatter.timeStyle = .none
+                let dateString = formatter.string(from: Date())
+                
+                missingChildrenReportsRef.child("dateReported").setValue(dateString)
             }
             
             uploadPhotosToFirebaseStorage(missingChildPhotos: missingChild.missingChildPhotos, ID: childID)
@@ -296,6 +290,17 @@ class AddMissingChildViewController: UIViewController, UIImagePickerControllerDe
                     
                     let downloadURLs = metadata.downloadURLs
                 }
+            }
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        if segue.identifier == missingChildProfileViewSegueIdentifier
+        {
+            if let missingChildProfileViewController = segue.destination as? MissingChildProfileViewController, let missingChild = sender as? MissingChild
+            {
+                missingChildProfileViewController.missingChild = missingChild
             }
         }
     }

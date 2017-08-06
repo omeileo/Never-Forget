@@ -10,8 +10,10 @@ import UIKit
 
 class MissingChildProfileViewController: UIViewController
 {
-    //Banner
+    @IBOutlet weak var navigationBar: UINavigationBar!
     
+    //Banner
+    @IBOutlet weak var bannerImage: UIImageView!
     @IBOutlet weak var avatarView: UIView!
     @IBOutlet weak var avatarImage: UIImageView!
     
@@ -33,11 +35,26 @@ class MissingChildProfileViewController: UIViewController
     @IBOutlet weak var missingAddressDistrictLabel: UILabel!
     @IBOutlet weak var missingAddressParishLabel: UILabel!
 
+    var missingChild: MissingChild!
+    let homeViewSegueIdentifier = "showHomeViewController"
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        firstNameLabel.text = missingChild.firstName
+        genderLabel.text = missingChild.gender.rawValue
+        ageLabel.text = "\(missingChild.age)"
+        nicknameLabel.text = missingChild.nickname
+        
+        hairTypeLabel.text = missingChild.hairType?.rawValue
+        hairColorLabel.text = missingChild.hairColor?.rawValue
+        complexionLabel.text = missingChild.complexion?.rawValue
+        heightLabel.text = "\(String(describing: missingChild.height)) cm"
+        
+        missingDateLabel.text = missingChild.lastSeenDateString
+        missingAddressDistrictLabel.text = missingChild.lastSeenAddressDistrict
+        missingAddressParishLabel.text = missingChild.lastSeenAddressParish.rawValue
     }
 
     override func didReceiveMemoryWarning()
@@ -46,6 +63,10 @@ class MissingChildProfileViewController: UIViewController
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func backButton(_ sender: UIBarButtonItem)
+    {
+        performSegue(withIdentifier: homeViewSegueIdentifier, sender: self)
+    }
 
     /*
     // MARK: - Navigation
