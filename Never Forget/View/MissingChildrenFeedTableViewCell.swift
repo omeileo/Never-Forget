@@ -20,8 +20,7 @@ class MissingChildrenFeedTableViewCell: UITableViewCell
     @IBOutlet weak var missingAddressLabel: UILabel!
     
     //Tags
-    @IBOutlet weak var hairTypeLabel: UILabel!
-    @IBOutlet weak var hairColorLabel: UILabel!
+    @IBOutlet weak var hairDescriptionLabel: IndentedLabel!
     @IBOutlet weak var complexionLabel: UILabel!
     @IBOutlet weak var bodyTypeLabel: UILabel!
     @IBOutlet weak var heightLabel: UILabel!

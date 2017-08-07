@@ -25,11 +25,12 @@ class MissingChildProfileViewController: UIViewController
     @IBOutlet weak var nicknameLabel: UILabel!
     
     //Physical attributes
-    @IBOutlet weak var hairTypeLabel: UILabel!
-    @IBOutlet weak var hairColorLabel: UILabel!
+    @IBOutlet weak var hairDescriptionLabel: IndentedLabel!
     @IBOutlet weak var complexionLabel: UILabel!
     @IBOutlet weak var bodyTypeLabel: UILabel!
     @IBOutlet weak var heightLabel: UILabel!
+    @IBOutlet weak var weightLabel: IndentedLabel!
+    @IBOutlet weak var eyeColorLabel: IndentedLabel!
     
     //Missing information
     @IBOutlet weak var missingDateLabel: UILabel!
@@ -48,25 +49,150 @@ class MissingChildProfileViewController: UIViewController
         
         setupBanner()
         
+        setupGeneralInformation()
+        setupPhysicalAttrtibuteTags()
+        setupMissingInformation()
+    }
+    
+    func setupGeneralInformation()
+    {
         firstNameLabel.text = missingChild.firstName
-        genderLabel.text = missingChild.gender.rawValue
-        ageLabel.text = "\(missingChild.age)"
-        nicknameLabel.text = missingChild.nickname
+        genderLabel.text = "\(missingChild.gender.rawValue),"
+        ageLabel.text = "\(missingChild.age) years old"
         
-        hairTypeLabel.text = missingChild.hairType?.rawValue
-        hairColorLabel.text = missingChild.hairColor?.rawValue
-        complexionLabel.text = missingChild.complexion?.rawValue
-        heightLabel.text = "\(missingChild.height!) cm"
+        if let nickname = missingChild.nickname
+        {
+            if nickname == ""
+            {
+                nicknameLabel.isHidden = true
+            }
+            else
+            {
+                nicknameLabel.text = "Also Called: \(nickname)"
+            }
+        }
+        else
+        {
+            nicknameLabel.isHidden = true
+        }
+    }
+    
+    func setupPhysicalAttrtibuteTags()
+    {
+        if let complexion = missingChild.complexion?.rawValue
+        {
+            if complexion == "Other"
+            {
+                complexionLabel.isHidden = true
+            }
+            else
+            {
+                complexionLabel.text = "\(complexion) Complexion"
+            }
+        }
+        else
+        {
+            complexionLabel.isHidden = true
+        }
         
+        if let bodyType = missingChild.bodyType?.rawValue
+        {
+            if bodyType == "Other"
+            {
+                bodyTypeLabel.isHidden = true
+            }
+            else
+            {
+                bodyTypeLabel.text = "\(bodyType)"
+            }
+        }
+        else
+        {
+            bodyTypeLabel.isHidden = true
+        }
+        
+        if let height = missingChild.height
+        {
+            if height == 0
+            {
+                heightLabel.isHidden = true
+            }
+            else
+            {
+                heightLabel.text = "\(height) cm"
+            }
+        }
+        else
+        {
+            heightLabel.isHidden = true
+        }
+        
+        if let weight = missingChild.weight
+        {
+            if weight == 0
+            {
+                weightLabel.isHidden = true
+            }
+            else
+            {
+                weightLabel.text = "\(weight) lbs"
+            }
+        }
+        else
+        {
+            weightLabel.isHidden = true
+        }
+        
+        guard let hairType = missingChild.hairType, let hairColor = missingChild.hairColor else
+        {
+            hairDescriptionLabel.isHidden = true
+            return
+        }
+        
+        var hairTypeString = hairType.rawValue
+        if hairTypeString == "Other"
+        {
+            hairTypeString = ""
+        }
+        
+        var hairColorString = hairColor.rawValue
+        if hairColorString == "Other"
+        {
+            hairColorString = ""
+        }
+    
+        
+        if hairColorString == "Other" && hairTypeString == "Other"
+        {
+            hairDescriptionLabel.isHidden = true
+        }
+        else
+        {
+            hairDescriptionLabel.text = "\(hairTypeString) \(hairColorString) Hair"
+        }
+        
+        if let eyeColor = missingChild.eyeColor?.rawValue
+        {
+            if eyeColor == "Other"
+            {
+                eyeColorLabel.isHidden = true
+            }
+            else
+            {
+                eyeColorLabel.text = "\(eyeColor) Eyes"
+            }
+        }
+        else
+        {
+            eyeColorLabel.isHidden = true
+        }
+    }
+    
+    func setupMissingInformation()
+    {
         missingDateLabel.text = missingChild.lastSeenDateString
         missingAddressDistrictLabel.text = missingChild.lastSeenAddressDistrict
         missingAddressParishLabel.text = missingChild.lastSeenAddressParish.rawValue
-    }
-
-    override func didReceiveMemoryWarning()
-    {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     @IBAction func backButton(_ sender: UIBarButtonItem)
@@ -88,7 +214,6 @@ class MissingChildProfileViewController: UIViewController
         avatarImage.clipsToBounds = true
         //avatarImage.image =
         //bannerImage.image =
-        
     }
 
     /*

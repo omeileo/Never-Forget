@@ -267,7 +267,11 @@ class AddMissingChildViewController: UIViewController, UIImagePickerControllerDe
         let storage = Storage.storage()
         let storageRef = storage.reference()
         
+        //Storage location that will store actual photos
         let missingChildPhotosFolder = storageRef.child("Missing Children Photos").child(childID)
+        
+        //Database location that will be used to store photo URLs
+        let galleryRef = ref.child("Missing Children Photos").child(childID)
         
         var count = 0
         for photo in missingChildPhotos
@@ -288,7 +292,14 @@ class AddMissingChildViewController: UIViewController, UIImagePickerControllerDe
                         return
                     }
                     
-                    let downloadURLs = metadata.downloadURLs
+                    if let downloadURLs = metadata.downloadURLs
+                    {
+                        for URL in downloadURLs
+                        {
+                            galleryRef.setValue(String(describing: URL))
+                        }
+                    }
+                    
                 }
             }
         }

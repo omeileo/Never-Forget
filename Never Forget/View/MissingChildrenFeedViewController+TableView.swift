@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import FirebaseStorage
 
 extension MissingChildrenFeedViewController: UITableViewDelegate, UITableViewDataSource
 {
@@ -67,6 +68,9 @@ extension MissingChildrenFeedViewController: UITableViewDelegate, UITableViewDat
                 }
             }, withCancel: nil)
         }
+        
+        let storageRef = Storage.storage().reference()
+        let reference = storageRef.child("")
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
@@ -80,19 +84,96 @@ extension MissingChildrenFeedViewController: UITableViewDelegate, UITableViewDat
         let cell: MissingChildrenFeedTableViewCell = self.missingChildrenFeedTableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as! MissingChildrenFeedTableViewCell
         let child = missingChildren[indexPath.row]
         
+        
         cell.avatarImageView.image = UIImage(named: child.gender.rawValue)
         cell.childNameLabel.text = child.firstName + " " + missingChildren[indexPath.row].lastName
         cell.missingDateLabel.text = child.lastSeenDateString
         cell.missingAddressLabel.text = child.lastSeenAddressDistrict + ", " + child.lastSeenAddressParish.rawValue
-        cell.hairTypeLabel.text = child.hairType?.rawValue
-        cell.hairColorLabel.text = child.hairColor?.rawValue
-        cell.bodyTypeLabel.text = child.bodyType?.rawValue
-        cell.complexionLabel.text = child.complexion?.rawValue
-        cell.heightLabel.text = "\(child.height!) cm"
+        
+        setupPhysicalAttrtibuteTags(cell: cell, child: child)
         
         makeAvatarImageCircular(cell: cell)
         
         return cell
+    }
+    
+    func setupPhysicalAttrtibuteTags(cell: MissingChildrenFeedTableViewCell, child: MissingChild)
+    {
+        if let complexion = child.complexion?.rawValue
+        {
+            if complexion == "Other"
+            {
+                cell.complexionLabel.isHidden = true
+            }
+            else
+            {
+                cell.complexionLabel.text = "\(complexion) Complexion"
+            }
+        }
+        else
+        {
+            cell.complexionLabel.isHidden = true
+        }
+        
+        if let bodyType = child.bodyType?.rawValue
+        {
+            if bodyType == "Other"
+            {
+                cell.bodyTypeLabel.isHidden = true
+            }
+            else
+            {
+                cell.bodyTypeLabel.text = "\(bodyType)"
+            }
+        }
+        else
+        {
+            cell.bodyTypeLabel.isHidden = true
+        }
+        
+        if let height = child.height
+        {
+            if height == 0
+            {
+                cell.heightLabel.isHidden = true
+            }
+            else
+            {
+                cell.heightLabel.text = "\(height) cm"
+            }
+        }
+        else
+        {
+            cell.heightLabel.isHidden = true
+        }
+        
+        guard let hairType = child.hairType, let hairColor = child.hairColor else
+        {
+            cell.hairDescriptionLabel.isHidden = true
+            return
+        }
+        
+        var hairTypeString = hairType.rawValue
+        if hairTypeString == "Other"
+        {
+            hairTypeString = ""
+        }
+        
+        var hairColorString = hairColor.rawValue
+        if hairColorString == "Other"
+        {
+            hairColorString = ""
+        }
+        
+        
+        if hairColorString == "Other" && hairTypeString == "Other"
+        {
+            cell.hairDescriptionLabel.isHidden = true
+        }
+        else
+        {
+            cell.hairDescriptionLabel.text = "\(hairTypeString) \(hairColorString) Hair"
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
