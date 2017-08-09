@@ -189,7 +189,7 @@ class AddMissingChildViewController: UIViewController, UIImagePickerControllerDe
             missingChild.residingAddressParish = Parish(rawValue: residingAddressParishTextField.text!) ?? Parish.notStated
             
             
-            if missingChild.missingChildPhotos.count == 0
+            if missingChildPhotos.count == 0
             {
                 if let photo = UIImage(named: gender.rawValue), let photoData = UIImageJPEGRepresentation(photo, 0.8)
                 {
@@ -279,9 +279,6 @@ class AddMissingChildViewController: UIViewController, UIImagePickerControllerDe
             let photoName = "\(childID)-\(count).jpg"
             let photoRef = missingChildPhotosFolder.child(photoName)
             
-            count += 1
-            print("Count: \("count")")
-            
             if let photoData = photo.photoData
             {
                 let uploadTask = photoRef.putData(photoData, metadata: nil)
@@ -292,16 +289,23 @@ class AddMissingChildViewController: UIViewController, UIImagePickerControllerDe
                         return
                     }
                     
-                    if let downloadURLs = metadata.downloadURLs
-                    {
-                        for URL in downloadURLs
-                        {
-                            galleryRef.setValue(String(describing: URL))
-                        }
-                    }
-                    
+                    self.uploadImageURL(galleryRef: galleryRef, metadata: metadata, count: count)
                 }
             }
+            
+            print("Count: \(count)")
+            count += 1
+        }
+        
+        // TO-DO: figure out how to upload multiple image download-urls to Firebase database right after they are uploaded to Firebase storage
+    }
+    
+    func uploadImageURL(galleryRef: DatabaseReference, metadata: StorageMetadata, count: Int)
+    {
+        if let downloadURL = metadata.downloadURL()?.absoluteString
+        {
+            galleryRef.child("Picture-\(count)").setValue(downloadURL)
+            print(downloadURL)
         }
     }
     

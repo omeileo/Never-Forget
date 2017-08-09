@@ -54,6 +54,8 @@ class MissingChildProfileViewController: UIViewController
         setupMissingInformation()
     }
     
+    
+    
     func setupGeneralInformation()
     {
         firstNameLabel.text = missingChild.firstName
@@ -143,26 +145,26 @@ class MissingChildProfileViewController: UIViewController
             weightLabel.isHidden = true
         }
         
-        guard let hairType = missingChild.hairType, let hairColor = missingChild.hairColor else
+        guard let hairType = missingChild.hairType?.rawValue, let hairColor = missingChild.hairColor?.rawValue else
         {
             hairDescriptionLabel.isHidden = true
             return
         }
         
-        var hairTypeString = hairType.rawValue
-        if hairTypeString == "Other"
+        var hairTypeString = hairType
+        if hairType == "Other"
         {
             hairTypeString = ""
         }
         
-        var hairColorString = hairColor.rawValue
-        if hairColorString == "Other"
+        var hairColorString = hairColor
+        if hairColor == "Other"
         {
             hairColorString = ""
         }
     
         
-        if hairColorString == "Other" && hairTypeString == "Other"
+        if hairColorString == "" && hairTypeString == ""
         {
             hairDescriptionLabel.isHidden = true
         }

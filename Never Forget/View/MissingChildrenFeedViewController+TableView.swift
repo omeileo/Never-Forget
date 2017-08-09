@@ -12,65 +12,21 @@ import FirebaseStorage
 
 extension MissingChildrenFeedViewController: UITableViewDelegate, UITableViewDataSource
 {
-    override func viewDidLoad()
+    func retrieveMissingChildPhotos(child: MissingChild) -> MissingChild
     {
-        super.viewDidLoad()
+        let missingChildrenPhotosRef = databaseRef.child("Missing Children Photos")
+        missingChildrenPhotosRef.observe(.childAdded, with: { (snapshot) in
+            if let missingChildPhotos = snapshot.value as? [String: AnyObject]
+            {
+                let imageURL = missingChildPhotos["Picture-2"] as? String ?? ""
+                let imageRef = Storage.storage().reference(forURL: imageURL)
+                
+                let photo: UIImageView
+                //photo.s
+            }
+        })
         
-        missingChildrenFeedTableView.delegate = self
-        missingChildrenFeedTableView.dataSource = self
-        
-        ref = Database.database().reference()
-        navigationController?.setNavigationBarHidden(true, animated: true)
-        
-        //listen for new missing children in Firebase database
-        if let missingChildrenRef = self.ref?.child("Missing Children")
-        {
-            missingChildrenRef.observe(.childAdded, with: {(snapshot) in
-                if let missingChildDictionary = snapshot.value as? [String: AnyObject]
-                {
-                    var missingChild = MissingChild(gender: Gender.female, firstName: "", lastName: "", age: 0, lastSeenAt: Address(district: "", parish: Parish.notStated), lastSeenDate: "Jun 21, 2017", missingStatus: MissingStatus.missing)
-                    
-                    let bodyType = missingChildDictionary["bodyType"] as? String ?? "Other"
-                    let complexion = missingChildDictionary["complexion"] as? String ?? "Other"
-                    let eyeColor = missingChildDictionary["eyeColor"] as? String ?? "Other"
-                    let gender = missingChildDictionary["gender"] as? String ?? "Female"
-                    let hairColor = missingChildDictionary["hairColor"] as? String ?? "Other"
-                    let hairType = missingChildDictionary["hairType"] as? String ?? "Other"
-                    let lastSeenAddressParish = missingChildDictionary["lastSeenAddressParish"] as? String ?? "notStated"
-                    let residingAddressParish = missingChildDictionary["residingAddressParish"] as? String ?? "notStated"
-                    
-                    missingChild.age = missingChildDictionary["age"] as? Int16 ?? 0
-                    missingChild.bodyType = BodyType(rawValue: bodyType)
-                    missingChild.citizenship = missingChildDictionary["citizenship"] as? String
-                    missingChild.complexion = Complexion(rawValue: complexion)
-                    missingChild.eyeColor = EyeColor(rawValue: eyeColor)
-                    missingChild.firstName = missingChildDictionary["firstName"] as? String ?? ""
-                    missingChild.gender = Gender(rawValue: gender)!
-                    missingChild.hairColor = HairColor(rawValue: hairColor)
-                    missingChild.hairType = HairType(rawValue: hairType)
-                    missingChild.height = missingChildDictionary["height"] as? Double ?? 0.0
-                    missingChild.lastName = missingChildDictionary["lastName"] as? String ?? ""
-                    missingChild.lastSeenAddressDistrict = missingChildDictionary["lastSeenAddressDistrict"] as? String ?? ""
-                    missingChild.lastSeenAddressParish = Parish(rawValue: lastSeenAddressParish)!
-                    missingChild.lastSeenDateString = missingChildDictionary["lastSeenDate"] as? String ?? ""
-                    missingChild.nickname = missingChildDictionary["nickname"] as? String ?? ""
-                    missingChild.residingAddressDistrict = missingChildDictionary["residingAddressDistrict"] as? String ?? ""
-                    missingChild.residingAddressParish = Parish(rawValue: residingAddressParish)!
-                    missingChild.weight = missingChildDictionary["weight"] as? Double ?? 0.0
-                    
-                    self.missingChildren.append(missingChild)
-                    
-                    DispatchQueue.main.async
-                    {
-                        self.missingChildrenFeedTableView.reloadData()
-                    }
-                    
-                }
-            }, withCancel: nil)
-        }
-        
-        let storageRef = Storage.storage().reference()
-        let reference = storageRef.child("")
+        return child
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
@@ -83,7 +39,6 @@ extension MissingChildrenFeedViewController: UITableViewDelegate, UITableViewDat
     {
         let cell: MissingChildrenFeedTableViewCell = self.missingChildrenFeedTableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as! MissingChildrenFeedTableViewCell
         let child = missingChildren[indexPath.row]
-        
         
         cell.avatarImageView.image = UIImage(named: child.gender.rawValue)
         cell.childNameLabel.text = child.firstName + " " + missingChildren[indexPath.row].lastName
@@ -147,26 +102,25 @@ extension MissingChildrenFeedViewController: UITableViewDelegate, UITableViewDat
             cell.heightLabel.isHidden = true
         }
         
-        guard let hairType = child.hairType, let hairColor = child.hairColor else
+        guard let hairType = child.hairType?.rawValue, let hairColor = child.hairColor?.rawValue else
         {
             cell.hairDescriptionLabel.isHidden = true
             return
         }
         
-        var hairTypeString = hairType.rawValue
-        if hairTypeString == "Other"
+        var hairTypeString = hairType
+        if hairType == "Other"
         {
             hairTypeString = ""
         }
         
-        var hairColorString = hairColor.rawValue
-        if hairColorString == "Other"
+        var hairColorString = hairColor
+        if hairColor == "Other"
         {
             hairColorString = ""
         }
         
-        
-        if hairColorString == "Other" && hairTypeString == "Other"
+        if hairColorString == "" && hairTypeString == ""
         {
             cell.hairDescriptionLabel.isHidden = true
         }
