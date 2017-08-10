@@ -14,6 +14,7 @@
 		F307DB0F1F28621D0063D01D /* MissingChildReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = F307DB0E1F28621D0063D01D /* MissingChildReport.swift */; };
 		F321CD9B1F3039B300FF46D9 /* CustomDataTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = F321CD9A1F3039B300FF46D9 /* CustomDataTypes.swift */; };
 		F321CD9D1F304E1F00FF46D9 /* MissingChildPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = F321CD9C1F304E1F00FF46D9 /* MissingChildPhoto.swift */; };
+		F350D2DE1F3C8FAD00E400C7 /* MissingChildMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F350D2DD1F3C8FAD00E400C7 /* MissingChildMapViewController.swift */; };
 		F36E7ECD1F3349CF00CFE3C7 /* MissingChildrenFeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36E7ECC1F3349CF00CFE3C7 /* MissingChildrenFeedTableViewCell.swift */; };
 		F36E7ECF1F33511500CFE3C7 /* MissingChildrenFeedViewController+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36E7ECE1F33511500CFE3C7 /* MissingChildrenFeedViewController+TableView.swift */; };
 		F3910C6C1F207FEB009C6810 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3910C6B1F207FEB009C6810 /* AppDelegate.swift */; };
@@ -44,6 +45,7 @@
 		F307DB0E1F28621D0063D01D /* MissingChildReport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MissingChildReport.swift; sourceTree = "<group>"; };
 		F321CD9A1F3039B300FF46D9 /* CustomDataTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomDataTypes.swift; sourceTree = "<group>"; };
 		F321CD9C1F304E1F00FF46D9 /* MissingChildPhoto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MissingChildPhoto.swift; sourceTree = "<group>"; };
+		F350D2DD1F3C8FAD00E400C7 /* MissingChildMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MissingChildMapViewController.swift; sourceTree = "<group>"; };
 		F36E7ECC1F3349CF00CFE3C7 /* MissingChildrenFeedTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MissingChildrenFeedTableViewCell.swift; path = View/MissingChildrenFeedTableViewCell.swift; sourceTree = "<group>"; };
 		F36E7ECE1F33511500CFE3C7 /* MissingChildrenFeedViewController+TableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "MissingChildrenFeedViewController+TableView.swift"; path = "View/MissingChildrenFeedViewController+TableView.swift"; sourceTree = "<group>"; };
 		F3910C681F207FEB009C6810 /* Never Forget.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Never Forget.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -239,6 +241,7 @@
 			isa = PBXGroup;
 			children = (
 				F3BF06561F36AE0100DEEA63 /* MissingChildProfileViewController.swift */,
+				F350D2DD1F3C8FAD00E400C7 /* MissingChildMapViewController.swift */,
 			);
 			name = "Missing Child Profile";
 			sourceTree = "<group>";
@@ -383,6 +386,7 @@
 				F307DB0B1F25CA750063D01D /* MissingChildReporter.swift in Sources */,
 				F3910C861F209274009C6810 /* LoginViewController.swift in Sources */,
 				F321CD9D1F304E1F00FF46D9 /* MissingChildPhoto.swift in Sources */,
+				F350D2DE1F3C8FAD00E400C7 /* MissingChildMapViewController.swift in Sources */,
 				F3BF065E1F39F1A800DEEA63 /* MissingChildCollectionViewCell.swift in Sources */,
 				F3BF06601F39F2BD00DEEA63 /* MissingChildrenFeedViewController+ChildCollectionView.swift in Sources */,
 				F36E7ECD1F3349CF00CFE3C7 /* MissingChildrenFeedTableViewCell.swift in Sources */,

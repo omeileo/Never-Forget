@@ -39,6 +39,7 @@ class MissingChildProfileViewController: UIViewController
 
     var missingChild: MissingChild!
     let homeViewSegueIdentifier = "showHomeViewController"
+    let missingChildMapViewSegueIdentifier = "showMissingChildMapViewController"
     
     override func viewDidLoad()
     {
@@ -218,6 +219,20 @@ class MissingChildProfileViewController: UIViewController
         //bannerImage.image =
     }
 
+    @IBAction func showMissingChildOnMap(_ sender: UILabel)
+    {
+        guard let text = send as? UILabel else
+        {
+            return
+        }
+        
+        switch text.tag
+        {
+            case 1, 2, 3: performSegue(withIdentifier: missingChildMapViewSegueIdentifier, sender: self)
+            default: return
+        }
+    }
+    
     /*
     // MARK: - Navigation
 
