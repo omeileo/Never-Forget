@@ -214,7 +214,7 @@ class MissingChildProfileViewController: UIViewController
         
         avatarImage.layer.cornerRadius = avatarImage.frame.size.width / 2.0
         avatarImage.clipsToBounds = true
-        //avatarImage.image =
+        avatarImage.image = missingChild.profilePicture
         //bannerImage.image =
     }
 

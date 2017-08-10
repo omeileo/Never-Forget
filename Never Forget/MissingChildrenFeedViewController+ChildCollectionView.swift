@@ -27,7 +27,7 @@ extension MissingChildrenFeedViewController: UICollectionViewDelegate, UICollect
         let lastNameInitial = child.lastName[child.lastName.index(child.lastName.startIndex, offsetBy: 0)]
         
         // Configure the cell
-        cell.avatarImage.image = UIImage(named: child.gender.rawValue)
+        cell.avatarImage.image = child.profilePicture
         cell.missingChildName.text = "\(child.firstName) \(lastNameInitial)."
         
         makeCollectionViewAvatarImageCircular(cell: cell)

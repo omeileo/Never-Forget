@@ -19,6 +19,7 @@ class MissingChildrenFeedViewController: UIViewController
     var databaseRef: DatabaseReference!
     
     var missingChildren = [MissingChild]()
+    var missingChild: MissingChild!
     
     //table view
     let cellReuseIdentifier = "MissingChildCell"
@@ -47,13 +48,15 @@ class MissingChildrenFeedViewController: UIViewController
         let storageRef = Storage.storage().reference().child("Missing Children Photos")
         navigationController?.setNavigationBarHidden(true, animated: true)
         
+        var count = 0
+        
         //listen for new missing children in Firebase database
         if let missingChildrenRef = self.databaseRef?.child("Missing Children")
         {
             missingChildrenRef.observe(.childAdded, with: {(snapshot) in
                 if let missingChildDictionary = snapshot.value as? [String: AnyObject]
                 {
-                    var missingChild = MissingChild(gender: Gender.female, firstName: "", lastName: "", age: 0, lastSeenAt: Address(district: "", parish: Parish.notStated), lastSeenDate: "Jun 21, 2017", missingStatus: MissingStatus.missing)
+                    var missingChild = MissingChild(gender: Gender.female, firstName: "", lastName: "", age: 0, lastSeenAt: Address(district: "", parish: Parish.notStated), lastSeenDate: "Jan 1, 2000", missingStatus: MissingStatus.missing)
                     
                     let bodyType = missingChildDictionary["bodyType"] as? String ?? "Other"
                     let complexion = missingChildDictionary["complexion"] as? String ?? "Other"
@@ -77,29 +80,87 @@ class MissingChildrenFeedViewController: UIViewController
                     missingChild.lastName = missingChildDictionary["lastName"] as? String ?? ""
                     missingChild.lastSeenAddressDistrict = missingChildDictionary["lastSeenAddressDistrict"] as? String ?? ""
                     missingChild.lastSeenAddressParish = Parish(rawValue: lastSeenAddressParish)!
-                    missingChild.lastSeenDateString = missingChildDictionary["lastSeenDate"] as? String ?? ""
+                    missingChild.lastSeenDateString = missingChildDictionary["lastSeenDate"] as? String ?? "Jan 1, 2000"
                     missingChild.nickname = missingChildDictionary["nickname"] as? String ?? ""
                     missingChild.residingAddressDistrict = missingChildDictionary["residingAddressDistrict"] as? String ?? ""
                     missingChild.residingAddressParish = Parish(rawValue: residingAddressParish)!
                     missingChild.weight = missingChildDictionary["weight"] as? Double ?? 0.0
                     
-                    missingChild = self.retrieveMissingChildPhotos(child: missingChild)
+                    missingChild.ID = snapshot.key
+                    
+//                    if let missingChildProfilePicture = self.retrieveMissingChildPhotos(child: missingChild, snapshot: snapshot, storageRef: storageRef)
+//                    {
+//                        missingChild.profilePicture = missingChildProfilePicture
+//                    }
+//                    else
+//                    {
+//                        missingChild.profilePicture = UIImage(named: missingChild.gender.rawValue)!
+//                    }
                     
                     self.missingChildren.append(missingChild)
                     
                     DispatchQueue.main.async
                     {
+                        self.retrieveMissingChildProfilePicture()
+                        
                         self.missingChildrenFeedTableView.reloadData()
                         self.neverForgetMissingChildrenCollectionView.reloadData()
                     }
-                    
-                    let reference = storageRef.child(snapshot.key)
-                    //print(reference)
-                    
-                    
                 }
             }, withCancel: nil)
         }
+    }
+    
+    func retrieveMissingChildProfilePicture()
+    {
+        let storageRef = Storage.storage().reference().child("Missing Children Photos")
+        print("Number of children: \(missingChildren.count)")
+        
+        for count in 0..<missingChildren.count
+        {
+            let imageName = "\(missingChildren[count].ID!)/\(missingChildren[count].ID!)-0.jpg"
+            let photoRef = storageRef.child(imageName)
+            print(imageName)
+            
+            photoRef.getData(maxSize: 5 * 1024 * 1024, completion: { (data, error) in
+                if let error = error
+                {
+                    print(error.localizedDescription)
+                    
+                    self.missingChildren[count].profilePicture = UIImage(named: self.missingChildren[count].gender.rawValue)!
+                }
+                else
+                {
+                    self.missingChildren[count].profilePicture = UIImage(data: data!)!
+                }
+            })
+        }
+    }
+    
+    func retrieveMissingChildPhotos(child: MissingChild, snapshot: DataSnapshot, storageRef: StorageReference) -> UIImage?
+    {
+        var photo: UIImage?
+        let imageName = "\(snapshot.key)/\(snapshot.key)-0.jpg"
+        let photoRef = storageRef.child(imageName)
+        
+        photoRef.getData(maxSize: 5 * 1024 * 1024, completion: { (data, error) in
+            if let error = error
+            {
+                print(error.localizedDescription)
+            }
+            else
+            {
+                photo = UIImage(data: data!)
+                
+                DispatchQueue.main.async
+                {
+                        self.missingChildrenFeedTableView.reloadData()
+                        self.neverForgetMissingChildrenCollectionView.reloadData()
+                }
+            }
+        })
+        
+        return photo
     }
     
     @IBAction func reportMissingChild(_ sender: UIBarButtonItem)

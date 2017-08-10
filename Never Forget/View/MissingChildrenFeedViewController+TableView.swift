@@ -12,23 +12,6 @@ import FirebaseStorage
 
 extension MissingChildrenFeedViewController: UITableViewDelegate, UITableViewDataSource
 {
-    func retrieveMissingChildPhotos(child: MissingChild) -> MissingChild
-    {
-        let missingChildrenPhotosRef = databaseRef.child("Missing Children Photos")
-        missingChildrenPhotosRef.observe(.childAdded, with: { (snapshot) in
-            if let missingChildPhotos = snapshot.value as? [String: AnyObject]
-            {
-                let imageURL = missingChildPhotos["Picture-2"] as? String ?? ""
-                let imageRef = Storage.storage().reference(forURL: imageURL)
-                
-                let photo: UIImageView
-                //photo.s
-            }
-        })
-        
-        return child
-    }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         return missingChildren.count
@@ -40,7 +23,7 @@ extension MissingChildrenFeedViewController: UITableViewDelegate, UITableViewDat
         let cell: MissingChildrenFeedTableViewCell = self.missingChildrenFeedTableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as! MissingChildrenFeedTableViewCell
         let child = missingChildren[indexPath.row]
         
-        cell.avatarImageView.image = UIImage(named: child.gender.rawValue)
+        cell.avatarImageView.image = child.profilePicture
         cell.childNameLabel.text = child.firstName + " " + missingChildren[indexPath.row].lastName
         cell.missingDateLabel.text = child.lastSeenDateString
         cell.missingAddressLabel.text = child.lastSeenAddressDistrict + ", " + child.lastSeenAddressParish.rawValue
