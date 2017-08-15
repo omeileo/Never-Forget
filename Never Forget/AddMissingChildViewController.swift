@@ -289,7 +289,11 @@ class AddMissingChildViewController: UIViewController, UIImagePickerControllerDe
                         return
                     }
                     
-                    self.uploadImageURL(galleryRef: galleryRef, metadata: metadata, count: count)
+                    //upload all image urls to database in separate folder
+                    //self.uploadImageURL(galleryRef: galleryRef, metadata: metadata, count: count)
+                    
+                    //upload individual profile picture url to database
+                    self.ref.child("Missing Children").child(childID).child("profilePictureURL").setValue(metadata.downloadURL()?.absoluteString)
                 }
             }
             

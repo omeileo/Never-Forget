@@ -15,6 +15,7 @@
 		F321CD9B1F3039B300FF46D9 /* CustomDataTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = F321CD9A1F3039B300FF46D9 /* CustomDataTypes.swift */; };
 		F321CD9D1F304E1F00FF46D9 /* MissingChildPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = F321CD9C1F304E1F00FF46D9 /* MissingChildPhoto.swift */; };
 		F350D2DE1F3C8FAD00E400C7 /* MissingChildMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F350D2DD1F3C8FAD00E400C7 /* MissingChildMapViewController.swift */; };
+		F350D2E01F409BB800E400C7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F350D2DF1F409BB800E400C7 /* GoogleService-Info.plist */; };
 		F36E7ECD1F3349CF00CFE3C7 /* MissingChildrenFeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36E7ECC1F3349CF00CFE3C7 /* MissingChildrenFeedTableViewCell.swift */; };
 		F36E7ECF1F33511500CFE3C7 /* MissingChildrenFeedViewController+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36E7ECE1F33511500CFE3C7 /* MissingChildrenFeedViewController+TableView.swift */; };
 		F3910C6C1F207FEB009C6810 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3910C6B1F207FEB009C6810 /* AppDelegate.swift */; };
@@ -25,7 +26,6 @@
 		F3910C781F207FEB009C6810 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3910C761F207FEB009C6810 /* LaunchScreen.storyboard */; };
 		F3910C861F209274009C6810 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3910C851F209274009C6810 /* LoginViewController.swift */; };
 		F3910C881F2092D7009C6810 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3910C871F2092D6009C6810 /* RegisterViewController.swift */; };
-		F3910C911F20A0D9009C6810 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F3910C901F20A0D9009C6810 /* GoogleService-Info.plist */; };
 		F3910C951F20A4B1009C6810 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = F3910C941F20A4B1009C6810 /* Podfile */; };
 		F3910C981F20AC15009C6810 /* UIViewController+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3910C971F20AC15009C6810 /* UIViewController+Utils.swift */; };
 		F3910C9B1F21CE88009C6810 /* AddMissingChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3910C9A1F21CE88009C6810 /* AddMissingChildViewController.swift */; };
@@ -46,6 +46,7 @@
 		F321CD9A1F3039B300FF46D9 /* CustomDataTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomDataTypes.swift; sourceTree = "<group>"; };
 		F321CD9C1F304E1F00FF46D9 /* MissingChildPhoto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MissingChildPhoto.swift; sourceTree = "<group>"; };
 		F350D2DD1F3C8FAD00E400C7 /* MissingChildMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MissingChildMapViewController.swift; sourceTree = "<group>"; };
+		F350D2DF1F409BB800E400C7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F36E7ECC1F3349CF00CFE3C7 /* MissingChildrenFeedTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MissingChildrenFeedTableViewCell.swift; path = View/MissingChildrenFeedTableViewCell.swift; sourceTree = "<group>"; };
 		F36E7ECE1F33511500CFE3C7 /* MissingChildrenFeedViewController+TableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "MissingChildrenFeedViewController+TableView.swift"; path = "View/MissingChildrenFeedViewController+TableView.swift"; sourceTree = "<group>"; };
 		F3910C681F207FEB009C6810 /* Never Forget.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Never Forget.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -58,7 +59,6 @@
 		F3910C791F207FEB009C6810 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F3910C851F209274009C6810 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		F3910C871F2092D6009C6810 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
-		F3910C901F20A0D9009C6810 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F3910C941F20A4B1009C6810 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		F3910C971F20AC15009C6810 /* UIViewController+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Utils.swift"; sourceTree = "<group>"; };
 		F3910C9A1F21CE88009C6810 /* AddMissingChildViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddMissingChildViewController.swift; sourceTree = "<group>"; };
@@ -184,7 +184,7 @@
 		F3910C841F2084D0009C6810 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				F3910C901F20A0D9009C6810 /* GoogleService-Info.plist */,
+				F350D2DF1F409BB800E400C7 /* GoogleService-Info.plist */,
 				F3910C791F207FEB009C6810 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -320,9 +320,9 @@
 			files = (
 				F3910C951F20A4B1009C6810 /* Podfile in Resources */,
 				F3910C781F207FEB009C6810 /* LaunchScreen.storyboard in Resources */,
-				F3910C911F20A0D9009C6810 /* GoogleService-Info.plist in Resources */,
 				F3910C751F207FEB009C6810 /* Assets.xcassets in Resources */,
 				F3910C731F207FEB009C6810 /* Main.storyboard in Resources */,
+				F350D2E01F409BB800E400C7 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

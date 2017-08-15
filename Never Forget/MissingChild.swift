@@ -16,6 +16,7 @@ struct MissingChild
     var profilePicture: UIImage
     
     var ID: String?
+    var profilePictureURL: String?
     
     var gender: Gender
     var firstName: String
