@@ -74,13 +74,13 @@
                                         <rect key="frame" x="0.0" y="28" width="414" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iB5-zL-JhN" id="gOm-dX-TAI">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="79"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BhH-JJ-Fz0" userLabel="Avatar View">
                                                     <rect key="frame" x="15" y="2.3333333333333357" width="75" height="75"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Female" translatesAutoresizingMaskIntoConstraints="NO" id="VC2-8L-xVD" userLabel="Image">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VC2-8L-xVD" userLabel="Image">
                                                             <rect key="frame" x="0.0" y="0.0" width="75" height="75"/>
                                                         </imageView>
                                                     </subviews>
@@ -1794,8 +1794,8 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Lcb-42-l1l"/>
-        <segue reference="ij2-uN-p6x"/>
-        <segue reference="YtO-Qo-dUf"/>
+        <segue reference="gL0-ZK-ac6"/>
+        <segue reference="bGS-LC-9UJ"/>
         <segue reference="Tof-qF-RCw"/>
     </inferredMetricsTieBreakers>
 </document>

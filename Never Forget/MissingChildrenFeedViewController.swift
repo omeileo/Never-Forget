@@ -89,79 +89,70 @@ class MissingChildrenFeedViewController: UIViewController
                     missingChild.ID = snapshot.key
                     missingChild.profilePictureURL = missingChildDictionary["profilePictureURL"] as? String ?? ""
                     
-                    if let profilePictureURL = missingChild.profilePictureURL, profilePictureURL != ""
-                    {
-                        if let url = URL(string: profilePictureURL)
-                        {
-                            URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
-                                if error != nil
-                                {
-                                    print("Error: \(error!)")
-                                    missingChild.profilePicture = UIImage(named: missingChild.gender.rawValue)!
-                                    return
-                                }
-                                
-                                DispatchQueue.main.async
-                                {
-                                    missingChild.profilePicture = UIImage(data: data!)!
-                                    self.missingChildrenFeedTableView.reloadData()
-                                    self.neverForgetMissingChildrenCollectionView.reloadData()
-                                }
-                            }).resume()
-                        }
-                        
-                        //                        let httpsReference = Storage.storage().reference(forURL: profilePictureURL)
-                        //                        httpsReference.getData(maxSize: 3 * 1024 * 1024, completion: { (data, error) in
-                        //                            if let error = error
-                        //                            {
-                        //                                print("Error Occurred: \(error)")
-                        //                                missingChild.profilePicture = UIImage(named: missingChild.gender.rawValue)!
-                        //                                return
-                        //                            }
-                        //                            else
-                        //                            {
-                        //                                DispatchQueue.main.async
-                        //                                    {
-                        //                                        missingChild.profilePicture = UIImage(data: data!)!
-                        //                                }
-                        //                            }
-                        //                        })
-                        
-                    }
-                    else
-                    {
-                        missingChild.profilePicture = UIImage(named: missingChild.gender.rawValue)!
-                    }
-                    
-//                    if let missingChildProfilePicture = self.retrieveMissingChildPhotos(child: missingChild, snapshot: snapshot, storageRef: storageRef)
-//                    {
-//                        missingChild.profilePicture = missingChildProfilePicture
-//                    }
-//                    else
-//                    {
-//                        missingChild.profilePicture = UIImage(named: missingChild.gender.rawValue)!
-//                    }
-                    
-                    self.missingChildren.append(missingChild)
-                    
                     DispatchQueue.main.async
                     {
-                        //self.retrieveMissingChildProfilePicture()
+                        self.retrieveMissingChildPhotos(child: missingChild) { image in
+                            print(image)
+                            missingChild.profilePicture = image
+                            
+                            self.missingChildren.append(missingChild)
+                            
+                            self.missingChildrenFeedTableView.reloadData()
+                            self.neverForgetMissingChildrenCollectionView.reloadData()
+                        }
                         
-                        self.missingChildrenFeedTableView.reloadData()
-                        self.neverForgetMissingChildrenCollectionView.reloadData()
+//                        do
+//                        {
+//                            if missingChild.profilePictureURL != "", let url = URL(string: missingChild.profilePictureURL!)
+//                            {
+//                                let imageDate = try Data(contentsOf: url)
+//                                missingChild.profilePicture = UIImage(data: imageDate)!
+//                            }
+//                            else
+//                            {
+//                                missingChild.profilePicture = UIImage(named: missingChild.gender.rawValue)!
+//                            }
+//                        }
+//                        catch let error
+//                        {
+//                            print(error)
+//                        }
+//
                     }
                 }
             }, withCancel: nil)
         }
     }
     
-//    func retrieveMissingChildProfilePicture(child: MissingChild, snapshot: DataSnapshot, storageRef: StorageReference) -> UIImage?
-//    {
-//        databaseRef.child("Missing Children").child(child.ID)
-//    }
+    func retrieveMissingChildPhotos(child: MissingChild, completion: @escaping (UIImage) -> ())
+    {
+        let storageRef = Storage.storage().reference().child("Missing Children Photos")
+        
+        var image = UIImage(named: child.gender.rawValue)
+        let imageName = "\(child.ID!)/\(child.ID!)-0.jpg"
+        print(imageName)
+        let photoRef = storageRef.child(imageName)
+        
+        photoRef.getData(maxSize: 5 * 1024 * 1024, completion: { (data, error) in
+            if let error = error
+            {
+                print(error.localizedDescription)
+                
+                image = UIImage(named: child.gender.rawValue)!
+                print(child.gender)
+                completion(image!)
+            }
+            else
+            {
+                image = UIImage(data: data!)!
+                completion(image!)
+                print(child.gender)
+                print("\(imageName) has been downloaded.")
+            }
+        })
+    }
     
-    func retrieveMissingChildProfilePicture_2()
+    func retrieveMissingChildrenProfilePictures()
     {
         let storageRef = Storage.storage().reference().child("Missing Children Photos")
         print("Number of children: \(missingChildren.count)")
@@ -185,32 +176,6 @@ class MissingChildrenFeedViewController: UIViewController
                 }
             })
         }
-    }
-    
-    func retrieveMissingChildPhotos(child: MissingChild, snapshot: DataSnapshot, storageRef: StorageReference) -> UIImage?
-    {
-        var photo: UIImage?
-        let imageName = "\(snapshot.key)/\(snapshot.key)-0.jpg"
-        let photoRef = storageRef.child(imageName)
-        
-        photoRef.getData(maxSize: 5 * 1024 * 1024, completion: { (data, error) in
-            if let error = error
-            {
-                print(error.localizedDescription)
-            }
-            else
-            {
-                photo = UIImage(data: data!)
-                
-                DispatchQueue.main.async
-                {
-                        self.missingChildrenFeedTableView.reloadData()
-                        self.neverForgetMissingChildrenCollectionView.reloadData()
-                }
-            }
-        })
-        
-        return photo
     }
     
     @IBAction func reportMissingChild(_ sender: UIBarButtonItem)

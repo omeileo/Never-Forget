@@ -290,15 +290,13 @@ class AddMissingChildViewController: UIViewController, UIImagePickerControllerDe
                     }
                     
                     //upload all image urls to database in separate folder
-                    //self.uploadImageURL(galleryRef: galleryRef, metadata: metadata, count: count)
-                    
+                    self.uploadImageURL(galleryRef: galleryRef, metadata: metadata, count: count)
+                    print("Count: \(count)")
+                    count += 1
                     //upload individual profile picture url to database
                     self.ref.child("Missing Children").child(childID).child("profilePictureURL").setValue(metadata.downloadURL()?.absoluteString)
                 }
             }
-            
-            print("Count: \(count)")
-            count += 1
         }
         
         // TO-DO: figure out how to upload multiple image download-urls to Firebase database right after they are uploaded to Firebase storage
