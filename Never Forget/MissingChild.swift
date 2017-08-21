@@ -10,7 +10,7 @@ import Foundation
 import EventKit
 import UIKit
 
-struct MissingChild
+class MissingChild
 {
     var missingChildPhotos = [MissingChildPhoto]()
     var profilePicture: UIImage
@@ -55,10 +55,20 @@ struct MissingChild
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .medium
+        
         self.lastSeenDateString = lastSeenDate
-        self.lastSeenDate = dateFormatter.date(from: lastSeenDate)!
+        self.lastSeenDate = dateFormatter.date(from: lastSeenDateString)!
         
         self.profilePicture = UIImage(named: gender.rawValue)!
+    }
+    
+    func convertToDate(dateString lastSeenDateString: String)
+    {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        
+        self.lastSeenDateString = lastSeenDateString
+        self.lastSeenDate = dateFormatter.date(from: lastSeenDateString)!
     }
     
 //    init(gender: Gender, firstName: String, lastName: String, nickname: String?, age: Int, citizenship: String?, height: Double?, weight: Double?, hairType: HairType?, hairColor: HairColor?, eyeColor: EyeColor?, complexion: Complexion?, bodyType: BodyType?, residingAddress: Address?, lastSeenAt: Address, lastSeen: String, missingStatus: MissingStatus)

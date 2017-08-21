@@ -1,5 +1,5 @@
 //
-//  SecondViewController.swift
+//  MissingChildrenMapViewController.swift
 //  Never Forget
 //
 //  Created by Jase-Omeileo West on 7/20/17.
