@@ -21,6 +21,7 @@ class MissingChildrenFeedViewController: UIViewController
     var missingChildren = [MissingChild]()
     var missingChildrenNeverForget = [MissingChild]()
     var missingChild: MissingChild!
+    let numberOfMonthsForNeverForgetView = 5
     
     //table view
     let cellReuseIdentifier = "MissingChildCell"
@@ -97,6 +98,7 @@ class MissingChildrenFeedViewController: UIViewController
                             
                             missingChild.ID = snap.key
                             missingChild.profilePictureURL = missingChildDictionary["profilePictureURL"] as? String ?? ""
+                            //missingChild.profilePicture = UIImage(named: missingChild.gender.rawValue)!
                             
                             self.retrieveMissingChildProfilePicture(child: missingChild) { image in
                                 missingChild.profilePicture = image
@@ -109,11 +111,39 @@ class MissingChildrenFeedViewController: UIViewController
                             }
                             
                             self.missingChildren.append(missingChild)
-                            
                         }
                     }
                     
                     self.missingChildren.sort(by: {$0.lastSeenDate.compare($1.lastSeenDate) == .orderedDescending})
+                    
+                    self.missingChildrenNeverForget = self.missingChildren
+                    
+                    let neverForgetTimeInterval: TimeInterval = Double(self.numberOfMonthsForNeverForgetView * (60 * 60 * 24 * 30))
+                    var count = 0
+                    var indexesToBeRemoved: [Int] = []
+                    
+                    while !self.missingChildrenNeverForget.isEmpty
+                    {
+                        let child = self.missingChildrenNeverForget[count]
+                        
+                        if child.lastSeenDate.timeIntervalSinceNow.magnitude.isLess(than: neverForgetTimeInterval)
+                        {
+                            indexesToBeRemoved.append(count)
+                            print("X \(child.firstName): \(child.lastSeenDate.timeIntervalSinceNow.magnitude / (60 * 60 * 24)) days")
+                        }
+                        else
+                        {
+                            break
+                        }
+                        
+                        count += 1
+                    }
+                    
+                    // Remove missing children who have not been missing for over 5 months
+                    self.missingChildrenNeverForget.removeSubrange(indexesToBeRemoved.startIndex..<indexesToBeRemoved.endIndex)
+                    
+                    //self.missingChildrenNeverForget.sort(by: {$0.lastSeenDate.compare($1.lastSeenDate) == .orderedAscending})
+                    self.missingChildrenNeverForget.shuffle()
                 }
                 
                 DispatchQueue.main.async

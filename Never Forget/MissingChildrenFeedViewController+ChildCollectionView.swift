@@ -13,7 +13,7 @@ extension MissingChildrenFeedViewController: UICollectionViewDelegate, UICollect
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
         // return number of children in >filtered< list of missing children
-        return missingChildren.count
+        return missingChildrenNeverForget.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
@@ -21,9 +21,7 @@ extension MissingChildrenFeedViewController: UICollectionViewDelegate, UICollect
         let cell: MissingChildCollectionViewCell = self.neverForgetMissingChildrenCollectionView.dequeueReusableCell(withReuseIdentifier: reuserIdentifier, for: indexPath) as! MissingChildCollectionViewCell
        
         // TO-DO: Connect cell to filtered list of missing children
-    
-        //placeholder
-        let child = missingChildren[indexPath.row]
+        let child = missingChildrenNeverForget[indexPath.row]
         let lastNameInitial = child.lastName[child.lastName.index(child.lastName.startIndex, offsetBy: 0)]
         
         // Configure the cell
@@ -37,7 +35,7 @@ extension MissingChildrenFeedViewController: UICollectionViewDelegate, UICollect
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
     {
-        performSegue(withIdentifier: viewMissingChildProfileSegueIdentifier, sender: missingChildren[indexPath.row])
+        performSegue(withIdentifier: viewMissingChildProfileSegueIdentifier, sender: missingChildrenNeverForget[indexPath.row])
     }
 
     func makeCollectionViewAvatarImageCircular(cell: MissingChildCollectionViewCell)

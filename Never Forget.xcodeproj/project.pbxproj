@@ -14,6 +14,7 @@
 		F307DB0F1F28621D0063D01D /* MissingChildReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = F307DB0E1F28621D0063D01D /* MissingChildReport.swift */; };
 		F321CD9B1F3039B300FF46D9 /* CustomDataTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = F321CD9A1F3039B300FF46D9 /* CustomDataTypes.swift */; };
 		F321CD9D1F304E1F00FF46D9 /* MissingChildPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = F321CD9C1F304E1F00FF46D9 /* MissingChildPhoto.swift */; };
+		F34C523A1F4BBF2F00F3C5B9 /* MutableCollection+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34C52391F4BBF2E00F3C5B9 /* MutableCollection+Utils.swift */; };
 		F350D2DE1F3C8FAD00E400C7 /* MissingChildMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F350D2DD1F3C8FAD00E400C7 /* MissingChildMapViewController.swift */; };
 		F350D2E01F409BB800E400C7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F350D2DF1F409BB800E400C7 /* GoogleService-Info.plist */; };
 		F36E7ECD1F3349CF00CFE3C7 /* MissingChildrenFeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36E7ECC1F3349CF00CFE3C7 /* MissingChildrenFeedTableViewCell.swift */; };
@@ -45,6 +46,7 @@
 		F307DB0E1F28621D0063D01D /* MissingChildReport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MissingChildReport.swift; sourceTree = "<group>"; };
 		F321CD9A1F3039B300FF46D9 /* CustomDataTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomDataTypes.swift; sourceTree = "<group>"; };
 		F321CD9C1F304E1F00FF46D9 /* MissingChildPhoto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MissingChildPhoto.swift; sourceTree = "<group>"; };
+		F34C52391F4BBF2E00F3C5B9 /* MutableCollection+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MutableCollection+Utils.swift"; sourceTree = "<group>"; };
 		F350D2DD1F3C8FAD00E400C7 /* MissingChildMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MissingChildMapViewController.swift; sourceTree = "<group>"; };
 		F350D2DF1F409BB800E400C7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F36E7ECC1F3349CF00CFE3C7 /* MissingChildrenFeedTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MissingChildrenFeedTableViewCell.swift; path = View/MissingChildrenFeedTableViewCell.swift; sourceTree = "<group>"; };
@@ -223,6 +225,7 @@
 			children = (
 				F3910C971F20AC15009C6810 /* UIViewController+Utils.swift */,
 				F3BF065A1F39122800DEEA63 /* UILabel+Utils.swift */,
+				F34C52391F4BBF2E00F3C5B9 /* MutableCollection+Utils.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -383,6 +386,7 @@
 			files = (
 				F3BF06571F36AE0100DEEA63 /* MissingChildProfileViewController.swift in Sources */,
 				F36E7ECF1F33511500CFE3C7 /* MissingChildrenFeedViewController+TableView.swift in Sources */,
+				F34C523A1F4BBF2F00F3C5B9 /* MutableCollection+Utils.swift in Sources */,
 				F307DB0B1F25CA750063D01D /* MissingChildReporter.swift in Sources */,
 				F3910C861F209274009C6810 /* LoginViewController.swift in Sources */,
 				F321CD9D1F304E1F00FF46D9 /* MissingChildPhoto.swift in Sources */,

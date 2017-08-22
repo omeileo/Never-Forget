@@ -37,48 +37,27 @@ extension MissingChildrenFeedViewController: UITableViewDelegate, UITableViewDat
     
     func setupPhysicalAttrtibuteTags(cell: MissingChildrenFeedTableViewCell, child: MissingChild)
     {
-        if let complexion = child.complexion?.rawValue
+        if let complexion = child.complexion?.rawValue, complexion != "Other"
         {
-            if complexion == "Other"
-            {
-                cell.complexionLabel.isHidden = true
-            }
-            else
-            {
-                cell.complexionLabel.text = "\(complexion) Complexion"
-            }
+            cell.complexionLabel.text = "\(complexion) Complexion"
         }
         else
         {
             cell.complexionLabel.isHidden = true
         }
         
-        if let bodyType = child.bodyType?.rawValue
+        if let bodyType = child.bodyType?.rawValue, bodyType != "Other"
         {
-            if bodyType == "Other"
-            {
-                cell.bodyTypeLabel.isHidden = true
-            }
-            else
-            {
-                cell.bodyTypeLabel.text = "\(bodyType)"
-            }
+            cell.bodyTypeLabel.text = "\(bodyType)"
         }
         else
         {
             cell.bodyTypeLabel.isHidden = true
         }
         
-        if let height = child.height
+        if let height = child.height, height != 0
         {
-            if height == 0
-            {
-                cell.heightLabel.isHidden = true
-            }
-            else
-            {
-                cell.heightLabel.text = "\(height) cm"
-            }
+            cell.heightLabel.text = "\(height) cm"
         }
         else
         {
