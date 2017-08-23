@@ -98,7 +98,7 @@ class MissingChildrenFeedViewController: UIViewController
                             
                             missingChild.ID = snap.key
                             missingChild.profilePictureURL = missingChildDictionary["profilePictureURL"] as? String ?? ""
-                            //missingChild.profilePicture = UIImage(named: missingChild.gender.rawValue)!
+                            missingChild.profilePicture = UIImage(named: missingChild.gender.rawValue)!
                             
                             self.retrieveMissingChildProfilePicture(child: missingChild) { image in
                                 missingChild.profilePicture = image
@@ -129,7 +129,7 @@ class MissingChildrenFeedViewController: UIViewController
                         if child.lastSeenDate.timeIntervalSinceNow.magnitude.isLess(than: neverForgetTimeInterval)
                         {
                             indexesToBeRemoved.append(count)
-                            print("X \(child.firstName): \(child.lastSeenDate.timeIntervalSinceNow.magnitude / (60 * 60 * 24)) days")
+                            //print("X \(child.firstName): \(child.lastSeenDate.timeIntervalSinceNow.magnitude / (60 * 60 * 24)) days")
                         }
                         else
                         {

@@ -74,7 +74,7 @@
                                         <rect key="frame" x="0.0" y="28" width="414" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iB5-zL-JhN" id="gOm-dX-TAI">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="79"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BhH-JJ-Fz0" userLabel="Avatar View">
@@ -1106,62 +1106,38 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="ARN-79-830" userLabel="Last Seen At">
-                                        <rect key="frame" x="108.66666666666669" y="328" width="197.66666666666663" height="53.666666666666629"/>
+                                        <rect key="frame" x="104.33333333333331" y="328" width="207" height="53.666666666666629"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last Seen At" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o3z-NJ-Wfv">
-                                                <rect key="frame" x="0.0" y="0.0" width="197.66666666666663" height="28.666666666666629"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="207" height="28.666666666666629"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                                 <color key="textColor" red="0.81960784310000001" green="0.65098039220000004" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="VDv-yL-gVo" userLabel="Information">
-                                                <rect key="frame" x="0.0" y="33.666666666666629" width="197.66666666666663" height="20"/>
+                                                <rect key="frame" x="0.0" y="33.666666666666629" width="207" height="20"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FbQ-DK-7NI" userLabel="Address">
-                                                        <rect key="frame" x="0.0" y="0.0" width="197.66666666666663" height="20"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="207" height="20"/>
                                                         <subviews>
-                                                            <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="location-pin" translatesAutoresizingMaskIntoConstraints="NO" id="MEl-vL-Fac">
-                                                                <rect key="frame" x="0.0" y="0.0" width="29.999999999999986" height="20"/>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NsK-Pz-BVu">
+                                                                <rect key="frame" x="0.0" y="0.0" width="40.000000000000014" height="20"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="width" constant="30" id="Aa0-qd-2Co"/>
+                                                                    <constraint firstAttribute="width" constant="40" id="Oys-Bl-rMM"/>
                                                                 </constraints>
-                                                            </imageView>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Vgu-nV-wby" userLabel="Address">
-                                                                <rect key="frame" x="29.999999999999986" y="0.0" width="167.66666666666663" height="20"/>
-                                                                <subviews>
-                                                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xbJ-w5-TcL" userLabel="District/Town">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="112.33333333333334" height="20"/>
-                                                                        <subviews>
-                                                                            <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="District/Town" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xXU-eL-XPK">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="107.33333333333334" height="20"/>
-                                                                                <constraints>
-                                                                                    <constraint firstAttribute="height" constant="20" id="hz2-fd-uIM"/>
-                                                                                </constraints>
-                                                                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                                                <color key="textColor" red="1" green="0.79215686269999996" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                                                <nil key="highlightedColor"/>
-                                                                            </label>
-                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="," lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kNB-CM-bI5">
-                                                                                <rect key="frame" x="107.33333333333334" y="0.0" width="5" height="20"/>
-                                                                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                                                <color key="textColor" red="1" green="0.79215686269999996" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                                                <nil key="highlightedColor"/>
-                                                                            </label>
-                                                                        </subviews>
-                                                                    </stackView>
-                                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="g1m-KV-dJH" userLabel="Parish">
-                                                                        <rect key="frame" x="117.33333333333334" y="0.0" width="50.333333333333314" height="20"/>
-                                                                        <subviews>
-                                                                            <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Parish" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eSp-Sh-fZ4">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="50.333333333333314" height="20"/>
-                                                                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                                                <color key="textColor" red="1" green="0.79215686269999996" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                                                <nil key="highlightedColor"/>
-                                                                            </label>
-                                                                        </subviews>
-                                                                    </stackView>
-                                                                </subviews>
-                                                            </stackView>
+                                                                <state key="normal" title="Button" image="location-pin"/>
+                                                            </button>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oqi-tX-nLb">
+                                                                <rect key="frame" x="40.000000000000014" y="0.0" width="167" height="20"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                                <color key="tintColor" red="0.81960784310000001" green="0.65098039220000004" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <state key="normal" title="District/Town, Parish">
+                                                                    <color key="titleColor" red="1" green="0.79215686269999996" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                                </state>
+                                                                <connections>
+                                                                    <action selector="showMissingChildOnMap:" destination="prs-s8-Qbf" eventType="touchUpInside" id="dPS-Jt-TSt"/>
+                                                                </connections>
+                                                            </button>
                                                         </subviews>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="20" id="8L3-05-Rsl"/>
@@ -1245,8 +1221,10 @@
                     <connections>
                         <outlet property="ageLabel" destination="dSY-XS-VU6" id="vD3-Oj-Oze"/>
                         <outlet property="avatarImage" destination="xMh-ls-nal" id="TXW-MT-Pvr"/>
+                        <outlet property="avatarImageDistanceFromTop" destination="GvQ-f9-Jnw" id="PnM-Y1-HRb"/>
                         <outlet property="avatarView" destination="wJl-cr-UA6" id="KZi-0q-09m"/>
                         <outlet property="bannerImage" destination="les-Zv-dD6" id="Zjt-5V-4DI"/>
+                        <outlet property="bannerOverlayView" destination="NGZ-Ko-jyq" id="1Ng-gF-zbv"/>
                         <outlet property="bodyTypeLabel" destination="0j7-EU-u4w" id="eFc-0Q-VgC"/>
                         <outlet property="complexionLabel" destination="4ef-II-lWZ" id="CHG-2R-0AZ"/>
                         <outlet property="eyeColorLabel" destination="Mgx-mW-Bl5" id="Y11-yc-hgr"/>
@@ -1254,8 +1232,7 @@
                         <outlet property="genderLabel" destination="OcP-a6-l66" id="Um3-Rx-Z20"/>
                         <outlet property="hairDescriptionLabel" destination="wTa-j8-biG" id="B3k-hQ-gE2"/>
                         <outlet property="heightLabel" destination="VDM-Bb-Fdi" id="BMC-FP-UFD"/>
-                        <outlet property="missingAddressDistrictLabel" destination="xXU-eL-XPK" id="dWr-yK-maD"/>
-                        <outlet property="missingAddressParishLabel" destination="eSp-Sh-fZ4" id="loa-ic-jxY"/>
+                        <outlet property="missingAddressButton" destination="Oqi-tX-nLb" id="cJh-IV-Rx5"/>
                         <outlet property="missingDateLabel" destination="kMn-Mz-YEW" id="299-Wc-jmq"/>
                         <outlet property="navigationBar" destination="QdN-uT-OUD" id="SND-gr-Rnw"/>
                         <outlet property="navigationBarTitle" destination="nKU-8D-tdm" id="ODH-wy-eBm"/>
@@ -1295,7 +1272,7 @@
                                         <barButtonItem key="leftBarButtonItem" image="Back Icon" id="rUw-Wa-YxD">
                                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <connections>
-                                                <action selector="backButton:" destination="prs-s8-Qbf" id="rrz-jc-hAq"/>
+                                                <action selector="goBack:" destination="gGL-fD-2lf" id="Aki-Sf-JNY"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -1317,9 +1294,9 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="backButton" destination="rUw-Wa-YxD" id="IBr-Sw-TpM"/>
                         <outlet property="missingChildMapView" destination="FW5-QB-MSY" id="OO3-DN-nyQ"/>
                         <outlet property="navigationTitle" destination="ggQ-sT-Xsv" id="G5p-QL-CCe"/>
+                        <segue destination="prs-s8-Qbf" kind="show" identifier="showMissingChildProfile" id="oEk-LZ-Q1f"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TaQ-0n-Dwb" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1793,9 +1770,9 @@
         <image name="location-pin" width="960" height="560"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Lcb-42-l1l"/>
-        <segue reference="gL0-ZK-ac6"/>
-        <segue reference="bGS-LC-9UJ"/>
         <segue reference="Tof-qF-RCw"/>
+        <segue reference="Lcb-42-l1l"/>
+        <segue reference="ij2-uN-p6x"/>
+        <segue reference="C1a-rW-NAL"/>
     </inferredMetricsTieBreakers>
 </document>

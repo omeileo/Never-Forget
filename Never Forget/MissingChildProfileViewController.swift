@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseStorage
 
 class MissingChildProfileViewController: UIViewController
 {
@@ -15,8 +16,10 @@ class MissingChildProfileViewController: UIViewController
     
     //Banner
     @IBOutlet weak var bannerImage: UIImageView!
+    @IBOutlet weak var bannerOverlayView: UIView!
     @IBOutlet weak var avatarView: UIView!
     @IBOutlet weak var avatarImage: UIImageView!
+    @IBOutlet weak var avatarImageDistanceFromTop: NSLayoutConstraint!
     
     //About child
     @IBOutlet weak var firstNameLabel: UILabel!
@@ -34,8 +37,7 @@ class MissingChildProfileViewController: UIViewController
     
     //Missing information
     @IBOutlet weak var missingDateLabel: UILabel!
-    @IBOutlet weak var missingAddressDistrictLabel: UILabel!
-    @IBOutlet weak var missingAddressParishLabel: UILabel!
+    @IBOutlet weak var missingAddressButton: UIButton!
 
     var missingChild: MissingChild!
     let homeViewSegueIdentifier = "showHomeViewController"
@@ -54,9 +56,7 @@ class MissingChildProfileViewController: UIViewController
         setupPhysicalAttrtibuteTags()
         setupMissingInformation()
     }
-    
-    
-    
+
     func setupGeneralInformation()
     {
         firstNameLabel.text = missingChild.firstName
@@ -194,8 +194,7 @@ class MissingChildProfileViewController: UIViewController
     func setupMissingInformation()
     {
         missingDateLabel.text = missingChild.lastSeenDateString
-        missingAddressDistrictLabel.text = missingChild.lastSeenAddressDistrict
-        missingAddressParishLabel.text = missingChild.lastSeenAddressParish.rawValue
+        missingAddressButton.setTitle("\(missingChild.lastSeenAddressDistrict), \(missingChild.lastSeenAddressParish.rawValue)", for: .normal)
     }
     
     @IBAction func backButton(_ sender: UIBarButtonItem)
@@ -216,31 +215,60 @@ class MissingChildProfileViewController: UIViewController
         avatarImage.layer.cornerRadius = avatarImage.frame.size.width / 2.0
         avatarImage.clipsToBounds = true
         avatarImage.image = missingChild.profilePicture
-        //bannerImage.image =
-    }
-
-    @IBAction func showMissingChildOnMap(_ sender: UILabel)
-    {
-        guard let text = send as? UILabel else
-        {
-            return
-        }
         
-        switch text.tag
-        {
-            case 1, 2, 3: performSegue(withIdentifier: missingChildMapViewSegueIdentifier, sender: self)
-            default: return
-        }
+        self.retrieveMissingChildPictures(completion: { (image) in
+            self.bannerImage.image = image
+            
+            if self.bannerImage.image == UIImage(named: "Add Missing Child")
+            {
+//                self.avatarView.frame.size.width = 230.0
+//                self.avatarView.frame.size.height = 230.0
+//                self.avatarView.frame = CGRect(x: 0, y: 0, width: 230, height: 230)
+//                self.avatarImageDistanceFromTop.constant = 20.0
+//                self.avatarImage.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+                self.bannerOverlayView.alpha = 0.95
+            }
+        })
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func retrieveMissingChildPictures(completion: @escaping (UIImage) -> ())
+    {
+        let storageRef = Storage.storage().reference().child("Missing Children Photos").child("\(missingChild.ID!)")
+        
+        let imageName = "/\(missingChild.ID!)-1.jpg"
+        let photoRef = storageRef.child(imageName)
+        var image = UIImage(named: "Add Missing Child")
+        
+        photoRef.getData(maxSize: 5 * 1024 * 1024, completion: { (data, error) in
+            if let error = error
+            {
+                print(error.localizedDescription)
+            }
+            else
+            {
+                image = UIImage(data: data!)
+            }
+            
+            completion(image!)
+        })
+        
     }
-    */
+
+    @IBAction func showMissingChildOnMap(_ sender: Any)
+    {
+        performSegue(withIdentifier: missingChildMapViewSegueIdentifier, sender: missingChild)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        if segue.identifier == missingChildMapViewSegueIdentifier
+        {
+            if let missingChildMapViewController = segue.destination as? MissingChildMapViewController, let missingChild = sender as? MissingChild
+            {
+                missingChildMapViewController.missingChild = missingChild
+            }
+        }
+
+    }
 
 }
