@@ -21,6 +21,9 @@ class MissingChildProfileViewController: UIViewController
     @IBOutlet weak var avatarImage: UIImageView!
     @IBOutlet weak var avatarImageDistanceFromTop: NSLayoutConstraint!
     
+    @IBOutlet weak var heightOfAvatarView: NSLayoutConstraint!
+    @IBOutlet weak var widthOfAvatarView: NSLayoutConstraint!
+    
     //About child
     @IBOutlet weak var firstNameLabel: UILabel!
     @IBOutlet weak var genderLabel: UILabel!
@@ -204,6 +207,32 @@ class MissingChildProfileViewController: UIViewController
     
     func setupBanner()
     {
+        setupAvatar()
+        avatarImage.image = missingChild.profilePicture
+        
+        self.retrieveMissingChildPictures(completion: { (image) in
+            self.bannerImage.image = image
+            
+            if self.bannerImage.image == UIImage(named: "Add Missing Child")
+            {
+                self.avatarImageDistanceFromTop.constant = 20.0
+                self.avatarImage.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+                self.heightOfAvatarView.constant += 100
+                self.widthOfAvatarView.constant += 100
+                
+                self.avatarView.frame.size.width = self.widthOfAvatarView.constant
+                self.avatarView.frame.size.height = self.heightOfAvatarView.constant
+                self.avatarImage.frame.size.width = self.widthOfAvatarView.constant
+                self.avatarImage.frame.size.height = self.heightOfAvatarView.constant
+                self.setupAvatar()
+                
+                self.bannerOverlayView.alpha = 0.95
+            }
+        })
+    }
+    
+    func setupAvatar()
+    {
         avatarView.clipsToBounds = false
         avatarView.layer.cornerRadius = avatarView.frame.size.height / 2.0
         avatarView.layer.shadowPath = UIBezierPath(roundedRect: avatarView.bounds, cornerRadius: (avatarView.frame.size.width / 2.0)).cgPath
@@ -214,21 +243,6 @@ class MissingChildProfileViewController: UIViewController
         
         avatarImage.layer.cornerRadius = avatarImage.frame.size.width / 2.0
         avatarImage.clipsToBounds = true
-        avatarImage.image = missingChild.profilePicture
-        
-        self.retrieveMissingChildPictures(completion: { (image) in
-            self.bannerImage.image = image
-            
-            if self.bannerImage.image == UIImage(named: "Add Missing Child")
-            {
-//                self.avatarView.frame.size.width = 230.0
-//                self.avatarView.frame.size.height = 230.0
-//                self.avatarView.frame = CGRect(x: 0, y: 0, width: 230, height: 230)
-//                self.avatarImageDistanceFromTop.constant = 20.0
-//                self.avatarImage.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-                self.bannerOverlayView.alpha = 0.95
-            }
-        })
     }
     
     func retrieveMissingChildPictures(completion: @escaping (UIImage) -> ())

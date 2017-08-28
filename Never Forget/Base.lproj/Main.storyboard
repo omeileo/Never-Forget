@@ -1232,12 +1232,14 @@
                         <outlet property="genderLabel" destination="OcP-a6-l66" id="Um3-Rx-Z20"/>
                         <outlet property="hairDescriptionLabel" destination="wTa-j8-biG" id="B3k-hQ-gE2"/>
                         <outlet property="heightLabel" destination="VDM-Bb-Fdi" id="BMC-FP-UFD"/>
+                        <outlet property="heightOfAvatarView" destination="6AA-Q0-zRt" id="puX-lF-QCo"/>
                         <outlet property="missingAddressButton" destination="Oqi-tX-nLb" id="cJh-IV-Rx5"/>
                         <outlet property="missingDateLabel" destination="kMn-Mz-YEW" id="299-Wc-jmq"/>
                         <outlet property="navigationBar" destination="QdN-uT-OUD" id="SND-gr-Rnw"/>
                         <outlet property="navigationBarTitle" destination="nKU-8D-tdm" id="ODH-wy-eBm"/>
                         <outlet property="nicknameLabel" destination="Imy-lw-dSG" id="iQz-LP-Ehr"/>
                         <outlet property="weightLabel" destination="wpP-lu-Z2R" id="Dti-ie-Ow9"/>
+                        <outlet property="widthOfAvatarView" destination="Nu2-Ro-aCC" id="qXG-rV-9cq"/>
                         <segue destination="49e-Tb-3d3" kind="show" identifier="showHomeViewController" id="Lcb-42-l1l"/>
                         <segue destination="gGL-fD-2lf" kind="show" identifier="showMissingChildMapViewController" id="WAX-fM-scm"/>
                     </connections>
@@ -1772,7 +1774,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="Tof-qF-RCw"/>
         <segue reference="Lcb-42-l1l"/>
-        <segue reference="ij2-uN-p6x"/>
-        <segue reference="C1a-rW-NAL"/>
+        <segue reference="gL0-ZK-ac6"/>
+        <segue reference="bGS-LC-9UJ"/>
     </inferredMetricsTieBreakers>
 </document>
