@@ -66,7 +66,7 @@ class RegisterViewController: UIViewController
                 }
                 else
                 {
-                    self.showAlert(title: "Error", message: "Insufficient information provided for registration. Please fill out all fields.")
+                    self.showAlert(title: "Error", message: "Insufficient information provided for registration. Please fill out all fields.", action: "OK")
                 }
             }
         }

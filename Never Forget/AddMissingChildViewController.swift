@@ -207,7 +207,7 @@ class AddMissingChildViewController: UIViewController, UIImagePickerControllerDe
         }
         else
         {
-            self.showAlert(title: "Missing Information", message: "Ensure that the name and age of the child, as well as their last known whereabouts were added (date & place).")
+            self.showAlert(title: "Missing Information", message: "Ensure that the name and age of the child, as well as their last known whereabouts were added (date & place).", action: "OK")
         }
     }
     

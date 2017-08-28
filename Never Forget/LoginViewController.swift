@@ -86,7 +86,7 @@ class LoginViewController: UIViewController
                     }
                     else
                     {
-                        self.showAlert(title: "Error", message: "Insufficient or invalid information.")
+                        self.showAlert(title: "Error", message: "Insufficient or invalid information.", action: "OK")
                     }
             }
         }
