@@ -11,6 +11,9 @@ import SwiftKeychainWrapper
 import Firebase
 import FirebaseStorage
 
+var missingChildCache = [String: MissingChild]()
+var missingChildProfilePictureCache: [String: UIImage] = [String: UIImage]()
+
 class MissingChildrenFeedViewController: UIViewController
 {
     @IBOutlet weak var neverForgetMissingChildrenCollectionView: UICollectionView!
@@ -63,54 +66,65 @@ class MissingChildrenFeedViewController: UIViewController
                 {
                     for snap in snapshot
                     {
-                        if let missingChildDictionary = snap.value as? [String: AnyObject]
+                        if let child = missingChildCache[snap.key]
                         {
-                            let missingChild = MissingChild(gender: Gender.female, firstName: "", lastName: "", age: 0, lastSeenAt: Address(district: "", parish: Parish.notStated), lastSeenDate: "Jan 1, 2000", missingStatus: MissingStatus.missing)
-                            
-                            let bodyType = missingChildDictionary["bodyType"] as? String ?? "Other"
-                            let complexion = missingChildDictionary["complexion"] as? String ?? "Other"
-                            let eyeColor = missingChildDictionary["eyeColor"] as? String ?? "Other"
-                            let gender = missingChildDictionary["gender"] as? String ?? "Female"
-                            let hairColor = missingChildDictionary["hairColor"] as? String ?? "Other"
-                            let hairType = missingChildDictionary["hairType"] as? String ?? "Other"
-                            let lastSeenAddressParish = missingChildDictionary["lastSeenAddressParish"] as? String ?? "notStated"
-                            let residingAddressParish = missingChildDictionary["residingAddressParish"] as? String ?? "notStated"
-                            
-                            missingChild.age = missingChildDictionary["age"] as? Int16 ?? 0
-                            missingChild.bodyType = BodyType(rawValue: bodyType)
-                            missingChild.citizenship = missingChildDictionary["citizenship"] as? String
-                            missingChild.complexion = Complexion(rawValue: complexion)
-                            missingChild.eyeColor = EyeColor(rawValue: eyeColor)
-                            missingChild.firstName = missingChildDictionary["firstName"] as? String ?? ""
-                            missingChild.gender = Gender(rawValue: gender)!
-                            missingChild.hairColor = HairColor(rawValue: hairColor)
-                            missingChild.hairType = HairType(rawValue: hairType)
-                            missingChild.height = missingChildDictionary["height"] as? Double ?? 0.0
-                            missingChild.lastName = missingChildDictionary["lastName"] as? String ?? ""
-                            missingChild.lastSeenAddressDistrict = missingChildDictionary["lastSeenAddressDistrict"] as? String ?? ""
-                            missingChild.lastSeenAddressParish = Parish(rawValue: lastSeenAddressParish)!
-                            missingChild.lastSeenDateString = missingChildDictionary["lastSeenDate"] as? String ?? "Jan 1, 2000"
-                            missingChild.convertToDate(dateString: missingChild.lastSeenDateString)
-                            missingChild.nickname = missingChildDictionary["nickname"] as? String ?? ""
-                            missingChild.residingAddressDistrict = missingChildDictionary["residingAddressDistrict"] as? String ?? ""
-                            missingChild.residingAddressParish = Parish(rawValue: residingAddressParish)!
-                            missingChild.weight = missingChildDictionary["weight"] as? Double ?? 0.0
-                            
-                            missingChild.ID = snap.key
-                            missingChild.profilePictureURL = missingChildDictionary["profilePictureURL"] as? String ?? ""
-                            missingChild.profilePicture = UIImage(named: missingChild.gender.rawValue)!
-                            
-                            self.retrieveMissingChildProfilePicture(child: missingChild) { image in
-                                missingChild.profilePicture = image
+                            self.missingChildren.append(child)
+                        }
+                        else
+                        {
+                            if let missingChildDictionary = snap.value as? [String: AnyObject]
+                            {
+                                let missingChild = MissingChild(gender: Gender.female, firstName: "", lastName: "", age: 0, lastSeenAt: Address(district: "", parish: Parish.notStated), lastSeenDate: "Jan 1, 2000", missingStatus: MissingStatus.missing)
                                 
-                                DispatchQueue.main.async
-                                {
-                                    self.missingChildrenFeedTableView.reloadData()
-                                    self.neverForgetMissingChildrenCollectionView.reloadData()
+                                let bodyType = missingChildDictionary["bodyType"] as? String ?? "Other"
+                                let complexion = missingChildDictionary["complexion"] as? String ?? "Other"
+                                let eyeColor = missingChildDictionary["eyeColor"] as? String ?? "Other"
+                                let gender = missingChildDictionary["gender"] as? String ?? "Female"
+                                let hairColor = missingChildDictionary["hairColor"] as? String ?? "Other"
+                                let hairType = missingChildDictionary["hairType"] as? String ?? "Other"
+                                let lastSeenAddressParish = missingChildDictionary["lastSeenAddressParish"] as? String ?? "notStated"
+                                let residingAddressParish = missingChildDictionary["residingAddressParish"] as? String ?? "notStated"
+                                
+                                missingChild.age = missingChildDictionary["age"] as? Int16 ?? 0
+                                missingChild.bodyType = BodyType(rawValue: bodyType)
+                                missingChild.citizenship = missingChildDictionary["citizenship"] as? String
+                                missingChild.complexion = Complexion(rawValue: complexion)
+                                missingChild.eyeColor = EyeColor(rawValue: eyeColor)
+                                missingChild.firstName = missingChildDictionary["firstName"] as? String ?? ""
+                                missingChild.gender = Gender(rawValue: gender)!
+                                missingChild.hairColor = HairColor(rawValue: hairColor)
+                                missingChild.hairType = HairType(rawValue: hairType)
+                                missingChild.height = missingChildDictionary["height"] as? Double ?? 0.0
+                                missingChild.lastName = missingChildDictionary["lastName"] as? String ?? ""
+                                missingChild.lastSeenAddressDistrict = missingChildDictionary["lastSeenAddressDistrict"] as? String ?? ""
+                                missingChild.lastSeenAddressParish = Parish(rawValue: lastSeenAddressParish)!
+                                missingChild.lastSeenDateString = missingChildDictionary["lastSeenDate"] as? String ?? "Jan 1, 2000"
+                                missingChild.convertToDate(dateString: missingChild.lastSeenDateString)
+                                missingChild.nickname = missingChildDictionary["nickname"] as? String ?? ""
+                                missingChild.residingAddressDistrict = missingChildDictionary["residingAddressDistrict"] as? String ?? ""
+                                missingChild.residingAddressParish = Parish(rawValue: residingAddressParish)!
+                                missingChild.weight = missingChildDictionary["weight"] as? Double ?? 0.0
+                                
+                                missingChild.ID = snap.key
+                                missingChild.profilePictureURL = missingChildDictionary["profilePictureURL"] as? String ?? ""
+                                missingChild.profilePicture = UIImage(named: missingChild.gender.rawValue)!
+                                
+                                
+                                self.retrieveMissingChildProfilePicture(child: missingChild) { image in
+                                    missingChild.profilePicture = image
+                                    missingChildProfilePictureCache[missingChild.ID!] = missingChild.profilePicture
+                                    
+                                    DispatchQueue.main.async
+                                    {
+                                            self.missingChildrenFeedTableView.reloadData()
+                                            self.neverForgetMissingChildrenCollectionView.reloadData()
+                                    }
                                 }
+                                
+                                
+                                missingChildCache[missingChild.ID!] = missingChild
+                                self.missingChildren.append(missingChild)
                             }
-                            
-                            self.missingChildren.append(missingChild)
                         }
                     }
                     

@@ -107,7 +107,7 @@ class MissingChildrenMapViewController: UIViewController, CLLocationManagerDeleg
     
     func centerMap(_ center: CLLocationCoordinate2D)
     {
-        let spanX = 0.007
+        let spanX = 0.03
         let spanY = spanX
         
         let newRegion = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: spanX, longitudeDelta: spanY))
