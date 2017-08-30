@@ -12,9 +12,12 @@
 		F307DB091F25CA5C0063D01D /* MissingChild.swift in Sources */ = {isa = PBXBuildFile; fileRef = F307DB081F25CA5C0063D01D /* MissingChild.swift */; };
 		F307DB0B1F25CA750063D01D /* MissingChildReporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F307DB0A1F25CA750063D01D /* MissingChildReporter.swift */; };
 		F307DB0F1F28621D0063D01D /* MissingChildReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = F307DB0E1F28621D0063D01D /* MissingChildReport.swift */; };
+		F31438B51F56650100D6CB3E /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F31438B41F56650100D6CB3E /* MapKit.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		F31438B71F56653A00D6CB3E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F31438B61F56653A00D6CB3E /* CoreLocation.framework */; };
 		F321CD9B1F3039B300FF46D9 /* CustomDataTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = F321CD9A1F3039B300FF46D9 /* CustomDataTypes.swift */; };
 		F321CD9D1F304E1F00FF46D9 /* MissingChildPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = F321CD9C1F304E1F00FF46D9 /* MissingChildPhoto.swift */; };
 		F34C523A1F4BBF2F00F3C5B9 /* MutableCollection+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34C52391F4BBF2E00F3C5B9 /* MutableCollection+Utils.swift */; };
+		F34C525A1F5502DB00F3C5B9 /* MissingChildrenMapViewController+CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34C52591F5502DB00F3C5B9 /* MissingChildrenMapViewController+CollectionView.swift */; };
 		F350D2DE1F3C8FAD00E400C7 /* MissingChildMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F350D2DD1F3C8FAD00E400C7 /* MissingChildMapViewController.swift */; };
 		F350D2E01F409BB800E400C7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F350D2DF1F409BB800E400C7 /* GoogleService-Info.plist */; };
 		F36E7ECD1F3349CF00CFE3C7 /* MissingChildrenFeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36E7ECC1F3349CF00CFE3C7 /* MissingChildrenFeedTableViewCell.swift */; };
@@ -44,9 +47,12 @@
 		F307DB081F25CA5C0063D01D /* MissingChild.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MissingChild.swift; sourceTree = "<group>"; };
 		F307DB0A1F25CA750063D01D /* MissingChildReporter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MissingChildReporter.swift; sourceTree = "<group>"; };
 		F307DB0E1F28621D0063D01D /* MissingChildReport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MissingChildReport.swift; sourceTree = "<group>"; };
+		F31438B41F56650100D6CB3E /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		F31438B61F56653A00D6CB3E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		F321CD9A1F3039B300FF46D9 /* CustomDataTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomDataTypes.swift; sourceTree = "<group>"; };
 		F321CD9C1F304E1F00FF46D9 /* MissingChildPhoto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MissingChildPhoto.swift; sourceTree = "<group>"; };
 		F34C52391F4BBF2E00F3C5B9 /* MutableCollection+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MutableCollection+Utils.swift"; sourceTree = "<group>"; };
+		F34C52591F5502DB00F3C5B9 /* MissingChildrenMapViewController+CollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MissingChildrenMapViewController+CollectionView.swift"; sourceTree = "<group>"; };
 		F350D2DD1F3C8FAD00E400C7 /* MissingChildMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MissingChildMapViewController.swift; sourceTree = "<group>"; };
 		F350D2DF1F409BB800E400C7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F36E7ECC1F3349CF00CFE3C7 /* MissingChildrenFeedTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MissingChildrenFeedTableViewCell.swift; path = View/MissingChildrenFeedTableViewCell.swift; sourceTree = "<group>"; };
@@ -77,6 +83,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F31438B71F56653A00D6CB3E /* CoreLocation.framework in Frameworks */,
+				F31438B51F56650100D6CB3E /* MapKit.framework in Frameworks */,
 				04404ACD3CDE4E16A8CE4C1E /* Pods_Never_Forget.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -96,9 +104,19 @@
 		DB3814C9D065973E3F587284 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F31438B61F56653A00D6CB3E /* CoreLocation.framework */,
+				F31438B41F56650100D6CB3E /* MapKit.framework */,
 				FDF8463898E700978DB53F06 /* Pods_Never_Forget.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F34C52581F54FF1800F3C5B9 /* Missing Child Feed Collection View */ = {
+			isa = PBXGroup;
+			children = (
+				F34C52591F5502DB00F3C5B9 /* MissingChildrenMapViewController+CollectionView.swift */,
+			);
+			name = "Missing Child Feed Collection View";
 			sourceTree = "<group>";
 		};
 		F3910C5F1F207FEB009C6810 = {
@@ -204,6 +222,7 @@
 		F3910C8A1F20933C009C6810 /* Missing Children Map */ = {
 			isa = PBXGroup;
 			children = (
+				F34C52581F54FF1800F3C5B9 /* Missing Child Feed Collection View */,
 				F3910C6F1F207FEB009C6810 /* MissingChildrenMapViewController.swift */,
 			);
 			name = "Missing Children Map";
@@ -295,6 +314,11 @@
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = ZPFHBBTQY8;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -402,6 +426,7 @@
 				F3910C981F20AC15009C6810 /* UIViewController+Utils.swift in Sources */,
 				F3910C701F207FEB009C6810 /* MissingChildrenMapViewController.swift in Sources */,
 				F3910C6C1F207FEB009C6810 /* AppDelegate.swift in Sources */,
+				F34C525A1F5502DB00F3C5B9 /* MissingChildrenMapViewController+CollectionView.swift in Sources */,
 				F3BF065B1F39122800DEEA63 /* UILabel+Utils.swift in Sources */,
 				F3910C9B1F21CE88009C6810 /* AddMissingChildViewController.swift in Sources */,
 				F3040EE91F23F41E000696F9 /* AddMissingChildViewController+DropdownMenu.swift in Sources */,

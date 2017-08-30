@@ -12,7 +12,7 @@ extension MissingChildrenFeedViewController: UICollectionViewDelegate, UICollect
 {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
-        // return number of children in >filtered< list of missing children
+        // return number of children in filtered list of missing children
         return missingChildrenNeverForget.count
     }
 

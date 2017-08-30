@@ -58,7 +58,7 @@
                                     <constraint firstAttribute="height" constant="130" id="Qga-R6-WbH"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Missing Over 5 Months" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0X0-d0-apo">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Missing Over 5 Months" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0X0-d0-apo">
                                 <rect key="frame" x="15" y="73" width="173.66666666666666" height="21"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -74,7 +74,7 @@
                                         <rect key="frame" x="0.0" y="28" width="414" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iB5-zL-JhN" id="gOm-dX-TAI">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="79"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BhH-JJ-Fz0" userLabel="Avatar View">
@@ -976,7 +976,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="AzC-CQ-Zcv" userLabel="Information">
-                                                <rect key="frame" x="42.333333333333343" y="33.666666666666686" width="96.666666666666657" height="43.333333333333314"/>
+                                                <rect key="frame" x="42.666666666666657" y="33.666666666666686" width="96.666666666666657" height="43.333333333333314"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="oDw-IN-gVn" userLabel="Gender &amp; Age">
                                                         <rect key="frame" x="0.0" y="0.0" width="96.666666666666657" height="21.666666666666629"/>
@@ -1006,10 +1006,10 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="8Zo-mU-Tb0" userLabel="Nickname">
-                                                        <rect key="frame" x="8" y="21.666666666666629" width="80.666666666666657" height="21.666666666666686"/>
+                                                        <rect key="frame" x="8" y="21.666666666666629" width="80.666666666666686" height="21.666666666666686"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nickname" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Imy-lw-dSG">
-                                                                <rect key="frame" x="0.0" y="0.0" width="80.666666666666657" height="21.666666666666686"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="80.666666666666686" height="21.666666666666686"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                                 <color key="textColor" red="1" green="0.79215686269999996" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -1348,9 +1348,82 @@
                             </imageView>
                             <view alpha="0.90000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jRE-ZZ-DoZ" userLabel="Overlay View">
                                 <rect key="frame" x="0.0" y="60" width="414" height="130"/>
+                                <subviews>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" keyboardDismissMode="onDrag" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="6e2-LZ-Vbq">
+                                        <rect key="frame" x="0.0" y="40.333333333333336" width="414" height="78"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="78" id="y5h-37-wQg"/>
+                                        </constraints>
+                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="MBV-Jz-yhi">
+                                            <size key="itemSize" width="70" height="75"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        </collectionViewFlowLayout>
+                                        <cells>
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MissingChildCell" id="Zeb-Hs-4vH" customClass="MissingChildCollectionViewCell" customModule="Never_Forget" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="1.6666666666666667" width="70" height="75"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                                    <rect key="frame" x="0.0" y="0.0" width="70" height="75"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Child Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pgf-4A-SEc">
+                                                            <rect key="frame" x="1.3333333333333357" y="59" width="65.666666666666657" height="15"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="suj-r9-xUl">
+                                                            <rect key="frame" x="8" y="0.0" width="54" height="54"/>
+                                                            <subviews>
+                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Female" translatesAutoresizingMaskIntoConstraints="NO" id="RYy-ek-YmC">
+                                                                    <rect key="frame" x="1" y="1" width="52" height="52"/>
+                                                                </imageView>
+                                                            </subviews>
+                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <constraints>
+                                                                <constraint firstItem="RYy-ek-YmC" firstAttribute="top" secondItem="suj-r9-xUl" secondAttribute="top" constant="1" id="043-i9-dK2"/>
+                                                                <constraint firstItem="RYy-ek-YmC" firstAttribute="leading" secondItem="suj-r9-xUl" secondAttribute="leading" constant="1" id="AgP-T8-WV0"/>
+                                                                <constraint firstAttribute="height" constant="54" id="dqE-ue-boC"/>
+                                                                <constraint firstAttribute="trailing" secondItem="RYy-ek-YmC" secondAttribute="trailing" constant="1" id="g7r-Sy-yE8"/>
+                                                                <constraint firstAttribute="bottom" secondItem="RYy-ek-YmC" secondAttribute="bottom" constant="1" id="rCT-WA-EcS"/>
+                                                                <constraint firstAttribute="width" constant="54" id="vIj-Qo-nOF"/>
+                                                            </constraints>
+                                                        </view>
+                                                    </subviews>
+                                                </view>
+                                                <constraints>
+                                                    <constraint firstItem="suj-r9-xUl" firstAttribute="top" secondItem="Zeb-Hs-4vH" secondAttribute="top" id="73b-bK-wqO"/>
+                                                    <constraint firstItem="pgf-4A-SEc" firstAttribute="top" secondItem="suj-r9-xUl" secondAttribute="bottom" constant="5" id="ZJW-9E-6L0"/>
+                                                    <constraint firstItem="pgf-4A-SEc" firstAttribute="centerX" secondItem="Zeb-Hs-4vH" secondAttribute="centerX" id="awN-gV-upe"/>
+                                                    <constraint firstItem="suj-r9-xUl" firstAttribute="centerX" secondItem="Zeb-Hs-4vH" secondAttribute="centerX" id="m0h-mS-nX8"/>
+                                                </constraints>
+                                                <connections>
+                                                    <outlet property="avatarImage" destination="RYy-ek-YmC" id="ySG-9u-9ZM"/>
+                                                    <outlet property="avatarUIView" destination="RYy-ek-YmC" id="6gt-uB-I9E"/>
+                                                    <outlet property="missingChildName" destination="pgf-4A-SEc" id="YAX-vi-shC"/>
+                                                </connections>
+                                            </collectionViewCell>
+                                        </cells>
+                                    </collectionView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap to View Missing Child on the Map" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gqe-LY-rkx">
+                                        <rect key="frame" x="15" y="13" width="282" height="20"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
                                 <color key="backgroundColor" red="1" green="0.79215686269999996" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
+                                    <constraint firstItem="6e2-LZ-Vbq" firstAttribute="leading" secondItem="jRE-ZZ-DoZ" secondAttribute="leading" id="5Ka-sg-q9T"/>
+                                    <constraint firstItem="6e2-LZ-Vbq" firstAttribute="top" secondItem="gqe-LY-rkx" secondAttribute="bottom" constant="8" id="IL3-DN-RBz"/>
+                                    <constraint firstAttribute="trailing" secondItem="6e2-LZ-Vbq" secondAttribute="trailing" id="IST-Ig-JVr"/>
+                                    <constraint firstItem="gqe-LY-rkx" firstAttribute="top" secondItem="jRE-ZZ-DoZ" secondAttribute="top" constant="13" id="UeS-OE-h8t"/>
                                     <constraint firstAttribute="height" constant="130" id="bRV-8f-wVV"/>
+                                    <constraint firstItem="gqe-LY-rkx" firstAttribute="leading" secondItem="jRE-ZZ-DoZ" secondAttribute="leading" constant="15" id="gdZ-lE-Pio"/>
                                 </constraints>
                             </view>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="gcT-fr-CqV">
@@ -1376,6 +1449,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Map" image="Map" id="cPa-gy-q4n"/>
                     <connections>
+                        <outlet property="missingChildrenCollectionView" destination="6e2-LZ-Vbq" id="D1a-c8-DNX"/>
                         <outlet property="missingChildrenMapView" destination="gcT-fr-CqV" id="CVm-Zz-Ajk"/>
                         <segue destination="fSc-Ej-GES" kind="show" identifier="showLoginViewController" id="Eaa-Sf-o5s"/>
                         <segue destination="iet-Hs-tCW" kind="show" identifier="showAddMissingChildViewController" id="NCU-Fi-6f4"/>
@@ -1772,9 +1846,9 @@
         <image name="location-pin" width="960" height="560"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Tof-qF-RCw"/>
         <segue reference="Lcb-42-l1l"/>
         <segue reference="gL0-ZK-ac6"/>
-        <segue reference="bGS-LC-9UJ"/>
+        <segue reference="NCU-Fi-6f4"/>
+        <segue reference="Eaa-Sf-o5s"/>
     </inferredMetricsTieBreakers>
 </document>

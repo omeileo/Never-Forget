@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>$(PRODUCT_NAME) uses location to show missing children on map</string>
+	<string>$(PRODUCT_NAME) uses location to show missing children on map.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>$(PRODUCT_NAME) uses location to show missing children on map</string>
+	<string>$(PRODUCT_NAME) uses location to show missing children on map.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>$(PRODUCT_NAME) needs access to your photo library</string>
 	<key>NSCameraUsageDescription</key>
