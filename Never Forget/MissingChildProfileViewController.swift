@@ -9,6 +9,8 @@
 import UIKit
 import FirebaseStorage
 
+var missingChildBannerImageCache = NSCache<NSString, UIImage>()
+
 class MissingChildProfileViewController: UIViewController
 {
     @IBOutlet weak var navigationBar: UINavigationBar!
@@ -56,7 +58,7 @@ class MissingChildProfileViewController: UIViewController
         setupBanner()
         
         setupGeneralInformation()
-        setupPhysicalAttrtibuteTags()
+        setupPhysicalAttributeTags()
         setupMissingInformation()
     }
 
@@ -83,7 +85,7 @@ class MissingChildProfileViewController: UIViewController
         }
     }
     
-    func setupPhysicalAttrtibuteTags()
+    func setupPhysicalAttributeTags()
     {
         if let complexion = missingChild.complexion?.rawValue
         {
@@ -210,25 +212,38 @@ class MissingChildProfileViewController: UIViewController
         setupAvatar()
         avatarImage.image = missingChild.profilePicture
         
-        self.retrieveMissingChildPictures(completion: { (image) in
+        if let image = missingChildBannerImageCache.object(forKey: missingChild.ID! as NSString)
+        {
             self.bannerImage.image = image
-            
-            if self.bannerImage.image == UIImage(named: "Add Missing Child")
-            {
-                self.avatarImageDistanceFromTop.constant = 20.0
-                self.avatarImage.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-                self.heightOfAvatarView.constant += 100
-                self.widthOfAvatarView.constant += 100
+        }
+        else
+        {
+            self.retrieveMissingChildPictures(completion: { (image) in
+                self.bannerImage.image = image
+                missingChildBannerImageCache.setObject(image, forKey: self.missingChild.ID! as NSString)
                 
-                self.avatarView.frame.size.width = self.widthOfAvatarView.constant
-                self.avatarView.frame.size.height = self.heightOfAvatarView.constant
-                self.avatarImage.frame.size.width = self.widthOfAvatarView.constant
-                self.avatarImage.frame.size.height = self.heightOfAvatarView.constant
-                self.setupAvatar()
-                
-                self.bannerOverlayView.alpha = 0.95
-            }
-        })
+                if self.bannerImage.image == UIImage(named: "Add Missing Child")
+                {
+                    self.adjustBanner()
+                }
+            })
+        }
+    }
+    
+    func adjustBanner()
+    {
+        self.avatarImageDistanceFromTop.constant = 20.0
+        self.avatarImage.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        self.heightOfAvatarView.constant += 100
+        self.widthOfAvatarView.constant += 100
+        
+        self.avatarView.frame.size.width = self.widthOfAvatarView.constant
+        self.avatarView.frame.size.height = self.heightOfAvatarView.constant
+        self.avatarImage.frame.size.width = self.widthOfAvatarView.constant
+        self.avatarImage.frame.size.height = self.heightOfAvatarView.constant
+        self.setupAvatar()
+        
+        self.bannerOverlayView.alpha = 0.95
     }
     
     func setupAvatar()

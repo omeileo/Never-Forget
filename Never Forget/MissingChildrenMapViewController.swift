@@ -49,6 +49,7 @@ class MissingChildrenMapViewController: UIViewController, CLLocationManagerDeleg
         
         setupMapView()
         setupLocation()
+        setupMissingChildrenData()
     }
     
     func setupMapView()
@@ -74,6 +75,11 @@ class MissingChildrenMapViewController: UIViewController, CLLocationManagerDeleg
         {
             missingChildrenMapView.setCenter(coordinates, animated: true)
         }
+    }
+    
+    func setupMissingChildrenData()
+    {
+        
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView?
