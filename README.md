@@ -1,5 +1,5 @@
 # Never-Forget
-Provides information on missing children in Jamaica.
+Provides information on missing children in Jamaica and allows users to report any missing child.
 
 MVP:
   1. Ability to report a missing child (input information and pictures and upload to Firebase database and storage)
@@ -9,6 +9,7 @@ MVP:
   4. Ability to view profile of missing children
   5. Ability to show missing child on a map based on their last seen location
   6. Ability to show all missing children on a map based on their last seen location
+  7. Ability to sign up or login with email and password
 
 Missing features:
   1. Ability to zoom into location on missing children map when collection view cell is tapped
