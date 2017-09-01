@@ -13,7 +13,7 @@ extension MissingChildrenMapViewController: UICollectionViewDelegate, UICollecti
 {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
-        return 5
+        return missingChildren.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
@@ -21,7 +21,11 @@ extension MissingChildrenMapViewController: UICollectionViewDelegate, UICollecti
         let missingChildCell: MissingChildCollectionViewCell = self.missingChildrenCollectionView.dequeueReusableCell(withReuseIdentifier: cellReuseIdentifier, for: indexPath) as! MissingChildCollectionViewCell
         
         //setup elements
+        let child = missingChildren[indexPath.row]
+        missingChildCell.avatarImage.image = child.profilePicture
+        missingChildCell.missingChildName.text = "\(child.firstName) \(child.lastName[child.lastName.index(child.lastName.startIndex, offsetBy: 0)])."
         
+        makeAvatarImageCircular(cell: missingChildCell)
         
         return missingChildCell
     }
@@ -29,5 +33,17 @@ extension MissingChildrenMapViewController: UICollectionViewDelegate, UICollecti
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
     {
         //
+    }
+    
+    func makeAvatarImageCircular(cell: MissingChildCollectionViewCell)
+    {
+        if let image = cell.avatarImage, let imageContainer = cell.avatarUIView
+        {
+            image.layer.cornerRadius = image.frame.size.width / 2.0
+            image.clipsToBounds = true
+            
+            imageContainer.layer.cornerRadius = imageContainer.frame.size.width / 2.0
+            imageContainer.clipsToBounds = false
+        }
     }
 }

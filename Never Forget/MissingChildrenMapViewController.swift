@@ -46,12 +46,15 @@ class MissingChildrenMapViewController: UIViewController, CLLocationManagerDeleg
     override func viewWillDisappear(_ animated: Bool)
     {
         super.viewWillDisappear(animated)
-        missingChildrenMapView.showsUserLocation = false
+        missingChildrenMapView.showsUserLocation = true
     }
     
     func setup()
     {
         navigationController?.setNavigationBarHidden(true, animated: true)
+        
+        self.missingChildrenCollectionView.delegate = self
+        self.missingChildrenCollectionView.dataSource = self
         
         setupMapView()
         setupLocation()
@@ -107,7 +110,7 @@ class MissingChildrenMapViewController: UIViewController, CLLocationManagerDeleg
                 if localSearchResponse != nil
                 {
                     self.pointAnnotation = MKPointAnnotation()
-                    self.pointAnnotation.title = "\(child.firstName) \(child.lastName[child.lastName.index(child.lastName.startIndex, offsetBy: 0)])"
+                    self.pointAnnotation.title = "\(child.firstName) \(child.lastName[child.lastName.index(child.lastName.startIndex, offsetBy: 0)])."
                     self.pointAnnotation.coordinate = CLLocationCoordinate2D(latitude: localSearchResponse!.boundingRegion.center.latitude, longitude: localSearchResponse!.boundingRegion.center.longitude)
                     
                     self.pinAnnotationView = MKPinAnnotationView(annotation: self.pointAnnotation, reuseIdentifier: nil)
@@ -123,6 +126,8 @@ class MissingChildrenMapViewController: UIViewController, CLLocationManagerDeleg
                 }
             })
         }
+        
+//        self.missingChildrenMapView.showAnnotations(self.missingChildrenMapView.annotations, animated: true)
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView?
