@@ -161,11 +161,11 @@ class MissingChildrenMapViewController: UIViewController, CLLocationManagerDeleg
     
     func centerMap(_ center: CLLocationCoordinate2D)
     {
-//        let spanX = 0.03
-//        let spanY = spanX
-//        
-//        let newRegion = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: spanX, longitudeDelta: spanY))
-//        missingChildrenMapView.setRegion(newRegion, animated: true)
+        let spanX = 0.03
+        let spanY = spanX
+        
+        let newRegion = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: spanX, longitudeDelta: spanY))
+        missingChildrenMapView.setRegion(newRegion, animated: true)
     }
 
     @IBAction func reportMissingChild(_ sender: UIBarButtonItem)
