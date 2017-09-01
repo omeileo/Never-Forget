@@ -215,6 +215,11 @@ class MissingChildProfileViewController: UIViewController
         if let image = missingChildBannerImageCache.object(forKey: missingChild.ID! as NSString)
         {
             self.bannerImage.image = image
+            
+            if self.bannerImage.image == UIImage(named: "Add Missing Child")
+            {
+                self.adjustBanner()
+            }
         }
         else
         {

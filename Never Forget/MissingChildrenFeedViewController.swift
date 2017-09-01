@@ -13,6 +13,7 @@ import FirebaseStorage
 
 var missingChildCache = NSCache<NSString, MissingChild>()
 var missingChildProfilePictureCache = NSCache<NSString, UIImage>()
+var missingChildren = [MissingChild]()
 
 class MissingChildrenFeedViewController: UIViewController
 {
@@ -21,7 +22,7 @@ class MissingChildrenFeedViewController: UIViewController
     
     var databaseRef: DatabaseReference!
     
-    var missingChildren = [MissingChild]()
+//    var missingChildren = [MissingChild]()
     var missingChildrenNeverForget = [MissingChild]()
     var missingChild: MissingChild!
     let numberOfMonthsForNeverForgetView = 5
@@ -121,14 +122,17 @@ class MissingChildrenFeedViewController: UIViewController
                                 }
                             }
                             
-                            missingChildCache.setObject(missingChild, forKey: missingChild.ID! as NSString)
-                            self.missingChildren.append(missingChild)
+                            if missingChildCache.object(forKey: missingChild.ID! as NSString) == nil
+                            {
+                                missingChildCache.setObject(missingChild, forKey: missingChild.ID! as NSString)
+                                missingChildren.append(missingChild)
+                            }
                         }
                     }
                     
-                    self.missingChildren.sort(by: {$0.lastSeenDate.compare($1.lastSeenDate) == .orderedDescending})
+                    missingChildren.sort(by: {$0.lastSeenDate.compare($1.lastSeenDate) == .orderedDescending})
                     
-                    self.missingChildrenNeverForget = self.missingChildren
+                    self.missingChildrenNeverForget = missingChildren
                     
                     let neverForgetTimeInterval: TimeInterval = Double(self.numberOfMonthsForNeverForgetView * (60 * 60 * 24 * 30))
                     var count = 0
@@ -214,11 +218,11 @@ class MissingChildrenFeedViewController: UIViewController
                         self.neverForgetMissingChildrenCollectionView.reloadData()
                     }
                     
-                    self.missingChildren.append(missingChild)
+                    missingChildren.append(missingChild)
                 }
             }, withCancel: nil)
             
-            self.missingChildren = self.missingChildren.sorted(by: {$0.lastSeenDate.compare($1.lastSeenDate) == .orderedDescending})
+            missingChildren = missingChildren.sorted(by: {$0.lastSeenDate.compare($1.lastSeenDate) == .orderedDescending})
         }
     }
     

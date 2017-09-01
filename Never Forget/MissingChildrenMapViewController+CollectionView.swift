@@ -22,6 +22,7 @@ extension MissingChildrenMapViewController: UICollectionViewDelegate, UICollecti
         
         //setup elements
         
+        
         return missingChildCell
     }
     

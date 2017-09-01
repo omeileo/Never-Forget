@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 import CoreLocation
+import FirebaseDatabase
 import SwiftKeychainWrapper
 
 class MissingChildrenMapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
@@ -19,6 +20,11 @@ class MissingChildrenMapViewController: UIViewController, CLLocationManagerDeleg
     var locationManager = CLLocationManager()
     var userLocation: MKCoordinateRegion?
     var annotations = [MKAnnotation]()
+    var localSearchRequest: MKLocalSearchRequest!
+    var localSearch: MKLocalSearch!
+    var localSearchResponse: MKLocalSearchResponse!
+    var pointAnnotation: MKPointAnnotation!
+    var pinAnnotationView: MKPinAnnotationView!
     
     let loginViewSegueIdentifier = "showLoginViewController"
     let addMissingChildViewSegueIdentifier = "showAddMissingChildViewController"
@@ -49,7 +55,7 @@ class MissingChildrenMapViewController: UIViewController, CLLocationManagerDeleg
         
         setupMapView()
         setupLocation()
-        setupMissingChildrenData()
+        placeMissingChildrenOnMap()
     }
     
     func setupMapView()
@@ -77,9 +83,46 @@ class MissingChildrenMapViewController: UIViewController, CLLocationManagerDeleg
         }
     }
     
-    func setupMissingChildrenData()
+    func placeMissingChildrenOnMap()
     {
+        //clear the annotations that might have been on the map
+        var count = 0
+        while self.missingChildrenMapView.annotations.count != 0
+        {
+            let annotation = self.missingChildrenMapView.annotations[count]
+            self.missingChildrenMapView.removeAnnotation(annotation)
+            count += 1
+        }
         
+        count = 0
+        
+        for child in missingChildren
+        {
+            let location = "\(child.lastSeenAddressDistrict), \(child.lastSeenAddressParish.rawValue), Jamaica"
+            
+            localSearchRequest = MKLocalSearchRequest()
+            localSearchRequest.naturalLanguageQuery = location
+            localSearch = MKLocalSearch(request: localSearchRequest)
+            localSearch.start(completionHandler: { (localSearchResponse, error) in
+                if localSearchResponse != nil
+                {
+                    self.pointAnnotation = MKPointAnnotation()
+                    self.pointAnnotation.title = "\(child.firstName) \(child.lastName[child.lastName.index(child.lastName.startIndex, offsetBy: 0)])"
+                    self.pointAnnotation.coordinate = CLLocationCoordinate2D(latitude: localSearchResponse!.boundingRegion.center.latitude, longitude: localSearchResponse!.boundingRegion.center.longitude)
+                    
+                    self.pinAnnotationView = MKPinAnnotationView(annotation: self.pointAnnotation, reuseIdentifier: nil)
+                    
+                    self.missingChildrenMapView.addAnnotation(self.pinAnnotationView.annotation!)
+                    self.missingChildrenMapView.selectAnnotation(self.missingChildrenMapView.annotations[count], animated: true)
+                    
+                    count += 1
+                }
+                else
+                {
+                    print(error?.localizedDescription ?? "")
+                }
+            })
+        }
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView?
@@ -113,11 +156,11 @@ class MissingChildrenMapViewController: UIViewController, CLLocationManagerDeleg
     
     func centerMap(_ center: CLLocationCoordinate2D)
     {
-        let spanX = 0.03
-        let spanY = spanX
-        
-        let newRegion = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: spanX, longitudeDelta: spanY))
-        missingChildrenMapView.setRegion(newRegion, animated: true)
+//        let spanX = 0.03
+//        let spanY = spanX
+//        
+//        let newRegion = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: spanX, longitudeDelta: spanY))
+//        missingChildrenMapView.setRegion(newRegion, animated: true)
     }
 
     @IBAction func reportMissingChild(_ sender: UIBarButtonItem)
