@@ -14,6 +14,9 @@ MVP:
 Missing features:
   1. Ability to zoom into location on missing children map when collection view cell is tapped
 
+To-do:
+  1. Change permission on Firebase to allow public reading access to missing children only.
+
 Known bugs:
   1. For the cells in the missing children table view feed, the tags get loaded incorrectly when scrolling up and
   down and the cell is scrolled out of view; they are reloaded with only some of the tag data
