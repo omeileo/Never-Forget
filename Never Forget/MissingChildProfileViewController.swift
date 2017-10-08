@@ -212,7 +212,7 @@ class MissingChildProfileViewController: UIViewController
         setupAvatar()
         avatarImage.image = missingChild.profilePicture
         
-        if let image = missingChildBannerImageCache.object(forKey: missingChild.ID! as NSString)
+        if let missingChildID = missingChild.ID, let image = missingChildBannerImageCache.object(forKey: missingChildID as NSString)
         {
             self.bannerImage.image = image
             
@@ -267,25 +267,27 @@ class MissingChildProfileViewController: UIViewController
     
     func retrieveMissingChildPictures(completion: @escaping (UIImage) -> ())
     {
-        let storageRef = Storage.storage().reference().child("Missing Children Photos").child("\(missingChild.ID!)")
-        
-        let imageName = "/\(missingChild.ID!)-1.jpg"
-        let photoRef = storageRef.child(imageName)
-        var image = UIImage(named: "Add Missing Child")
-        
-        photoRef.getData(maxSize: 5 * 1024 * 1024, completion: { (data, error) in
-            if let error = error
-            {
-                print(error.localizedDescription)
-            }
-            else
-            {
-                image = UIImage(data: data!)
-            }
+        if let missingChildID = missingChild.ID
+        {
+            let storageRef = Storage.storage().reference().child("Missing Children Photos").child("\(missingChildID)")
             
-            completion(image!)
-        })
-        
+            let imageName = "/\(missingChildID)-1.jpg"
+            let photoRef = storageRef.child(imageName)
+            var image = UIImage(named: "Add Missing Child")
+            
+            photoRef.getData(maxSize: 5 * 1024 * 1024, completion: { (data, error) in
+                if let error = error
+                {
+                    print(error.localizedDescription)
+                }
+                else
+                {
+                    image = UIImage(data: data!)
+                }
+                
+                completion(image!)
+            })
+        }
     }
 
     @IBAction func showMissingChildOnMap(_ sender: Any)
